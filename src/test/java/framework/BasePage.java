@@ -15,6 +15,7 @@ import java.util.*;
 
 
 public class BasePage {
+
     private final WebDriver driver;
     public final WebDriverWait wait;
 
