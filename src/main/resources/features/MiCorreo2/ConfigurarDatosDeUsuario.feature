@@ -2,9 +2,6 @@
   @pruebalis
 Feature: Mis envios
 
-  #Background:
-    #Given el usuario se situa en los campos email y password
-
 Scenario Outline: Configuracion de datos del usuario
 
   Given el usuario "<tipoUsuario>" se situa en los campos email y password

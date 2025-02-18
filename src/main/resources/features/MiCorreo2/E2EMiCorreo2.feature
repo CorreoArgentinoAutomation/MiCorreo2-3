@@ -1,7 +1,6 @@
 @MiCorreo2
 Feature: Mis envios
 
-
 Scenario Outline: Nuevo envío individual
 
   Given el usuario "<tipoUsuario>" se situa en los campos email y password
@@ -11,7 +10,7 @@ Scenario Outline: Nuevo envío individual
 
   Examples:
     | tipoUsuario      | tipoDeEnvio   | tipoDeEntrega  | medioPago        |
-    | Consumidor final |  individual    | sucursal       | Tarjeta          |
+    | Consumidor final |  individual    | sucursal      | Tarjeta          |
 
 
 

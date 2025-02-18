@@ -57,4 +57,9 @@ public class MiCorreo2Steps {
         miCorreo2.cambioDomiciliosPickUp();
         System.out.println("Campos faltantes");
     }
+
+    @And("el usuario agrega una medida frecuente")
+    public void elUsuarioAgregaUnaMedidaFrecuente() {
+        miCorreo2.configuracionMedidasFrecuentes();
+    }
 }

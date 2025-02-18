@@ -68,6 +68,12 @@ public class MiCorreo2 extends BasePage {
     private By listaProvinciaConfiguracion = By.xpath("//mat-select[@formcontrolname='province' and contains(@class, 'mat-mdc-select')]");
     private By listaFranjaHoraria = By.xpath("//mat-label[contains(@class, 'ng-tns-c2608167813-55') and contains(text(), 'Franja horaria')]");
 
+    // Configuraciones de medidas frecuentes
+    private By campoNameMF = By.xpath("//input[@formcontrolname='name']");
+    private By campoLargoMF = By.xpath("//input[@formcontrolname='length']");
+    private By campoAnchoMF = By.xpath("//input[@formcontrolname='width']");
+    private By campoAltoMF = By.xpath("//input[@formcontrolname='height']");
+    private By btnGuardarMF = By.xpath("//button[contains(text(),'Guardar')]");
     //private By  = By.xpath("");
     //private By  = By.xpath("");
     //private By  = By.xpath("");
@@ -225,4 +231,20 @@ public class MiCorreo2 extends BasePage {
         System.out.println("No se puede cambiar los datos de facturacion en la cuenta con consumidor final");
 
     }
+
+    public void configuracionMedidasFrecuentes(){
+        waitForSeconds(2);
+
+        click(medidasFrecuentes);
+
+        writeText(campoNameMF, "Prueba");
+        writeText(campoLargoMF, "21");
+        writeText(campoAnchoMF, "22");
+        writeText(campoAltoMF, "23");
+
+        click(btnGuardarMF);
+
+    }
+
+
 }
