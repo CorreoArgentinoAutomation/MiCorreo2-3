@@ -14,10 +14,10 @@ import org.junit.runners.Suite;
         stepNotifications = true,
         publish = true,
         snippets = CucumberOptions.SnippetType.CAMELCASE,
-        features = {"src/main/resources/features/PlataformaIntegracion"
+        features = {"src/main/resources/features/MiCorreo2"
         },
-        glue = {"stepsDefinitions", "framework","PlataformaIntegracion","Google","MiCorreo1_5","Presta","Shopify","Magento"}, // Agrega el paquete de los hooks y framework
-        tags =  "@MagentoFlujo1"
+        glue = {"stepsDefinitions", "framework","MiCorreo2","Google","MiCorreo1_5"}, // Agrega el paquete de los hooks y framework
+        tags =  "@pruebalis"
         //"@PPDIPI-3167"
 )
 public class TestRunner {

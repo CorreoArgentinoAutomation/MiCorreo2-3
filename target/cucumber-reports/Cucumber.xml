@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Cucumber" time="88.504" tests="1" skipped="0" failures="0" errors="0">
-<testcase classname="Importar un paquete de productos a Mi Correo" name="Usuarios de tipo &lt;tipoUsuario&gt; deberian poder importar un paquete de productos a Mi Correo - Example #1.1" time="88.086">
+<testsuite name="Cucumber" time="35.066" tests="1" skipped="0" failures="0" errors="0">
+<testcase classname="Mis envios" name="Configuracion de datos del usuario - Example #1.1" time="34.866">
 <system-out><![CDATA[
-Given Inicio sesion en el panel de administracion de Magento................passed
-And el usuario navega hasta la pagina de la tienda..........................passed
-And el usuario realiza un pedido segun el "paquete01" y el "fixed"..........passed
+Given el usuario "Consumidor final" se situa en los campos email y password.passed
+And el usuario se dirige a las configuraciones de la cuenta.................passed
+And el usuario cambia los datos de la cuenta................................passed
 ]]></system-out>
 </testcase>
 </testsuite>
