@@ -1,5 +1,5 @@
 @MiCorreo2
-  @pruebalis
+@PDG1-250
 Feature: Mis envios
 
 Scenario Outline: Configuracion de datos del usuario
