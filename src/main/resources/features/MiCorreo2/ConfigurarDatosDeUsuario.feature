@@ -1,5 +1,5 @@
 @MiCorreo2
-@PDG1-250
+@PDG1-252
 Feature: Mis envios
 
 Scenario Outline: Configuracion de datos del usuario
