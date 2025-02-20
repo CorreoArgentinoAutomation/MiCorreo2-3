@@ -15,6 +15,7 @@
         <selenium.version>4.14.1</selenium.version>
         <io.cucumber.version>7.15.0</io.cucumber.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
 
     <dependencies>
