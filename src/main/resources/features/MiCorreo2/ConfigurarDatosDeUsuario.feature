@@ -1,5 +1,8 @@
 @MiCorreo2
-@PDG1-252
+#@PDG1-252 Sandbox
+@PPDIPI-3236
+
+
 Feature: Mis envios
 
 Scenario Outline: Configuracion de datos del usuario
