@@ -1,6 +1,9 @@
 @MiCorreo2
 #@PDG1-252 Sandbox
-@PPDIPI-3236
+#@PPDIPI-3236 E2E WooCommerce
+  @PMCII-6296
+
+
 
 
 Feature: Mis envios
