@@ -9,8 +9,8 @@ Scenario Outline: Nuevo envío individual
     And el usuario valida que se encuentre pagado el envio
 
   Examples:
-    | tipoUsuario      | tipoDeEnvio   | tipoDeEntrega  | medioPago        |
-    | Consumidor final |  individual    | sucursal      | Tarjeta          |
+    | tipoUsuario      | tipoDeEnvio   | tipoDeEntrega | medioPago  |
+    | Consumidor final |  individual   | sucursal      | Tarjeta    |
 
 
 

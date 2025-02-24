@@ -1,4 +1,5 @@
 @MiCorreo2
+  @prueba
 Feature: Mis envios
 
 Scenario Outline: Configuracion de datos del usuario

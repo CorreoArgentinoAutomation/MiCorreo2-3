@@ -1,5 +1,11 @@
 @MiCorreo2
-  @pruebalis
+@PDG1-252 #Sandbox
+#@PPDIPI-3236 E2E WooCommerce
+#@PMCII-6296 Mi Correo 2
+
+
+
+
 Feature: Mis envios
 
 Scenario Outline: Configuracion de datos del usuario

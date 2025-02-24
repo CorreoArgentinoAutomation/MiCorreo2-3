@@ -42,7 +42,7 @@ public class MiCorreo2 extends BasePage {
     private By btnPagados = By.xpath("//span[contains(@class, 'mdc-tab__text-label') and text()='Pagados']");
     private By tablaPagados = By.xpath("//table[contains(@class, 'mat-mdc-table')]");
     private By btnMicuenta = By.xpath("//p[@class='menu-list-profile-user' and contains(text(), 'Mi cuenta')]");
-    private By opcionesConfiguracion = By.xpath("//span[contains(.,'Configuración')]");
+    private By opcionesConfiguracion = By.xpath("//span[contains(.,'ConfiguraciÃ³n')]");
 
     // Configuraciones de la cuenta
     private By campoNombre = By.xpath("//mat-form-field[contains(@class, 'mat-mdc-form-field') and .//mat-label[contains(text(), 'Nombre')]]//input");
@@ -52,9 +52,8 @@ public class MiCorreo2 extends BasePage {
     private By btnConfirmar = By.xpath("//span[contains(.,'Confirmar')]");
 
     // Configuraciones de Facturacion
-
     private By datosDeUsuario = By.xpath("//button[contains(@class, 'item') and contains(text(), 'Datos de usuario')]");
-    private By informacionDeLaCuenta = By.xpath("//button[contains(@class, 'item') and contains(text(), 'Información de la cuenta')]");
+    private By informacionDeLaCuenta = By.xpath("//button[contains(.,'InformaciÃ³n de la cuenta')]");
     private By domicilios = By.xpath("//button[contains(@class, 'item') and contains(text(), 'Domicilios')]");
     private By medidasFrecuentes = By.xpath("//button[contains(@class, 'item') and contains(text(), 'Medidas frecuentes')]");
     private By usuariosInvitados = By.xpath("//button[contains(@class, 'item') and contains(text(), 'Usuarios invitados')]");
@@ -64,7 +63,7 @@ public class MiCorreo2 extends BasePage {
     private By campoAlias = By.xpath("//input[@formcontrolname='alias' and contains(@class, 'mat-mdc-input-element')]");
     private By campoTelefonoPickUp = By.xpath("//input[@formcontrolname='cellphone' and contains(@class, 'mat-mdc-input-element')]");
     private By campoPropiedad = By.xpath("//input[@formcontrolname='name' and contains(@class, 'mat-mdc-input-element')]");
-    private By campoCorreoElectronico = By.xpath("//label[contains(@class, 'mdc-floating-label') and .//mat-label[contains(text(), 'Correo electrónico')]]");
+    private By campoCorreoElectronico = By.xpath("//label[contains(@class, 'mdc-floating-label') and .//mat-label[contains(text(), 'Correo electrÃ³nico')]]");
     private By listaProvinciaConfiguracion = By.xpath("//mat-select[@formcontrolname='province' and contains(@class, 'mat-mdc-select')]");
     private By listaFranjaHoraria = By.xpath("//mat-label[contains(@class, 'ng-tns-c2608167813-55') and contains(text(), 'Franja horaria')]");
 
@@ -74,6 +73,17 @@ public class MiCorreo2 extends BasePage {
     private By campoAnchoMF = By.xpath("//input[@formcontrolname='width']");
     private By campoAltoMF = By.xpath("//input[@formcontrolname='height']");
     private By btnGuardarMF = By.xpath("//button[contains(text(),'Guardar')]");
+
+    //Configuracion informacion de la cuenta
+
+    private By informacionCuenta = By.xpath("//button[contains(.,'Informaci')]");
+    //private By campoNombreYApellido = By.xpath("//input[@formcontrolname='name']");
+    private By campoEmailIC = By.xpath("//input[@formcontrolname='email_address']");
+    private By ComboProvincia = By.xpath("//mat-select[@formcontrolname='province']");
+    private By campoCiudad = By.xpath("//input[@formcontrolname='city']");
+    //private By  = By.xpath("");
+    //private By  = By.xpath("");
+    //private By  = By.xpath("");
     //private By  = By.xpath("");
     //private By  = By.xpath("");
     //private By  = By.xpath("");
@@ -195,10 +205,13 @@ public class MiCorreo2 extends BasePage {
     }
 
     public void cambioInfoCuenta(){
-        click(informacionDeLaCuenta);
+
+        //waitForSeconds(2);
+        click(informacionCuenta);
 
         //Datos de facturacion
-        System.out.println("No se puede cambiar los datos de facturacion en la cuenta con consumidor final");
+
+        //writeText(, "");
 
     }
     public void cambioDomiciliosPickUp(){
