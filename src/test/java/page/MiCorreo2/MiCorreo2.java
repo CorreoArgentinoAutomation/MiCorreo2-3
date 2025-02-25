@@ -81,9 +81,15 @@ public class MiCorreo2 extends BasePage {
     private By campoEmailIC = By.xpath("//input[@formcontrolname='email_address']");
     private By ComboProvincia = By.xpath("//mat-select[@formcontrolname='province']");
     private By campoCiudad = By.xpath("//input[@formcontrolname='city']");
-    //private By  = By.xpath("");
-    //private By  = By.xpath("");
-    //private By  = By.xpath("");
+
+    //Servicios y Oficios Judiciales
+
+
+    private By menuServicios = By.xpath("//img[contains(@src, 'dashboard/services.svg') and @aria-label='Servicios']");
+
+    private By subMenuOficios = By.xpath("//h3[contains(.,'Oficios judiciales')]");
+
+    private By listaCamara = By.xpath("//span[.='Cámara Nacional Electoral']");
     //private By  = By.xpath("");
     //private By  = By.xpath("");
     //private By  = By.xpath("");
@@ -259,5 +265,25 @@ public class MiCorreo2 extends BasePage {
 
     }
 
+    public void serviciosOficiosJudiciales(){
+        waitForSeconds(2);
+
+        click(menuServicios);
+        click(subMenuOficios);
+
+
+
+    }
+
+    public void llenarFormularioOficios(){
+        waitForSeconds(2);
+
+        click(listaCamara);
+
+
+
+    }
+
 
 }
+
