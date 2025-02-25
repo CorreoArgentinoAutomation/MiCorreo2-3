@@ -62,4 +62,17 @@ public class MiCorreo2Steps {
     public void elUsuarioAgregaUnaMedidaFrecuente() {
         miCorreo2.configuracionMedidasFrecuentes();
     }
+
+    @And("el usuario se dirige a servicios y oficios judiciales")
+    public void el_usuario_se_dirige_a_servicios_y_oficios_judiciales() {
+        miCorreo2.serviciosOficiosJudiciales();
+        
+    }
+
+    @And("el usuario rellena el formulario y guarda el oficio")
+    public void el_usuario_rellena_el_formulario_y_guarda_el_oficio() {
+
+
+
+    }
 }
