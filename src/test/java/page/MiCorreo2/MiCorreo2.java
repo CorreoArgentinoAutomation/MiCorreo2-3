@@ -87,6 +87,22 @@ public class MiCorreo2 extends BasePage {
     private By opcionBuenosAires = By.xpath("//span[contains(.,'Ciudad Aut')]");
     private By campoCiudad = By.xpath("//input[@formcontrolname='city']");
 
+
+    //Servicios y Oficios Judiciales
+
+
+    private By menuServicios = By.xpath("//img[contains(@src, 'dashboard/services.svg') and @aria-label='Servicios']");
+
+    private By subMenuOficios = By.xpath("//h3[contains(.,'Oficios judiciales')]");
+
+    private By listaCamara = By.xpath("//span[.='Cámara Nacional Electoral']");
+    //private By  = By.xpath("");
+    //private By  = By.xpath("");
+    //private By  = By.xpath("");
+    //private By  = By.xpath("");
+    //private By  = By.xpath("");
+
+
     private By campoCalleIC = By.xpath("//input[@formcontrolname='address_line1']");
     private By campoCodigoPostalPU = By.xpath("//input[@formcontrolname='postal_code']");
     private By msjConfirmacion = By.xpath("//strong[contains(.,'¡Actualizaste tus datos exitosamente!')]");
@@ -291,9 +307,30 @@ public class MiCorreo2 extends BasePage {
 
     }
 
+
     public void validarMsjConfirmacion(){
         compararTextoConMensajeEsperado(msjConfirmacion, "¡Actualizaste tus datos exitosamente!");
     }
+
+    public void serviciosOficiosJudiciales(){
+        waitForSeconds(2);
+
+        click(menuServicios);
+        click(subMenuOficios);
+
+
+
+    }
+
+    public void llenarFormularioOficios(){
+        waitForSeconds(2);
+
+        click(listaCamara);
+
+
+
+    }
+
 
     public void configuracionDomiciliosRemitente(){
         click(domicilios);
@@ -316,3 +353,4 @@ public class MiCorreo2 extends BasePage {
         click(btnEnviosPendientes);
     }
 }
+
