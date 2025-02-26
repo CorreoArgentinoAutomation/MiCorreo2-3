@@ -63,9 +63,13 @@ public class MiCorreo2 extends BasePage {
     private By campoAlias = By.xpath("//input[@formcontrolname='alias' and contains(@class, 'mat-mdc-input-element')]");
     private By campoTelefonoPickUp = By.xpath("//input[@formcontrolname='cellphone' and contains(@class, 'mat-mdc-input-element')]");
     private By campoPropiedad = By.xpath("//input[@formcontrolname='name' and contains(@class, 'mat-mdc-input-element')]");
-    private By campoCorreoElectronico = By.xpath("//label[contains(@class, 'mdc-floating-label') and .//mat-label[contains(text(), 'Correo electrónico')]]");
+    private By campoCorreoElectronico = By.xpath("//input[@formcontrolname='email']");
     private By listaProvinciaConfiguracion = By.xpath("//mat-select[@formcontrolname='province' and contains(@class, 'mat-mdc-select')]");
-    private By listaFranjaHoraria = By.xpath("//mat-label[contains(@class, 'ng-tns-c2608167813-55') and contains(text(), 'Franja horaria')]");
+    private By listaFranjaHoraria = By.xpath("//mat-select[@formcontrolname='shift']");
+    private By campoLocalidadPU = By.xpath("//input[@formcontrolname='location']");
+    private By listaDias = By.xpath("//span[contains(text(), 'LUNES')]");
+    private By campoCallePU = By.xpath("//input[@formcontrolname='address']");
+    private By campoCodigoPostal = By.xpath("//input[@formcontrolname='cp']");
 
     // Configuraciones de medidas frecuentes
     private By campoNameMF = By.xpath("//input[@formcontrolname='name']");
@@ -80,16 +84,25 @@ public class MiCorreo2 extends BasePage {
     //private By campoNombreYApellido = By.xpath("//input[@formcontrolname='name']");
     private By campoEmailIC = By.xpath("//input[@formcontrolname='email_address']");
     private By ComboProvincia = By.xpath("//mat-select[@formcontrolname='province']");
+    private By opcionBuenosAires = By.xpath("//span[contains(.,'Ciudad Aut')]");
     private By campoCiudad = By.xpath("//input[@formcontrolname='city']");
-    //private By  = By.xpath("");
-    //private By  = By.xpath("");
-    //private By  = By.xpath("");
-    //private By  = By.xpath("");
-    //private By  = By.xpath("");
-    //private By  = By.xpath("");
-    //private By  = By.xpath("");
-    //private By  = By.xpath("");
 
+    private By campoCalleIC = By.xpath("//input[@formcontrolname='address_line1']");
+    private By campoCodigoPostalPU = By.xpath("//input[@formcontrolname='postal_code']");
+    private By msjConfirmacion = By.xpath("//strong[contains(.,'¡Actualizaste tus datos exitosamente!')]");
+
+    //Configuracion de Remitente
+
+    private By listaProvinciaDR = By.xpath("//mat-select[@formcontrolname='province']");
+    private By campoLocalidadDR = By.xpath("//input[@formcontrolname='location']");
+    private By camnpoDireccionDR = By.xpath("//input[@formcontrolname='address']");
+    private By campoCodigoPostalDR = By.xpath("//input[@formcontrolname='cp']");
+
+    //Envios Pendientes
+
+    private By btnEnvios = By.xpath("//img[@src='../../../assets/img/dashboard/local_post_office.svg' and @aria-label='Mis envíos']");
+
+    private By btnEnviosPendientes = By.xpath("//h3[.='Pendientes']");
 
 
 
@@ -206,12 +219,29 @@ public class MiCorreo2 extends BasePage {
 
     public void cambioInfoCuenta(){
 
-        //waitForSeconds(2);
         click(informacionCuenta);
 
         //Datos de facturacion
 
-        //writeText(, "");
+        String email = generadorCorreos();
+        writeText(campoEmailIC, email);
+        System.out.println("Se cambio el Caorreo por: "+email);
+
+        click(ComboProvincia);
+        click(opcionBuenosAires);
+        writeText(campoCiudad, "Quilmes");
+
+        String calle = "Calle "+numerosAleatorios(4);
+        writeText(campoCalleIC, calle);
+        System.out.println("Se cambio la Calle por: "+calle);
+
+        String codigoPostal = "1020";
+        writeText(campoCodigoPostalPU, codigoPostal);
+        System.out.println("Se cambio el codigo postal por: "+codigoPostal);
+
+        click(btnSiguiente);
+        waitForSeconds(2);
+        click(btnConfirmar);
 
     }
     public void cambioDomiciliosPickUp(){
@@ -221,7 +251,10 @@ public class MiCorreo2 extends BasePage {
         writeText(campoAlias, "Automation");
         writeText(campoTelefonoPickUp, generadorNumeroTelefono());
         writeText(campoPropiedad, "Razon Social");
-        writeText(campoCorreoElectronico, "prueba@correo.com");
+
+        String email = generadorCorreos();
+        writeText(campoCorreoElectronico, email);
+        System.out.println("Se cambio el Correo por: "+email);
 
         click(listaProvinciaConfiguracion);
         sendEnter();
@@ -229,19 +262,18 @@ public class MiCorreo2 extends BasePage {
         click(listaFranjaHoraria);
         sendEnter();
 
-        /*
-        writeText(, "");
-        writeText(, "");
-        writeText(, "");
-        writeText(, "");
-        writeText(, "");
-        writeText(, "");
+        writeText(campoLocalidadPU, "ciudad");
 
+        click(listaDias);
+        sendEnter();
 
-         */
+        String calle = "Calle "+numerosAleatorios(4);
+        writeText(campoCallePU, calle);
+        System.out.println("Se cambio la Calle por: "+calle);
 
-        //Datos de facturacion
-        System.out.println("No se puede cambiar los datos de facturacion en la cuenta con consumidor final");
+        writeText(campoCodigoPostal, "1020");
+
+        click(btnSiguiente);
 
     }
 
@@ -259,5 +291,28 @@ public class MiCorreo2 extends BasePage {
 
     }
 
+    public void validarMsjConfirmacion(){
+        compararTextoConMensajeEsperado(msjConfirmacion, "¡Actualizaste tus datos exitosamente!");
+    }
 
+    public void configuracionDomiciliosRemitente(){
+        click(domicilios);
+        click(listaProvinciaDR);
+        sendEnter();
+
+        writeText(campoLocalidadDR, "ciudad");
+
+        writeText(camnpoDireccionDR, "Calle 1234");
+
+        writeText(campoCodigoPostalDR, "1020");
+
+        click(btnSiguiente);
+
+
+    }
+
+    public void enviosPendientes(){
+        click(btnEnvios);
+        click(btnEnviosPendientes);
+    }
 }

@@ -7,7 +7,6 @@ Scenario Outline: Configuracion de medidas frecuentes
     And el usuario se dirige a las configuraciones de la cuenta
     And el usuario agrega una medida frecuente
 
-
   Examples:
     | tipoUsuario      |
     | Consumidor final |
