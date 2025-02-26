@@ -3,6 +3,7 @@ package stepsDefinitions.MiCorreo2;
 import framework.DriverManager;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
+import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
 import page.MiCorreo2.MiCorreo2;
 
@@ -61,5 +62,20 @@ public class MiCorreo2Steps {
     @And("el usuario agrega una medida frecuente")
     public void elUsuarioAgregaUnaMedidaFrecuente() {
         miCorreo2.configuracionMedidasFrecuentes();
+    }
+
+    @When("el usuario valida el visualiza el popup de confirmacion")
+    public void elUsuarioValidaElVisualizaElPopupDeConfirmacion() {
+        miCorreo2.validarMsjConfirmacion();
+    }
+
+    @And("el usuario configura un remitente")
+    public void elUsuarioConfiguraUnRemitente() {
+        miCorreo2.configuracionDomiciliosRemitente();
+    }
+
+    @And("el usuario se dirige a los envios pendientes")
+    public void elUsuarioSeDirigeALosEnviosPendientes() {
+        miCorreo2.enviosPendientes();
     }
 }

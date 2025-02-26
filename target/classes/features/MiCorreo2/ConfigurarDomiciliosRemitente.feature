@@ -1,14 +1,13 @@
-@pruebalis
-Feature: Configuracion de medidas frecuentes
+@MiCorreo2
+Feature: Mis envios
 
-Scenario Outline: Configuracion de medidas frecuentes
+Scenario Outline: Configuracion de datos del usuario
 
   Given el usuario "<tipoUsuario>" se situa en los campos email y password
     And el usuario se dirige a las configuraciones de la cuenta
-    And el usuario agrega una medida frecuente
+    And el usuario configura un remitente
+
 
   Examples:
     | tipoUsuario      |
     | Consumidor final |
-
-
