@@ -103,6 +103,8 @@ public class MiCorreo2 extends BasePage {
 
     private By btnGuardarOficio = By.xpath("//button[text()='Guardar']");
 
+    private By validacionPopUp = By.xpath("//strong[contains(.,'Oficio Judicial registrado exitosamente')]");
+
     //private By  = By.xpath("");
     //private By  = By.xpath("");
     //private By  = By.xpath("");
@@ -310,6 +312,13 @@ public class MiCorreo2 extends BasePage {
 
     }
 
+    public void confirmacionOficio(){
+        compararTextoConMensajeEsperado(validacionPopUp, "Oficio Judicial registrado exitosamente");
+        waitForSeconds(1);
+
+
+
+    }
 
 }
 
