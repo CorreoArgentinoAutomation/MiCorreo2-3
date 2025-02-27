@@ -87,6 +87,7 @@ public class MiCorreo2Steps {
 
     @And("el usuario rellena el formulario y guarda el oficio")
     public void el_usuario_rellena_el_formulario_y_guarda_el_oficio() {
+        miCorreo2.llenarFormularioOficios();
 
 
 
