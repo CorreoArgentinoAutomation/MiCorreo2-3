@@ -253,7 +253,6 @@ public class MiCorreo2 extends BasePage {
     }
 
     public void cambioInfoCuenta(){
-
         click(informacionCuenta);
 
         //Datos de facturacion
@@ -371,15 +370,10 @@ public class MiCorreo2 extends BasePage {
         click(domicilios);
         click(listaProvinciaDR);
         sendEnter();
-
         writeText(campoLocalidadDR, "ciudad");
-
         writeText(camnpoDireccionDR, "Calle 1234");
-
         writeText(campoCodigoPostalDR, "1020");
-
         click(btnSiguiente);
-
 
     }
 
