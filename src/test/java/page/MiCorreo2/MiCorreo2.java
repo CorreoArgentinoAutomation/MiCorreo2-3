@@ -95,7 +95,24 @@ public class MiCorreo2 extends BasePage {
 
     private By subMenuOficios = By.xpath("//h3[contains(.,'Oficios judiciales')]");
 
-    private By listaCamara = By.xpath("//span[.='Cámara Nacional Electoral']");
+    private By listaCamara = By.xpath("//div[@class='mat-mdc-form-field-infix ng-tns-c2608167813-4']//mat-select[@formcontrolname='camara']");
+
+    private By listaCamaraDos = By.xpath("//mat-select[@formcontrolname='camara']");
+
+    private By listaCamaraTres = By.xpath("//mat-option/span[contains(text(),'Cámara Penal Económico')]");
+
+    private By numeroExpediente = By.xpath("//input[@formcontrolname='expediente']");
+
+    private By listaAnio = By.xpath("//input[@formcontrolname='ano']");
+
+    private By cantidadGestiones = By.xpath("//input[@formcontrolname='gestiones']");
+
+    private By btnGuardarOficio = By.xpath("//button[text()='Guardar']");
+
+    //private By  = By.xpath("");
+    //private By  = By.xpath("");
+    //private By  = By.xpath("");
+    //private By  = By.xpath("");
     //private By  = By.xpath("");
     //private By  = By.xpath("");
     //private By  = By.xpath("");
@@ -318,15 +335,24 @@ public class MiCorreo2 extends BasePage {
         click(menuServicios);
         click(subMenuOficios);
 
-
-
     }
 
     public void llenarFormularioOficios(){
         waitForSeconds(2);
 
-        click(listaCamara);
 
+        //click(listaCamara);
+        //var opcon = driver.findElement(By.xpath("//mat-option/span[contains(text(),'Cámara Penal Económico')]"));
+        //opcon.click();
+
+
+        click(listaCamaraDos);
+        click(listaCamaraTres);
+        writeText(numeroExpediente, "123123");
+        writeText(listaAnio, "123123");
+        writeText(cantidadGestiones, "123123");
+        waitForSeconds(2);
+        click(btnGuardarOficio);
 
 
     }
