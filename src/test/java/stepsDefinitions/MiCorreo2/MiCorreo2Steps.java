@@ -64,7 +64,7 @@ public class MiCorreo2Steps {
         miCorreo2.configuracionMedidasFrecuentes();
     }
 
-<<<<<<< HEAD
+
     @When("el usuario valida el visualiza el popup de confirmacion")
     public void elUsuarioValidaElVisualizaElPopupDeConfirmacion() {
         miCorreo2.validarMsjConfirmacion();
@@ -78,24 +78,21 @@ public class MiCorreo2Steps {
     @And("el usuario se dirige a los envios pendientes")
     public void elUsuarioSeDirigeALosEnviosPendientes() {
         miCorreo2.enviosPendientes();
-=======
+    }
+
     @And("el usuario se dirige a servicios y oficios judiciales")
     public void el_usuario_se_dirige_a_servicios_y_oficios_judiciales() {
         miCorreo2.serviciosOficiosJudiciales();
-        
     }
 
     @And("el usuario rellena el formulario y guarda el oficio")
     public void el_usuario_rellena_el_formulario_y_guarda_el_oficio() {
         miCorreo2.llenarFormularioOficios();
-
-
-
->>>>>>> 5d653f7f0174a0d56b32828edbbeda1460b04f79
     }
 
     @When("el usuario valida el popup de confirmacion")
-    public void elUsuarioValidaElPopupDeConfirmacion() {
+    public void el_usuario_valida_el_popup_de_confirmacion() {
         miCorreo2.confirmacionOficio();
     }
+
 }
