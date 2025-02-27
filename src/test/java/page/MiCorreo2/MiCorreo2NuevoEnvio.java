@@ -76,6 +76,7 @@ public class MiCorreo2NuevoEnvio extends BasePage {
         recargar(3);
         waitForSeconds(10);
 
+
     }
 
 }
