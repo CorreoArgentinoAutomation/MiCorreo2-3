@@ -93,4 +93,9 @@ public class MiCorreo2Steps {
 
 >>>>>>> 5d653f7f0174a0d56b32828edbbeda1460b04f79
     }
+
+    @When("el usuario valida el popup de confirmacion")
+    public void elUsuarioValidaElPopupDeConfirmacion() {
+        miCorreo2.confirmacionOficio();
+    }
 }
