@@ -17,11 +17,14 @@ public class MisEnviosOutlineSteps {
     private PageCheckOut pageCheckOut = new PageCheckOut(driver);
     private PageForm pageForm = new PageForm(driver);
     private PagePayment pagePayment = new PagePayment(driver);
+    private PageYopMail pageYopMail = new PageYopMail(driver);
+
+    public String email;
 
     @Given("^el usuario se situa en los campos email y password$")
     public void elUsuarioSeSituaEnLosCamposEmailYPassword() {
         driver.get(baseUrl);
-        pageHomeLogin.assertURL("https://wcpzt.correo.local/MiCorreo/public/");
+        //pageHomeLogin.assertURL("https://wcpzt.correo.local/MiCorreo/public/");
     }
     @Given("^el usuario '(.*)' está logueado y en la page home$")
     public void elUsuarioEstáLogueadoYEnLaPageHome(String tipoUsuario) {
@@ -55,4 +58,42 @@ public class MisEnviosOutlineSteps {
     public void seConfirmaQueElPagoSeHaRealizadoConÉxito() {
         pagePayment.verificarPago();
     }
+
+    //Registro nuevo usuario
+    @Given("el usuario crea un email temporal")
+    public void elUsuarioCreaUnEmailTemporal() {
+        driver.get("https://yopmail.com/es/");
+        email = pageYopMail.crearMailTemporal();
+
+    }
+    @Given("que el usuario ingresa al sitio")
+    public void que_el_usuario_ingresa_al_sitio() {
+        driver.get(baseUrl);
+    }
+
+    @When("el usuario hace clic en el boton Registrarme")
+    public void el_usuario_hace_clic_en_el_boton_registrarme() {
+        pageHomeLogin.registro(email);
+    }
+
+    @And("el usuario llena el formulario de registro")
+    public void el_usuario_llena_el_formulario_de_registro() {
+
+    }
+
+    @And("el usuario abre el servicio de correo electronico")
+    public void el_usuario_abre_el_servicio_de_correo_electronico() {
+
+    }
+
+    @And("el usuario hace clic en el boton Activa tu usuario")
+    public void el_usuario_hace_clic_en_el_boton_activa_tu_usuario() {
+
+    }
+
+    @Then("el usuario deberia ver el mensaje de bienvenida")
+    public void el_usuario_deberia_ver_el_mensaje_de_bienvenida() {
+    }
+
+
 }

@@ -56,7 +56,7 @@ public class PageForm extends BasePage {
         sendKeys("APRO");
 
         sendTab(1);
-        sendKeys("1125");
+        sendKeys("1130");
 
         waitForSeconds(1);
         sendTab(1);
@@ -71,7 +71,7 @@ public class PageForm extends BasePage {
         sendEnter();
 
         waitForSeconds(1);
-        writeText(campoEmailMercadoPago,"hola@yopmail.com");
+        writeText(campoEmailMercadoPago,"lucianocorasa@gmail.com");
 
         click(btnPagarMercadoPago);
 
