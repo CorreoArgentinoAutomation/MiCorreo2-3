@@ -43,7 +43,49 @@ public class PageForm extends BasePage {
     }
 
     public void pagoConMercadoPago(){
-        click(pagarTarjCredito);
+
+        waitForSeconds(2);
+
+        sendTab(2);
+        sendEnter();
+
+        waitForSeconds(3);
+        sendKeys("5031 7557 3453 0604");
+
+        sendTab(1);
+        sendKeys("APRO");
+
+        sendTab(1);
+        sendKeys("1125");
+
+        waitForSeconds(1);
+        sendTab(1);
+        sendKeys("123");
+
+        waitForSeconds(1);
+        sendTab(3);
+        sendKeys("12345678");
+
+        waitForSeconds(1);
+        sendTab(1);
+        sendEnter();
+
+        waitForSeconds(1);
+        writeText(campoEmailMercadoPago,"hola@yopmail.com");
+
+        click(btnPagarMercadoPago);
+
+        /*
+        waitForSeconds(1);
+        sendTab(2);
+        sendKeys("hola@yopmail.com");
+
+
+         */
+
+
+        /*
+        //click(pagarTarjCredito);
         waitForSeconds(1);
         writeText(campoNumTarjeta,"5031 7557 3453 0604");
         writeText(campoNombreTitular,"APRO");
@@ -54,5 +96,7 @@ public class PageForm extends BasePage {
         writeText(campoEmailMercadoPago,"hola@yopmail.com");
         click(btnPagarMercadoPago);
         waitForSeconds(3);
+
+         */
     }
 }

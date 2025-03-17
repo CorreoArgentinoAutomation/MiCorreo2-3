@@ -410,6 +410,12 @@ public class BasePage {
         }
         return contenidoTabla;
     }
+    public void sendKeys(String texto) {
+
+        Actions actions = new Actions(driver);
+        actions.sendKeys(texto).perform();
+        //sendKeys(actions, texto);
+    }
 
     public void sendEnter() {
         Actions actions = new Actions(driver);
