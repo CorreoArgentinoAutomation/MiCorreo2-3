@@ -7,13 +7,25 @@ import org.openqa.selenium.WebDriver;
 public class PageForm extends BasePage {
 
     protected By visaLocator = By.xpath("//label[@title='Visa']");
-    protected By numeroTarjeta = By.xpath("//input[@id='card_number']11");
+    protected By numeroTarjeta = By.xpath("//input[@id='card_number']");
     protected By codSeguridad = By.xpath("//input[@id='security_code']");
     protected By mesVencimiento = By.xpath("//input[@id='card_expiration_month']");
     protected By anoVencimiento = By.xpath("//input[@id='card_expiration_year']");
     protected By nombreTitular = By.xpath("//input[@id='card_holder_name']");
     protected By numeroDocumento = By.xpath("//input[@id='card_holder_doc_number']");
     protected By btnPagarLocator = By.xpath("//button[@id='pagar']");
+
+    //Pago con Mercado Pago
+    protected By pagarTarjCredito = By.xpath("//span[text()='Tarjeta de cr']");//button[.='Tarjeta de crédito']");
+    protected By campoNumTarjeta = By.xpath("//input[@id='cardNumber']");
+    protected By campoNombreTitular = By.xpath("//input[@id='cardholderName']");
+    protected By campoVencimiento = By.xpath("(//input[@id='expirationDate'])[1]");
+    protected By campoCodSeguridad = By.xpath("//input[@id='securityCode']");
+    protected By campoDNI = By.xpath("//input[@id='cardholderIdentificationNumber']");
+    protected By btnContinuar = By.xpath("//span[.='Continuar']");
+    protected By campoEmailMercadoPago = By.xpath("//input[@id='user-email-input']");
+    protected By btnPagarMercadoPago = By.xpath("//span[text()='Pagar']");
+
     public PageForm(WebDriver driver){
         super (driver);
     }
@@ -28,5 +40,19 @@ public class PageForm extends BasePage {
         waitForSeconds(2);
         clickWithRetry(btnPagarLocator);
         waitForSeconds(5);
+    }
+
+    public void pagoConMercadoPago(){
+        click(pagarTarjCredito);
+        waitForSeconds(1);
+        writeText(campoNumTarjeta,"5031 7557 3453 0604");
+        writeText(campoNombreTitular,"APRO");
+        writeText(campoVencimiento,"1125");
+        writeText(campoCodSeguridad,"123");
+        writeText(campoDNI,"12345678");
+        click(btnContinuar);
+        writeText(campoEmailMercadoPago,"hola@yopmail.com");
+        click(btnPagarMercadoPago);
+        waitForSeconds(3);
     }
 }

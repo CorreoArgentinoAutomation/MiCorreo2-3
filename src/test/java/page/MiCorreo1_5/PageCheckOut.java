@@ -20,6 +20,7 @@ public class PageCheckOut extends BasePage {
     private By pagoTarjeta = By.id("radioTarjeta");
     private By pagoSaldo = By.id("radioSaldo");
     private By pagoCtaCte = By.id("radioCuentaCorriente");
+    private By pagoMercadoPago = By.id("radioMercadoPago");
 
     //Nuevo loguin
     private By campoEmailLogin = By.xpath("//div[@class='py-2']//input[@id='email']");
@@ -71,6 +72,10 @@ public class PageCheckOut extends BasePage {
         }else if (medioPago.equals("Saldo")){
             click(pagoSaldo);
             presionarPagar();
+        }else if (medioPago.equals("Mercado Pago")){
+            click(pagoMercadoPago);
+            presionarPagar();
+            pageForm.pagoConMercadoPago();
         }else {
             throw new IllegalArgumentException("Medio de pago no valido: " + medioPago);
         }
