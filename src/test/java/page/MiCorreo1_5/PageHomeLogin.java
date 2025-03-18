@@ -135,11 +135,14 @@ public class PageHomeLogin extends BasePage {
         System.out.println("Logout Exitoso!");
     }
 
-    public void registro(String email){
+    public void registro(){
         click(btnRegistrarme);
         waitForSeconds(1);
         System.out.println("Abre la Ventana Modal con el formulario de registro");
 
+    }
+
+    public void llenarFormulario(String email) {
         writeText(campoNombre, "Test");
         writeText(campoApellido, "Test");
         selectOptionFromDropdownByValue("doc_type", "1");
@@ -170,7 +173,5 @@ public class PageHomeLogin extends BasePage {
         writeText(campoDireccion, "Av. Test");
         writeText(campoCodigoPostal, "1020");
         click(btnRegistrarmeModal);
-
-
     }
 }
