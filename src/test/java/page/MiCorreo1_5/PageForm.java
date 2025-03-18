@@ -16,7 +16,7 @@ public class PageForm extends BasePage {
     protected By btnPagarLocator = By.xpath("//button[@id='pagar']");
 
     //Pago con Mercado Pago
-    protected By pagarTarjCredito = By.xpath("//span[text()='Tarjeta de cr']");//button[.='Tarjeta de crédito']");
+    protected By pagarTarjCredito = By.xpath("//span[text()='Tarjeta de cr']");//button[.='Tarjeta de crï¿½dito']");
     protected By campoNumTarjeta = By.xpath("//input[@id='cardNumber']");
     protected By campoNombreTitular = By.xpath("//input[@id='cardholderName']");
     protected By campoVencimiento = By.xpath("(//input[@id='expirationDate'])[1]");
