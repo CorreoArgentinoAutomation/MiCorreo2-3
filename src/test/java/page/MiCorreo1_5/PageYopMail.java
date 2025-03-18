@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
 public class PageYopMail extends BasePage {
 
     public By campoEmail = By.xpath("//input[@id='login']");
-
+    public By btnRefrescar = By.xpath("//button[@id='refresh']]");
 
 
     public PageYopMail(WebDriver driver) {
@@ -29,6 +29,16 @@ public class PageYopMail extends BasePage {
 
         System.out.println("El email generado es: " + emailCreado);
         return emailCreado;
+
+    }
+
+    public void buscarEmailTemporal(String email){
+        writeText(campoEmail, email);
+        waitForSeconds(1);
+        sendEnter();
+
+        click(btnRefrescar);
+        waitForSeconds(1);
 
     }
 
