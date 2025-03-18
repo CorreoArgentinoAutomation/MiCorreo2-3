@@ -65,16 +65,20 @@ public class PageCheckOut extends BasePage {
     public void medioPago(String medioPago){
         if (medioPago.equals("Tarjeta")){
             presionarPagar();
+            scrollPageUpDown(0,1);
             pageForm.pagoConTarjeta();
         }else if (medioPago.equals("Cuenta Corriente")){
             click(pagoCtaCte);
             presionarPagar();
+            scrollPageUpDown(0,1);
         }else if (medioPago.equals("Saldo")){
             click(pagoSaldo);
             presionarPagar();
+            scrollPageUpDown(0,1);
         }else if (medioPago.equals("Mercado Pago")){
             click(pagoMercadoPago);
             presionarPagar();
+            scrollPageUpDown(0,1);
             pageForm.pagoConMercadoPago();
         }else {
             throw new IllegalArgumentException("Medio de pago no valido: " + medioPago);
