@@ -73,17 +73,18 @@ public class MisEnviosOutlineSteps {
 
     @When("el usuario hace clic en el boton Registrarme")
     public void el_usuario_hace_clic_en_el_boton_registrarme() {
-        pageHomeLogin.registro(email);
+        pageHomeLogin.registro();
     }
 
     @And("el usuario llena el formulario de registro")
     public void el_usuario_llena_el_formulario_de_registro() {
-
+        pageHomeLogin.llenarFormulario(email);
     }
 
     @And("el usuario abre el servicio de correo electronico")
     public void el_usuario_abre_el_servicio_de_correo_electronico() {
-
+        driver.get("https://yopmail.com/es/");
+        pageYopMail.buscarEmailTemporal(email);
     }
 
     @And("el usuario hace clic en el boton Activa tu usuario")
