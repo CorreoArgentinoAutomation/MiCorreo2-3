@@ -173,5 +173,7 @@ public class PageHomeLogin extends BasePage {
         writeText(campoDireccion, "Av. Test");
         writeText(campoCodigoPostal, "1020");
         click(btnRegistrarmeModal);
+
+        waitForSeconds(15);
     }
 }

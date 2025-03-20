@@ -50,28 +50,28 @@ public class PageForm extends BasePage {
         sendEnter();
 
         waitForSeconds(3);
-        sendKeys("5031 7557 3453 0604");
+        sendKeys("371180303257522");
 
         sendTab(1);
         sendKeys("APRO");
 
         sendTab(1);
-        sendKeys("1130");
+        sendKeys("1125");
 
         waitForSeconds(1);
         sendTab(1);
-        sendKeys("123");
+        sendKeys("1234");
 
         waitForSeconds(1);
         sendTab(3);
-        sendKeys("12345678");
+        sendKeys("11112112");
 
         waitForSeconds(1);
         sendTab(1);
         sendEnter();
 
         waitForSeconds(1);
-        writeText(campoEmailMercadoPago,"lucianocorasa@gmail.com");
+        writeText(campoEmailMercadoPago,"test_user_1826015362@testuser.com");
 
         click(btnPagarMercadoPago);
 
