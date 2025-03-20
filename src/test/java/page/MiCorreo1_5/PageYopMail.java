@@ -33,11 +33,12 @@ public class PageYopMail extends BasePage {
     }
 
     public void buscarEmailTemporal(String email){
+        waitForSeconds(1);
         writeText(campoEmail, email);
         waitForSeconds(1);
         sendEnter();
 
-        click(btnRefrescar);
+        //click(btnRefrescar);
         waitForSeconds(1);
 
     }
