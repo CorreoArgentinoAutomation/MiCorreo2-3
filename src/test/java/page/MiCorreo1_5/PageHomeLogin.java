@@ -89,6 +89,8 @@ public class PageHomeLogin extends BasePage {
             email = "mono_tester@yopmail.com";
         } else if (tipoUsuario.equals("Empresa")) {
             email = "empctacte_test@yopmail.com";
+        } else if (tipoUsuario.equals("Usuario Invitado")) {
+            email = "empctacte_testcp@yopmail.com";
         } else {
             throw new IllegalArgumentException("Tipo de usuario no válido: " + tipoUsuario);
         }
