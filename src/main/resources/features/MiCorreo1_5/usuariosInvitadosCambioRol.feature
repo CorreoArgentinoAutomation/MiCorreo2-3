@@ -10,8 +10,8 @@ Feature: Gestión de roles y activación de usuarios
 		Then muestra un mensaje de rol cambiado correctamente
 
 		Examples:
-			| tipoUsuario      | tipoEntrega   | tipoProducto  | medioPago        |
-			| Usuario Invitado |  Domicilio    | Clasico       | Mercado Pago     |
+			| tipoUsuario      |
+			| Usuario Invitado |
 
 
 
