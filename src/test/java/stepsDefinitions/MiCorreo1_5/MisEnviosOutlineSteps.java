@@ -127,5 +127,27 @@ public class MisEnviosOutlineSteps {
     }
 
 
+    @Then("muestra un mensaje usuario activado correctamente")
+    public void muestraUnMensajeUsuarioActivadoCorrectamente() {
+        
+    }
 
+    @And("un usuario existente con estado {string}")
+    public void unUsuarioExistenteConEstado(String arg0) {
+        
+    }
+
+    @When("un administrador accede a la gestión de usuarios")
+    public void unAdministradorAccedeALaGestiónDeUsuarios() {
+        
+    }
+
+    @And("selecciona al usuario")
+    public void seleccionaAlUsuario() {
+        
+    }
+
+    @And("activa la cuenta del usuario")
+    public void activaLaCuentaDelUsuario() {
+    }
 }
