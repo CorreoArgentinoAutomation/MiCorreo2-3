@@ -17,7 +17,7 @@ import org.junit.runners.Suite;
         features = {"src/main/resources/features/MiCorreo2"
         },
         glue = {"stepsDefinitions", "framework","MiCorreo2","Google","MiCorreo1_5"}, // Agrega el paquete de los hooks y framework
-        tags =  "@Oficios"
+        tags =  "@UsuariosInvitados"
 )
 public class TestRunner {
 }

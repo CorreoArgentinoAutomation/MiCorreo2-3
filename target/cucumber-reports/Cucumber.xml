@@ -1,11 +1,3 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Cucumber" time="35.17" tests="1" skipped="0" failures="0" errors="0">
-<testcase classname="Gestión de Oficios Judiciales" name="Registrar un oficio judicial - Example #1.1" time="34.689">
-<system-out><![CDATA[
-Given el usuario "Consumidor final" se situa en los campos email y password.passed
-And el usuario se dirige a servicios y oficios judiciales...................passed
-And el usuario rellena el formulario y guarda el oficio.....................passed
-When el usuario valida el popup de confirmacion.............................passed
-]]></system-out>
-</testcase>
+<testsuite name="Cucumber" time="0.06" tests="0" skipped="0" failures="0" errors="0">
 </testsuite>
