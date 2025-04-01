@@ -709,5 +709,15 @@ public void recargar(int cantidadDeRecargas){
 
 }
 
+    public void hacerClickElementoExiste(By LocatorABuscar) {
+        if (driver.findElements(LocatorABuscar).size() > 0)//(!driver.findElements(LocatorABuscar).isEmpty())
+        {
+            click(LocatorABuscar);
+        }else{
+            System.out.println("No se encontro el elemento");
+        }
+    }
+
+
 }
 
