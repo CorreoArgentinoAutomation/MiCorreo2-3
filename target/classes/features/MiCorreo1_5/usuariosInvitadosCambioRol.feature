@@ -1,7 +1,7 @@
 @UsuariosInvitados
 Feature: Gestión de roles y activación de usuarios
 
-	
+
 	Scenario Outline: Cambio de rol de un usuario
 		Given el usuario '<tipoUsuario>' está logueado y en la page home
 		And selecciona Mi cuenta
@@ -10,8 +10,8 @@ Feature: Gestión de roles y activación de usuarios
 		Then muestra un mensaje de rol cambiado correctamente
 
 		Examples:
-			| tipoUsuario      | tipoEntrega   | tipoProducto  | medioPago        |
-			| Usuario Invitado |  Domicilio    | Clasico       | Mercado Pago     |
+			| tipoUsuario      |
+			| Usuario Invitado |
 
 
 

@@ -19,7 +19,7 @@ Feature: TE - Nuevo envio individual
 		
 		  Examples:
 		| tipoUsuario      | tipoEntrega   | tipoProducto  | medioPago        |
-		| Usuario Invitado |  Domicilio    | Clasico       | Mercado Pago     |
+		| Usuario Invitado |  Domicilio    | Clasico       | c
 
 
 		#Posibles combinaciones de tipoUsuario, tipoEntrega y tipoProducto

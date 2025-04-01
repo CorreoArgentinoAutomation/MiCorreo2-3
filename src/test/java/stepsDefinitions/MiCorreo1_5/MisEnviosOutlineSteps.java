@@ -18,6 +18,7 @@ public class MisEnviosOutlineSteps {
     private PageForm pageForm = new PageForm(driver);
     private PagePayment pagePayment = new PagePayment(driver);
     private PageYopMail pageYopMail = new PageYopMail(driver);
+    private PageServicios pageServicios = new PageServicios(driver);
 
     public String email;
 
@@ -149,5 +150,35 @@ public class MisEnviosOutlineSteps {
 
     @And("activa la cuenta del usuario")
     public void activaLaCuentaDelUsuario() {
+    }
+
+    @And("el usuario ingresa la pantalla de Oficios Judiciales")
+    public void elUsuarioIngresaLaPantallaDeOficiosJudiciales() {
+        pageServicios.menuDeServiciosOficiosJudiciales();
+    }
+
+    @And("el usuario rellena el formulario de oficios")
+    public void elUsuarioRellenaElFormularioDeOficios() {
+        pageServicios.formularioOficioJudicial();
+    }
+
+    @Then("el usuario visualiza el message de oficio creado correctamente")
+    public void elUsuarioVisualizaElMessageDeOficioCreadoCorrectamente() {
+        pageServicios.msjConfirmacionOficio();
+    }
+
+    @And("el usuario realiza el pago con el {string} seleccionado")
+    public void elUsuarioRealizaElPagoConElMedioPagoSeleccionado(String medioPago) {
+        pageServicios.pagarOficioJudicial(medioPago);
+    }
+
+    @Then("el usuario visualiza el mensaje de pago correctamente")
+    public void elUsuarioVisualizaElMensajeDePagoCorrectamente() {
+        pageServicios.msjConfirmacionPagoRealizado();
+    }
+
+    @And("el usuario selecciona y elimina todos los oficios")
+    public void elUsuarioSeleccionaYEliminaTodosLosOficios() {
+        pageServicios.eliminarTodosLosOficios();
     }
 }
