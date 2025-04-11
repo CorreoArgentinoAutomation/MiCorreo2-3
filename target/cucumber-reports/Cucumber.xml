@@ -1,3 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Cucumber" time="0.06" tests="0" skipped="0" failures="0" errors="0">
+<testsuite name="Cucumber" time="56.944" tests="1" skipped="0" failures="0" errors="0">
+<testcase classname="Gestion de pedidos y generacion de sellos digitales" name="Crear y gestionar un pedido con usuario franquicia tipo 2 - Example #1.1" time="56.393">
+<system-out><![CDATA[
+Given el usuario se situa en los campos email y password....................passed
+Given el usuario 'Franquisia tipo 2' está logueado y en la page home........passed
+When el usuario accede a Punto Correo, Nuevo Pedido.........................passed
+And el usuario selecciona un 'Carta Simple 20g', la '3' y presiona Guardar..passed
+And el usuario hace clic en Ir a pendientes.................................passed
+And el usuario selecciona los productos y presiona Cotizar..................passed
+And el usuario presiona Generar.............................................passed
+]]></system-out>
+</testcase>
 </testsuite>

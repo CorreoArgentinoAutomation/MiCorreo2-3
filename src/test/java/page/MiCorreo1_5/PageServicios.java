@@ -91,9 +91,13 @@ public class PageServicios extends BasePage {
         hacerClickElementoExiste(btnEliminar);
         waitForSeconds(1);
 
-        System.out.println("El mensaje de confirmacion es: " + getText(msjSinOficiosCargados));
+        //System.out.println("El mensaje de confirmacion es: " + getText(msjSinOficiosCargados));
 
         scrollPageUpDown(2, 0);
+    }
+
+    public void msjConfirmacionEliminado(){
+        System.out.println("El mensaje de confirmacion es: " + getText(msjSinOficiosCargados));
     }
 
 }

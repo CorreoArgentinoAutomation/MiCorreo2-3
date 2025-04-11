@@ -694,10 +694,10 @@ public void clickConEspera(By locator){
     wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
 }
 
-public String extrarNumeroDePedido(By locator){
+public String extrarNumero(By locator){
     WebElement orderNumberElement = driver.findElement(locator);
     String orderNumber = orderNumberElement.getText();
-    System.out.println("El número de orden es: " + orderNumber);
+    System.out.println("El número extraido es: " + orderNumber);
     return orderNumber;
 }
 

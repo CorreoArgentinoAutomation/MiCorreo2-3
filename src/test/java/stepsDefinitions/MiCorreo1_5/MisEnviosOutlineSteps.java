@@ -19,8 +19,10 @@ public class MisEnviosOutlineSteps {
     private PagePayment pagePayment = new PagePayment(driver);
     private PageYopMail pageYopMail = new PageYopMail(driver);
     private PageServicios pageServicios = new PageServicios(driver);
+    private PageFranquisia pageFranquisia = new PageFranquisia(driver);
 
     public String email;
+    public String numeroSeguimiento;
 
     @Given("^el usuario se situa en los campos email y password$")
     public void elUsuarioSeSituaEnLosCamposEmailYPassword() {
@@ -180,5 +182,48 @@ public class MisEnviosOutlineSteps {
     @And("el usuario selecciona y elimina todos los oficios")
     public void elUsuarioSeleccionaYEliminaTodosLosOficios() {
         pageServicios.eliminarTodosLosOficios();
+    }
+
+    @Then("el usuario visualiza el mensaje de eliminacion correctamente")
+    public void elUsuarioVisualizaElMensajeDeEliminacionCorrectamente() {
+        pageServicios.msjConfirmacionEliminado();
+    }
+
+    @When("el usuario accede a Punto Correo, Nuevo Pedido")
+    public void elUsuarioAccedeAPuntoCorreoNuevoPedido() {
+        pageFranquisia.menuPanel();
+    }
+
+    @And("el usuario selecciona un {string}, la {string} y presiona Guardar")
+    public void elUsuarioSeleccionaUnProductoLaCantidadYPresionaGuardar(String Producto, String Cantidad) {
+        pageFranquisia.Producto(Producto, Cantidad);
+    }
+
+
+    @And("el usuario hace clic en Ir a pendientes")
+    public void elUsuarioHaceClicEnIrAPendientes() {
+        pageFranquisia.pantallaPendientes();
+    }
+
+    @And("el usuario selecciona los productos y presiona Cotizar")
+    public void elUsuarioSeleccionaLosProductosYPresionaCotizar() {
+        pageFranquisia.cotizarPendientes();
+    }
+
+    @And("el usuario presiona Generar")
+    public void elUsuarioPresionaGenerar() {
+        pageFranquisia.generar();
+        numeroSeguimiento = pageFranquisia.obtenerNumeroSeguimiento();
+
+    }
+
+    @And("el usuario hace clic en Imprimi los sellos digitales que pagaste aqui")
+    public void elUsuarioHaceClicEnImprimiLosSellosDigitalesQuePagasteAqui() {
+        pageFranquisia.imprimirSellosDigitales();
+    }
+
+    @And("el usuario busca el primer producto generado y hace clic en consultar")
+    public void elUsuarioBuscaElPrimerProductoGeneradoYHaceClicEnConsultar() {
+        pageFranquisia.escribirNumeroSeguimiento(numeroSeguimiento);
     }
 }
