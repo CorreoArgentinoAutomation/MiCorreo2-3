@@ -538,17 +538,6 @@ public class BasePage {
         return sb.toString();
     }
 
-    public void cambiarFocoPestana() {
-        // Obtiene todas las ventanas abiertas
-        Set<String> ventanas = driver.getWindowHandles();
-
-        // Crea un iterador para recorrer las ventanas
-        Iterator<String> iterador = ventanas.iterator();
-
-        // Cambia el foco a la siguiente pestaña
-        String nuevaPestana = iterador.next();
-        driver.switchTo().window(nuevaPestana);
-    }
 
     public String buscarElementoEnTabla(String numeroOrden) {
 
@@ -694,10 +683,12 @@ public void clickConEspera(By locator){
     wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
 }
 
-public String extrarNumero(By locator){
+public String extrarTextoDeUnLocalizador(String textoAMostrar,By locator){
     WebElement orderNumberElement = driver.findElement(locator);
     String orderNumber = orderNumberElement.getText();
-    System.out.println("El número extraido es: " + orderNumber);
+    System.out.println("==============================================================================================");
+    System.out.println("" + textoAMostrar + ": " + orderNumber);
+    System.out.println("==============================================================================================");
     return orderNumber;
 }
 
@@ -717,6 +708,31 @@ public void recargar(int cantidadDeRecargas){
             System.out.println("No se encontro el elemento");
         }
     }
+
+    public void cambiarFocoPestana() {
+        // Obtener todas las pestañas abiertas
+         ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
+
+        // Cambiar el foco a la segunda pestaña
+        driver.switchTo().window(tabs.get(1));
+
+        // Realizar acciones en la segunda pestaña
+        // driver.get(url);
+
+        /* Funcion vieja para cambiar el foco a la segunda pestaña
+        // Obtiene todas las ventanas abiertas
+        Set<String> ventanas = driver.getWindowHandles();
+
+        // Crea un iterador para recorrer las ventanas
+        Iterator<String> iterador = ventanas.iterator();
+
+        // Cambia el foco a la siguiente pestaña
+        String nuevaPestana = iterador.next();
+        driver.switchTo().window(nuevaPestana);
+
+         */
+    }
+
 
 
 }

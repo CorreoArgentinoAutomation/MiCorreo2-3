@@ -19,7 +19,8 @@ public class MisEnviosOutlineSteps {
     private PagePayment pagePayment = new PagePayment(driver);
     private PageYopMail pageYopMail = new PageYopMail(driver);
     private PageServicios pageServicios = new PageServicios(driver);
-    private PageFranquisia pageFranquisia = new PageFranquisia(driver);
+    private PageFranquicia pageFranquicia = new PageFranquicia(driver);
+    private PageMiniPaqAr pageMiniPaqAr = new PageMiniPaqAr(driver);
 
     public String email;
     public String numeroSeguimiento;
@@ -191,39 +192,69 @@ public class MisEnviosOutlineSteps {
 
     @When("el usuario accede a Punto Correo, Nuevo Pedido")
     public void elUsuarioAccedeAPuntoCorreoNuevoPedido() {
-        pageFranquisia.menuPanel();
+        pageFranquicia.menuPanel();
     }
 
     @And("el usuario selecciona un {string}, la {string} y presiona Guardar")
     public void elUsuarioSeleccionaUnProductoLaCantidadYPresionaGuardar(String Producto, String Cantidad) {
-        pageFranquisia.Producto(Producto, Cantidad);
+        pageFranquicia.Producto(Producto, Cantidad);
     }
 
 
     @And("el usuario hace clic en Ir a pendientes")
     public void elUsuarioHaceClicEnIrAPendientes() {
-        pageFranquisia.pantallaPendientes();
+        pageFranquicia.pantallaPendientes();
     }
 
     @And("el usuario selecciona los productos y presiona Cotizar")
     public void elUsuarioSeleccionaLosProductosYPresionaCotizar() {
-        pageFranquisia.cotizarPendientes();
+        pageFranquicia.cotizarPendientes();
     }
 
     @And("el usuario presiona Generar")
     public void elUsuarioPresionaGenerar() {
-        pageFranquisia.generar();
-        numeroSeguimiento = pageFranquisia.obtenerNumeroSeguimiento();
+        pageFranquicia.generar();
+        numeroSeguimiento = pageFranquicia.obtenerNumeroSeguimiento();
 
     }
 
     @And("el usuario hace clic en Imprimi los sellos digitales que pagaste aqui")
     public void elUsuarioHaceClicEnImprimiLosSellosDigitalesQuePagasteAqui() {
-        pageFranquisia.imprimirSellosDigitales();
+        pageFranquicia.imprimirSellosDigitales();
     }
 
     @And("el usuario busca el primer producto generado y hace clic en consultar")
     public void elUsuarioBuscaElPrimerProductoGeneradoYHaceClicEnConsultar() {
-        pageFranquisia.escribirNumeroSeguimiento(numeroSeguimiento);
+        pageFranquicia.escribirNumeroSeguimiento(numeroSeguimiento);
+    }
+
+    @And("el usuario accede a Punto Correo Acceso a MiniPaqar")
+    public void elUsuarioAccedeAPuntoCorreoAccesoAMiniPaqar() {
+        pageMiniPaqAr.irAMiniPaqAr();
+
+    }
+
+    @And("el usuario accede a Imposicion Envios Imposicion Postal")
+    public void elUsuarioAccedeAImposicionEnviosImposicionPostal() {
+        pageMiniPaqAr.menuImposicionEnvios();
+    }
+
+    @And("el usuario llena el formulario de Imposicion Postal y confirma")
+    public void elUsuarioLlenaElFormularioDeImposicionPostalYConfirma() {
+        pageMiniPaqAr.llenarFormularioImposicionPostal(numeroSeguimiento);
+    }
+
+    @Then("el pedido se impone correctamente.")
+    public void elPedidoSeImponeCorrectamente() {
+        pageMiniPaqAr.validarMsjConfirmacion();
+        pageMiniPaqAr.cerrarSesion();
+
+    }
+
+
+    @Given("el usuario accede a Mi Correo con el usuario Franquicia tipo {int}")
+    public void el_usuario_accede_a_mi_correo_con_el_usuario_franquicia_tipo(Integer int1) {
+        // Write code here that turns the phrase above into concrete actions
+        pageHomeLogin.loginOutline("Franquicia tipo 2");
     }
 }

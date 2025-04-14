@@ -3,6 +3,7 @@ package stepsDefinitions.MiCorreo2;
 import framework.DriverManager;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
 import page.MiCorreo2.*;
@@ -98,6 +99,5 @@ public class MiCorreo2Steps {
     public void el_usuario_valida_el_popup_de_confirmacion() {
         miCorreo2Servicios.confirmacionOficio();
     }
-
 
 }

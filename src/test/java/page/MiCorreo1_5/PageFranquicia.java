@@ -4,12 +4,18 @@ import framework.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class PageFranquisia extends BasePage {
+public class PageFranquicia extends BasePage {
 
-    private By btnMenuPanel = By.xpath("//span[@class='navbar-toggler-icon']");
-    private By btnPuntoCorreo = By.xpath("//span[contains(@class, 'm-2') and contains(@class, 'gilroy-medium') and contains(@class, 'd-flex') and contains(@class, 'align-items-center') and contains(@class, 'color-correo-black')]/img[@alt='Punto Correo']");
+
+
+    By btnMenuPanel = By.xpath("//span[@class='navbar-toggler-icon']");
+    By btnPuntoCorreo = By.xpath("//span[contains(@class, 'm-2') and contains(@class, 'gilroy-medium') and contains(@class, 'd-flex') and contains(@class, 'align-items-center') and contains(@class, 'color-correo-black')]/img[@alt='Punto Correo']");
     private By btnNuevoPedido = By.xpath("//a[.='Nuevo pedido']");
     private By btnSumarCantidadCartaSimple = By.xpath("//div[@id='Cartasimple']/div[1]//div[@class='input-group-append']/button[@class='btn ']");
+    private By btnSumarCantidadCartaSimple150gm = By.xpath("//div[@id='Cartasimple']/div[2]//div[@class='input-group-append']/button[@class='btn ']");
+    private By btnSumarCartaCertificada = By.xpath("//div[@id='Cartacertificada']//div[@class='input-group-append']/button[@class='btn ']");
+    private By btnSumarCartaExpreso = By.xpath("//div[@id='Cartaexpreso']//div[@class='input-group-append']/button[@class='btn ']");
+    private By btnSumarCartaDocumento = By.xpath("//div[@id='Cartadocumento']//div[@class='input-group-append']/button[@class='btn ']");
     private By btnGuardar = By.xpath("//button[contains(.,'Guardar')]");
     private By btnIrPendientes = By.xpath("//a[contains(.,'Ir a pendientes')]");
     private By checkSeleccionTodos = By.xpath("//input[@id='check_padre']");
@@ -19,16 +25,15 @@ public class PageFranquisia extends BasePage {
     private By btnImprimirSellosDigitales = By.xpath("//a[contains(text(), 'aqu')]");
     private By campoNumeroSeguimiento = By.xpath("//input[@id='seguimiento']");
     private By btnConsultar = By.xpath("//button[@id='buscar']");
-    //private By  = By.xpath("");
-    //private By  = By.xpath("");
-    //private By  = By.xpath("");
-    //private By  = By.xpath("");
-    //private By  = By.xpath("");
+    private By msjPagoExitoso = By.xpath("//div[@class='col-12']/div[@class='row']");//h6[contains(text(), '¡Genial! Tu pago fue procesado correctamente')]");
+    private By numeroTAndTConsulta = By.xpath(" //table[contains(@id, 'contenedo_tabla')]//td/div[contains(text(), 'M')]");
+
+
     //private By  = By.xpath("");
     //private By  = By.xpath("");
 
 
-    public PageFranquisia(WebDriver driver) {
+    public PageFranquicia(WebDriver driver) {
         super(driver);
     }
 
@@ -72,19 +77,30 @@ public class PageFranquisia extends BasePage {
     }
 
     public void cartaSimple150g(int cantidad){
-        //click();
+        for (int i = 0; i < cantidad; i++) {
+        click(btnSumarCantidadCartaSimple150gm);
+        }
         waitForSeconds(2);
     }
+
     public void cartaCertificada(int cantidad){
-        //click();
-        waitForSeconds(2);
-    }
+        for (int i = 0; i < cantidad; i++) {
+            click(btnSumarCartaCertificada);
+        }
+            waitForSeconds(2);
+        }
+
+
     public void cartaExpreso(int cantidad){
-        //click();
+        for (int i = 0; i < cantidad; i++) {
+            click(btnSumarCartaExpreso);
+        }
         waitForSeconds(2);
     }
     public void cartaDocumento(int cantidad){
-        //click();
+        for (int i = 0; i < cantidad; i++) {
+            click(btnSumarCartaDocumento);
+        }
         waitForSeconds(2);
     }
 
@@ -107,11 +123,14 @@ public class PageFranquisia extends BasePage {
     }
 
     public String obtenerNumeroSeguimiento(){
-        String numero = extrarNumero(numeroTAndT);
+        String numero = extrarTextoDeUnLocalizador("El numero de seguimiento es",numeroTAndT);
         return numero;
     }
 
     public void imprimirSellosDigitales(){
+
+        extrarTextoDeUnLocalizador("El mensaje de pago exitoso es",msjPagoExitoso);
+
         waitForSeconds(1);
         click(btnImprimirSellosDigitales);
         waitForSeconds(1);
@@ -123,8 +142,14 @@ public class PageFranquisia extends BasePage {
         waitForSeconds(1);
 
         click(btnConsultar);
+        /*
         click(checkSeleccionTodos);
         waitForSeconds(1);
+
+         */
+
+        extrarTextoDeUnLocalizador("El numero de track and trace es",numeroTAndTConsulta);
+
 
     }
 
