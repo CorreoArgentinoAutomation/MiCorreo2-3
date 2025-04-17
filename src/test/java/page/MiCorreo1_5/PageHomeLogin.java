@@ -32,7 +32,8 @@ public class PageHomeLogin extends BasePage {
     private By campoDireccion = By.xpath("//input[@id='direccion']");
     private By campoCodigoPostal = By.xpath("//input[@id='cp']");
     private By btnRegistrarmeModal = By.xpath("//button[@id='btn-register-fisica']");
-
+    private By btnAgregarUsuario = By.xpath("//a[@class= dropdown-item and @href= https://twsec02.correoargentino.com.ar/MiCorreo/public/addsubuser ' ]");
+    private By btnMisUsuarios = By.xpath("//a[@id='tab2' and contains(@class, 'nav-link') and @href='#panel2']");
 
     public PageHomeLogin(WebDriver driver) {
         super(driver);
@@ -178,4 +179,21 @@ public class PageHomeLogin extends BasePage {
 
         waitForSeconds(15);
     }
+
+    public void miCuentaUI(){
+        click(miCuentaLocator);
+        waitForSeconds(1);
+
+    }
+
+    public void agregarUI() {
+        try {
+            click(btnAgregarUsuario);
+            click(btnMisUsuarios);
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

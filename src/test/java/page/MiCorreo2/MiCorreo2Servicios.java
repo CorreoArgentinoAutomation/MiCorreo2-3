@@ -20,7 +20,8 @@ public class MiCorreo2Servicios extends BasePage {
     private By cantidadGestiones = By.xpath("//input[@formcontrolname='gestiones']");
     private By btnGuardarOficio = By.xpath("//button[text()='Guardar']");
     private By validacionPopUp = By.xpath("//strong[contains(.,'Oficio Judicial registrado exitosamente')]");
-    public void serviciosOficiosJudiciales(){
+    public void
+    serviciosOficiosJudiciales(){
         waitForSeconds(2);
         click(menuServicios);
         click(subMenuOficios);
