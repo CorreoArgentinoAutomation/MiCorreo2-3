@@ -1,12 +1,15 @@
 @UsuariosInvitados
 Feature: Gestión activación de usuarios
 
+<<<<<<< HEAD
 
 
 	Background:
 
 		Given el usuario se situa en la pestaña Mis Usuarios
 
+=======
+>>>>>>> d1944c521c052127b7c301802096b48d9b29f90e
 	Scenario Outline: Activación de un usuario
 		Given el usuario '<tipoUsuario>' está logueado y en la page home
 		And un usuario existente con estado "Inactivo"
@@ -16,8 +19,8 @@ Feature: Gestión activación de usuarios
 		Then muestra un mensaje usuario activado correctamente
 
 		Examples:
-			| tipoUsuario      | tipoEntrega   | tipoProducto  | medioPago        |
-			| Usuario Invitado |  Domicilio    | Clasico       | Mercado Pago     |
+			| tipoUsuario      |
+			| Usuario Invitado |
 
 
 	Scenario: Desactivación de un usuario

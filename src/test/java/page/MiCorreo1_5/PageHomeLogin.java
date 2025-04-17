@@ -92,6 +92,9 @@ public class PageHomeLogin extends BasePage {
             email = "empctacte_test@yopmail.com";
         } else if (tipoUsuario.equals("Usuario Invitado")) {
             email = "empctacte_testcp@yopmail.com";
+        } else if (tipoUsuario.equals("Franquicia tipo 2")) {
+            email = "A0007@correoargentino.com.ar";
+            password = "044495";
         } else {
             throw new IllegalArgumentException("Tipo de usuario no válido: " + tipoUsuario);
         }
