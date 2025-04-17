@@ -1,7 +1,23 @@
 package framework;
 
 
+import com.google.zxing.BinaryBitmap;
+import com.google.zxing.LuminanceSource;
+import com.google.zxing.MultiFormatReader;
+import com.google.zxing.NotFoundException;
+import com.google.zxing.Result;
+import com.google.zxing.client.j2se.BufferedImageLuminanceSource;
+import com.google.zxing.common.HybridBinarizer;
+import org.apache.pdfbox.Loader;
+import org.apache.pdfbox.io.MemoryUsageSetting;
+import org.apache.pdfbox.io.RandomAccessRead;
+import org.apache.pdfbox.io.RandomAccessReadBuffer;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.rendering.PDFRenderer;
+import org.apache.pdfbox.text.PDFTextStripper;
+import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.Keys;
 import org.junit.Assert;
@@ -10,6 +26,11 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 import java.time.Duration;
 import java.util.*;
 
@@ -733,7 +754,134 @@ public void recargar(int cantidadDeRecargas){
          */
     }
 
+    //Funcion para leer pdf (PDFBox)
+
+    /*
+    public void leerPDF(String pdfFilePath) throws IOException {
 
 
-}
+    // Encuentra el elemento PDF incrustado
+        WebElement embedElement = driver.findElement(By.xpath("//embed[@id='plugin']"));
+        String pdfUrl = embedElement.getAttribute("src");
+
+    // Descarga el PDF
+        InputStream inputStream = new URL(pdfUrl).openStream();
+        PDDocument document = PDDocument.load(inputStream);
+
+        PDFTextStripper pdfStripper = new PDFTextStripper();
+        String pdfText = pdfStripper.getText(document);
+
+        // Imprime el texto extraído
+        System.out.println(pdfText);
+
+        // Cierra el documento PDF
+        document.close();
+
+        /*
+        try {
+            PDDocument document = PDDocument.load(new File(pdfFilePath));
+            PDFTextStripper pdfStripper = new PDFTextStripper();
+            String pdfText = pdfStripper.getText(document);
+            System.out.println(pdfText);
+            document.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+    */
+
+/*
+    public void leerPDF(WebDriver driver) throws IOException {
+        try {
+            // Espera explícita para encontrar el elemento PDF incrustado
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+            WebElement embedElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//embed[@id='plugin']")));
+
+
+            String pdfUrl;
+            pdfUrl = null;
+            InputStream inputStream = new URL(pdfUrl).openStream();
+            PDDocument document = Loader.loadPDF((RandomAccessRead) inputStream); // Usando Loader.loadPDF
+
+            // Extrae el texto del PDF
+            PDFTextStripper pdfStripper = new PDFTextStripper();
+            String pdfText = pdfStripper.getText(document);
+
+            // Imprime el texto extraído
+            System.out.println(pdfText);
+
+            // Cierra el documento y el WebDriver
+            document.close();
+            //driver.quit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+    }
+    */
+
+    public void leerPDF2() throws IOException {
+
+        WebElement iframe = driver.findElement(By.tagName("iframe"));
+        String src = iframe.getAttribute("src");
+        System.out.println("src: " + src); // Depuración: imprimir el valor de src
+
+        if (src.startsWith("blob:")) {
+            // Usar JavaScript para obtener el contenido del blob
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            String base64PDF = (String) js.executeScript(
+                    "return new Promise((resolve, reject) => {" +
+                            "  fetch(arguments[0]).then(response => response.blob()).then(blob => {" +
+                            "    const reader = new FileReader();" +
+                            "    reader.onloadend = () => resolve(reader.result.split(',')[1]);" +
+                            "    reader.readAsDataURL(blob);" +
+                            "  }).catch(error => reject(error));" +
+                            "});", src);
+
+            byte[] pdfBytes = Base64.getDecoder().decode(base64PDF);
+
+            try (PDDocument document = Loader.loadPDF(new RandomAccessReadBuffer(pdfBytes))) {
+                PDFTextStripper stripper = new PDFTextStripper();
+                String textoExtraido = stripper.getText(document);
+                System.out.println("Texto del PDF:\n" + textoExtraido);
+
+                // Validar texto
+                if (!textoExtraido.contains("Correo Argentino")) {
+                    throw new AssertionError("El texto esperado no se encontró en el PDF");
+                }
+
+                PDFRenderer renderer = new PDFRenderer(document);
+                BufferedImage image = renderer.renderImageWithDPI(0, 300); // Primera página, 300 DPI
+
+                if (image == null) {
+                    throw new IllegalArgumentException("La imagen no puede ser null");
+                }
+
+                LuminanceSource source = new BufferedImageLuminanceSource(image);
+                BinaryBitmap bitmap = new BinaryBitmap(new HybridBinarizer(source));
+                Result result = new MultiFormatReader().decode(bitmap);
+
+                String contenidoQR = result.getText();
+                System.out.println("Contenido del QR: " + contenidoQR);
+
+                if (!contenidoQR.contains("https://")) {
+                    throw new AssertionError("El QR no contiene la URL esperada.");
+                }
+            } catch (NotFoundException e) {
+                throw new RuntimeException(e);
+            }
+        } else {
+            throw new IllegalArgumentException("El atributo src del iframe no contiene una cadena base64 válida");
+        }
+            }
+        }
+
+
+
+
+
+
 
