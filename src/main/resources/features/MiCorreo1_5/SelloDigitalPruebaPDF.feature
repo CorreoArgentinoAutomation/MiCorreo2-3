@@ -1,4 +1,4 @@
-@SellosDigitales
+@SellosDigitalesPruebaPDF
 Feature: Gestion de pedidos y generacion de sellos digitales
 
 	Background:
@@ -13,10 +13,11 @@ Feature: Gestion de pedidos y generacion de sellos digitales
 		And el usuario presiona Generar
 		And el usuario hace clic en Imprimi los sellos digitales que pagaste aqui
 		And el usuario busca el primer producto generado y hace clic en consultar
-		And el usuario accede a Punto Correo Acceso a MiniPaqar
-		And el usuario accede a Imposicion Envios Imposicion Postal
-		And el usuario llena el formulario de Imposicion Postal y confirma
-		Then el pedido se impone correctamente.
+		And el usuario genera el sello digital
+		#And el usuario accede a Punto Correo Acceso a MiniPaqar
+		#And el usuario accede a Imposicion Envios Imposicion Postal
+		#And el usuario llena el formulario de Imposicion Postal y confirma
+		#Then el pedido se impone correctamente.
 
 
 		Examples:

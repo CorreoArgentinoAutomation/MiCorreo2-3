@@ -4,6 +4,8 @@ import framework.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
+import java.io.IOException;
+
 public class PageFranquicia extends BasePage {
 
 
@@ -29,7 +31,8 @@ public class PageFranquicia extends BasePage {
     private By numeroTAndTConsulta = By.xpath(" //table[contains(@id, 'contenedo_tabla')]//td/div[contains(text(), 'M')]");
 
 
-    //private By  = By.xpath("");
+    //imprirmir Sellos Digitales
+    private By btnGenerarSellos = By.xpath("//button[@id='btn_armar_rotulos_franquicia']");
     //private By  = By.xpath("");
 
 
@@ -66,8 +69,11 @@ public class PageFranquicia extends BasePage {
         } else {
             throw new IllegalArgumentException("Tipo de producto no válido: " + Producto);
         }
+
+        scrollPageUpDown(0,3);
         click(btnGuardar);
         waitForSeconds(2);
+        scrollPageUpDown(0,3);
     }
     public void cartaSimple20g(int cantidad){
         for (int i = 0; i < cantidad; i++) {
@@ -149,6 +155,24 @@ public class PageFranquicia extends BasePage {
          */
 
         extrarTextoDeUnLocalizador("El numero de track and trace es",numeroTAndTConsulta);
+
+
+    }
+
+
+    public void generarSelloDigital() throws IOException {
+
+        click(checkSeleccionTodos);
+        waitForSeconds(1);
+
+        click(btnGenerarSellos);
+        waitForSeconds(3);
+
+        String url = "https://wcpzt.correo.local/MiCorreo/public/franquicias/pagados";
+
+        waitForSeconds(5);
+        leerPDF2();
+        System.out.println("Prueba del PDF");
 
 
     }

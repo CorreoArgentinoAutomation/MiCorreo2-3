@@ -8,6 +8,8 @@ import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
 import page.MiCorreo1_5.*;
 
+import java.io.IOException;
+
 public class MisEnviosOutlineSteps {
     private WebDriver driver = DriverManager.getDriver();
     private String baseUrl = DriverManager.config.getProperty("url");
@@ -256,5 +258,10 @@ public class MisEnviosOutlineSteps {
     public void el_usuario_accede_a_mi_correo_con_el_usuario_franquicia_tipo(Integer int1) {
         // Write code here that turns the phrase above into concrete actions
         pageHomeLogin.loginOutline("Franquicia tipo 2");
+    }
+
+    @And("el usuario genera el sello digital")
+    public void elUsuarioGeneraElSelloDigital() throws IOException {
+        pageFranquicia.generarSelloDigital();
     }
 }
