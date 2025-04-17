@@ -19,6 +19,7 @@ public class MisEnviosOutlineSteps {
     private PagePayment pagePayment = new PagePayment(driver);
     private PageYopMail pageYopMail = new PageYopMail(driver);
 
+
     public String email;
 
     @Given("^el usuario se situa en los campos email y password$")
@@ -96,14 +97,15 @@ public class MisEnviosOutlineSteps {
     public void el_usuario_deberia_ver_el_mensaje_de_bienvenida() {
     }
 
-    @Given("el usuario se situa en la pestaña agregar usuarios")
-    public void el_usuario_se_situa_en_la_pestaña_agregar_usuarios() {
+    //usuarioInvitado
+    @Given("selecciona Mi cuenta")
+    public void selecciona_mi_cuenta() { pageHomeLogin.miCuentaUI();
         // Write code here that turns the phrase above into concrete actions
         throw new io.cucumber.java.PendingException();
     }
 
-    @Given("selecciona Mi cuenta")
-    public void selecciona_mi_cuenta() {
+    @Given("el usuario se situa en la pestaña agregar usuarios")
+    public void el_usuario_se_situa_en_la_pestaña_agregar_usuarios() {
         // Write code here that turns the phrase above into concrete actions
         throw new io.cucumber.java.PendingException();
     }
