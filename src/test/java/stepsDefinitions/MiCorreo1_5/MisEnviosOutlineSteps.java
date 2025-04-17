@@ -18,9 +18,13 @@ public class MisEnviosOutlineSteps {
     private PageForm pageForm = new PageForm(driver);
     private PagePayment pagePayment = new PagePayment(driver);
     private PageYopMail pageYopMail = new PageYopMail(driver);
+    private PageServicios pageServicios = new PageServicios(driver);
+    private PageFranquicia pageFranquicia = new PageFranquicia(driver);
+    private PageMiniPaqAr pageMiniPaqAr = new PageMiniPaqAr(driver);
 
 
     public String email;
+    public String numeroSeguimiento;
 
     @Given("^el usuario se situa en los campos email y password$")
     public void elUsuarioSeSituaEnLosCamposEmailYPassword() {
@@ -129,5 +133,130 @@ public class MisEnviosOutlineSteps {
     }
 
 
+    @Then("muestra un mensaje usuario activado correctamente")
+    public void muestraUnMensajeUsuarioActivadoCorrectamente() {
+        
+    }
 
+    @And("un usuario existente con estado {string}")
+    public void unUsuarioExistenteConEstado(String arg0) {
+        
+    }
+
+    @When("un administrador accede a la gestión de usuarios")
+    public void unAdministradorAccedeALaGestiónDeUsuarios() {
+        
+    }
+
+    @And("selecciona al usuario")
+    public void seleccionaAlUsuario() {
+        
+    }
+
+    @And("activa la cuenta del usuario")
+    public void activaLaCuentaDelUsuario() {
+    }
+
+    @And("el usuario ingresa la pantalla de Oficios Judiciales")
+    public void elUsuarioIngresaLaPantallaDeOficiosJudiciales() {
+        pageServicios.menuDeServiciosOficiosJudiciales();
+    }
+
+    @And("el usuario rellena el formulario de oficios")
+    public void elUsuarioRellenaElFormularioDeOficios() {
+        pageServicios.formularioOficioJudicial();
+    }
+
+    @Then("el usuario visualiza el message de oficio creado correctamente")
+    public void elUsuarioVisualizaElMessageDeOficioCreadoCorrectamente() {
+        pageServicios.msjConfirmacionOficio();
+    }
+
+    @And("el usuario realiza el pago con el {string} seleccionado")
+    public void elUsuarioRealizaElPagoConElMedioPagoSeleccionado(String medioPago) {
+        pageServicios.pagarOficioJudicial(medioPago);
+    }
+
+    @Then("el usuario visualiza el mensaje de pago correctamente")
+    public void elUsuarioVisualizaElMensajeDePagoCorrectamente() {
+        pageServicios.msjConfirmacionPagoRealizado();
+    }
+
+    @And("el usuario selecciona y elimina todos los oficios")
+    public void elUsuarioSeleccionaYEliminaTodosLosOficios() {
+        pageServicios.eliminarTodosLosOficios();
+    }
+
+    @Then("el usuario visualiza el mensaje de eliminacion correctamente")
+    public void elUsuarioVisualizaElMensajeDeEliminacionCorrectamente() {
+        pageServicios.msjConfirmacionEliminado();
+    }
+
+    @When("el usuario accede a Punto Correo, Nuevo Pedido")
+    public void elUsuarioAccedeAPuntoCorreoNuevoPedido() {
+        pageFranquicia.menuPanel();
+    }
+
+    @And("el usuario selecciona un {string}, la {string} y presiona Guardar")
+    public void elUsuarioSeleccionaUnProductoLaCantidadYPresionaGuardar(String Producto, String Cantidad) {
+        pageFranquicia.Producto(Producto, Cantidad);
+    }
+
+
+    @And("el usuario hace clic en Ir a pendientes")
+    public void elUsuarioHaceClicEnIrAPendientes() {
+        pageFranquicia.pantallaPendientes();
+    }
+
+    @And("el usuario selecciona los productos y presiona Cotizar")
+    public void elUsuarioSeleccionaLosProductosYPresionaCotizar() {
+        pageFranquicia.cotizarPendientes();
+    }
+
+    @And("el usuario presiona Generar")
+    public void elUsuarioPresionaGenerar() {
+        pageFranquicia.generar();
+        numeroSeguimiento = pageFranquicia.obtenerNumeroSeguimiento();
+
+    }
+
+    @And("el usuario hace clic en Imprimi los sellos digitales que pagaste aqui")
+    public void elUsuarioHaceClicEnImprimiLosSellosDigitalesQuePagasteAqui() {
+        pageFranquicia.imprimirSellosDigitales();
+    }
+
+    @And("el usuario busca el primer producto generado y hace clic en consultar")
+    public void elUsuarioBuscaElPrimerProductoGeneradoYHaceClicEnConsultar() {
+        pageFranquicia.escribirNumeroSeguimiento(numeroSeguimiento);
+    }
+
+    @And("el usuario accede a Punto Correo Acceso a MiniPaqar")
+    public void elUsuarioAccedeAPuntoCorreoAccesoAMiniPaqar() {
+        pageMiniPaqAr.irAMiniPaqAr();
+
+    }
+
+    @And("el usuario accede a Imposicion Envios Imposicion Postal")
+    public void elUsuarioAccedeAImposicionEnviosImposicionPostal() {
+        pageMiniPaqAr.menuImposicionEnvios();
+    }
+
+    @And("el usuario llena el formulario de Imposicion Postal y confirma")
+    public void elUsuarioLlenaElFormularioDeImposicionPostalYConfirma() {
+        pageMiniPaqAr.llenarFormularioImposicionPostal(numeroSeguimiento);
+    }
+
+    @Then("el pedido se impone correctamente.")
+    public void elPedidoSeImponeCorrectamente() {
+        pageMiniPaqAr.validarMsjConfirmacion();
+        pageMiniPaqAr.cerrarSesion();
+
+    }
+
+
+    @Given("el usuario accede a Mi Correo con el usuario Franquicia tipo {int}")
+    public void el_usuario_accede_a_mi_correo_con_el_usuario_franquicia_tipo(Integer int1) {
+        // Write code here that turns the phrase above into concrete actions
+        pageHomeLogin.loginOutline("Franquicia tipo 2");
+    }
 }

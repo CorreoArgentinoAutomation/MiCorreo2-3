@@ -80,6 +80,9 @@ public class PageCheckOut extends BasePage {
             presionarPagar();
             scrollPageUpDown(0,1);
             pageForm.pagoConMercadoPago();
+        }else if (medioPago.equals("Sin Pago")){
+            presionarPagar();
+            scrollPageUpDown(0,1);
         }else {
             throw new IllegalArgumentException("Medio de pago no valido: " + medioPago);
         }
