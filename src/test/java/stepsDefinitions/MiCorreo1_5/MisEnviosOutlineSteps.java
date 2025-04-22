@@ -264,6 +264,6 @@ public class MisEnviosOutlineSteps {
 
     @And("el usuario genera el sello digital")
     public void elUsuarioGeneraElSelloDigital() throws IOException {
-        pageFranquicia.generarSelloDigital();
+        pageFranquicia.generarSelloDigital(numeroSeguimiento);
     }
 }

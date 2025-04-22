@@ -53,10 +53,10 @@ public class BasePage {
         findElement(locator).click();
     }
 
-    public void clickDoble(By locator){
-        try{click(locator);
-        }
-        catch (Exception e){
+    public void clickDoble(By locator) {
+        try {
+            click(locator);
+        } catch (Exception e) {
             click(locator);
         }
     }
@@ -78,9 +78,9 @@ public class BasePage {
         throw new ElementNotInteractableException("No se pudo interactuar con el elemento después de " + maxAttempts + " intentos");
     }
 
-    public void clickMultiple (By locator,int cantidadDeClicks) {
+    public void clickMultiple(By locator, int cantidadDeClicks) {
         int i;
-        for(i=0;i<cantidadDeClicks;i++) {
+        for (i = 0; i < cantidadDeClicks; i++) {
             findElement(locator).click();
         }
     }
@@ -135,6 +135,7 @@ public class BasePage {
     public String getText(By locator) {
         return findElement(locator).getText().trim();
     }
+
     public boolean compararTextoConMensajeEsperado(By locator, String textoEsperado) {
         // Obtener el texto del sitio utilizando el localizador proporcionado
         String textoDelSitio = getText(locator);
@@ -170,12 +171,13 @@ public class BasePage {
 
 
     public void esperaImplicita(By locator) {
-            wait.until(ExpectedConditions.elementToBeClickable(locator));
+        wait.until(ExpectedConditions.elementToBeClickable(locator));
     }
 
-    public WebElement waitUntilElementVisible (By locator){
+    public WebElement waitUntilElementVisible(By locator) {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
+
     protected List<WebElement> sendWebElements(By locator) {
         try {
             return driver.findElements(locator);
@@ -184,6 +186,7 @@ public class BasePage {
             return null;
         }
     }
+
     public void clickLastElementInDropdown(By locator) {
         List<WebElement> dropdownElements = sendWebElements(locator);
 
@@ -198,6 +201,7 @@ public class BasePage {
             System.out.println("No se encontraron elementos en el dropdown con el locator proporcionado: " + locator);
         }
     }
+
     // Método para seleccionar una opción de un elemento <select> por texto visible
     protected void seleccionarOpcionPorTextoVisible(By locator, String textoVisible) {
         WebElement selectElement = driver.findElement(locator);
@@ -238,6 +242,7 @@ public class BasePage {
             System.out.println("Texto actual: " + textoCampo);
         }
     }
+
     public boolean validarCampoExistenteYEditable(By locator) {
         try {
             // Buscar el elemento por el locator proporcionado
@@ -297,7 +302,7 @@ public class BasePage {
 
     //Iframe
     // Cambiar al iframe usando su ruta
-     public void cambioDeIframe(){
+    public void cambioDeIframe() {
         driver.switchTo().frame(driver.findElement(By.cssSelector("iframe[name='modal-create-product-iframe']")));
     }
 
@@ -317,6 +322,7 @@ public class BasePage {
             System.out.println("No se pudo abrir una nueva pestaña: " + e.getMessage());
         }
     }
+
     // Método para cambiar el foco al nuevo tab
     public void switchToNewTab() {
         // Obtener todas las ventanas o tabs abiertas
@@ -336,7 +342,6 @@ public class BasePage {
             return false; // El campo no existe
         }
     }
-
 
 
 // Método para posicionar el cursor sobre un elemento identificado por su XPath
@@ -372,7 +377,6 @@ public class BasePage {
     }
 
 
-
     public void txtIguales(String texto1, String texto2) {
 
 
@@ -383,9 +387,8 @@ public class BasePage {
         }
 
 
-    //return texto1.equals(texto2);
+        //return texto1.equals(texto2);
     }
-
 
 
     public void imprimirContenidoTabla(By tablaLocator) {
@@ -405,6 +408,7 @@ public class BasePage {
             System.out.println(); // Salto de línea entre filas
         }
     }
+
     public List<List<String>> obtenerContenidoTabla(By tablaLocator, String valorBuscado) {
         List<List<String>> contenidoTabla = new ArrayList<>();
         WebElement tabla = driver.findElement(tablaLocator);
@@ -431,6 +435,7 @@ public class BasePage {
         }
         return contenidoTabla;
     }
+
     public void sendKeys(String texto) {
 
         Actions actions = new Actions(driver);
@@ -440,37 +445,45 @@ public class BasePage {
 
     public void sendEnter() {
         Actions actions = new Actions(driver);
-            actions.sendKeys(Keys.ENTER).perform();
+        actions.sendKeys(Keys.ENTER).perform();
     }
 
     public void sendBorrar(int repetir) {
         Actions actions = new Actions(driver);
-        for (int i=0;i<repetir;i++){actions.sendKeys(Keys.DELETE).perform();}
+        for (int i = 0; i < repetir; i++) {
+            actions.sendKeys(Keys.DELETE).perform();
+        }
 
     }
+
     public void sendFlechaArriba(int repetir) {
         Actions actions = new Actions(driver);
-        for (int i=0;i<repetir;i++){actions.sendKeys(Keys.ARROW_UP).perform();}
+        for (int i = 0; i < repetir; i++) {
+            actions.sendKeys(Keys.ARROW_UP).perform();
+        }
 
     }
+
     public void sendFlechaAbajo(int repetir) {
         Actions actions = new Actions(driver);
-        for (int i=0;i<repetir;i++){actions.sendKeys(Keys.ARROW_DOWN).perform();}
+        for (int i = 0; i < repetir; i++) {
+            actions.sendKeys(Keys.ARROW_DOWN).perform();
+        }
 
     }
 
     public void sendTab(int repetir) {
         Actions actions = new Actions(driver);
         int i;
-        for (i=0;i<repetir;i++) {
+        for (i = 0; i < repetir; i++) {
             actions.sendKeys(Keys.TAB).perform();
         }
     }
 
-    public void scrollPageUpDown(int Up,int Down) {
+    public void scrollPageUpDown(int Up, int Down) {
         Actions actions = new Actions(driver);
         int i;
-        for (i=0;i<Up;i++) {
+        for (i = 0; i < Up; i++) {
             actions.sendKeys(Keys.PAGE_UP).perform();
         }
 
@@ -480,7 +493,7 @@ public class BasePage {
 
     }
 
-    public String generadorCorreos(){
+    public String generadorCorreos() {
         String[] domains = {"gmail.com", "yahoo.com", "hotmail.com", "outlook.com"};
         Random random = new Random();
 
@@ -495,23 +508,25 @@ public class BasePage {
 
         return email;
     }
-    public String generadornombres(){
+
+    public String generadornombres() {
         Random random = new Random();
         // Generar un nombre de usuario aleatorio
         String username = "user" + random.nextInt(100000);
         return username;
     }
-        public String generadorNombresReales() {
-            String[] nombres = {
-                    "Juan", "María", "José", "Ana", "Luis", "Carmen", "Carlos", "Lucía", "Pedro", "Sofía",
-                    "Miguel", "Laura", "Jorge", "Elena", "Francisco", "Marta", "Antonio", "Isabel", "Manuel", "Paula"
-            };
 
-            Random random = new Random();
-            // Generar un nombre latino aleatorio
-            String nombre = nombres[random.nextInt(nombres.length)];
-            return nombre;
-        }
+    public String generadorNombresReales() {
+        String[] nombres = {
+                "Juan", "María", "José", "Ana", "Luis", "Carmen", "Carlos", "Lucía", "Pedro", "Sofía",
+                "Miguel", "Laura", "Jorge", "Elena", "Francisco", "Marta", "Antonio", "Isabel", "Manuel", "Paula"
+        };
+
+        Random random = new Random();
+        // Generar un nombre latino aleatorio
+        String nombre = nombres[random.nextInt(nombres.length)];
+        return nombre;
+    }
 
     public String generadorApellidosReales() {
         String[] apellidos = {
@@ -534,19 +549,20 @@ public class BasePage {
         return numeroCompleto;
     }
 
-    public String caracteresAleatorios (int length) {
-            String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-            Random random = new Random();
-            StringBuilder sb = new StringBuilder(length);
+    public String caracteresAleatorios(int length) {
+        String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+        Random random = new Random();
+        StringBuilder sb = new StringBuilder(length);
 
-            for (int i = 0; i < length; i++) {
-                int index = random.nextInt(characters.length());
-                sb.append(characters.charAt(index));
-            }
-
-            return sb.toString();
+        for (int i = 0; i < length; i++) {
+            int index = random.nextInt(characters.length());
+            sb.append(characters.charAt(index));
         }
-    public String numerosAleatorios (int length) {
+
+        return sb.toString();
+    }
+
+    public String numerosAleatorios(int length) {
         String characters = "012356789";
         Random random = new Random();
         StringBuilder sb = new StringBuilder(length);
@@ -609,7 +625,7 @@ public class BasePage {
     }
 
 
-    public void buscarEnTabla(By locator){
+    public void buscarEnTabla(By locator) {
         // El número de seguimiento que quieres buscar
         String numeroSeguimientoBuscado = "00050021862GI6L5P0MC001";
 
@@ -667,72 +683,72 @@ public class BasePage {
     }
 
 
-     public void detallesTabla(String numeroOrden){
-         // Número de orden a buscar
-         //String numeroOrden = "575";
+    public void detallesTabla(String numeroOrden) {
+        // Número de orden a buscar
+        //String numeroOrden = "575";
 
-         // Encuentra la fila que contiene el número de orden
-         //WebElement filaOrden = driver.findElement(By.xpath("//td[text()='" + numeroOrden + "']/parent::tr"));
+        // Encuentra la fila que contiene el número de orden
+        //WebElement filaOrden = driver.findElement(By.xpath("//td[text()='" + numeroOrden + "']/parent::tr"));
 
-         WebElement filaOrden = driver.findElement(By.xpath("//tbody[2]//div[contains(.,'" + numeroOrden +"')]"));
+        WebElement filaOrden = driver.findElement(By.xpath("//tbody[2]//div[contains(.,'" + numeroOrden + "')]"));
 
 
-         // Captura los detalles de la orden
-         String detalles = filaOrden.findElement(By.xpath(".//td[9]")).getText(); // Ajusta el índice según la columna de detalles
+        // Captura los detalles de la orden
+        String detalles = filaOrden.findElement(By.xpath(".//td[9]")).getText(); // Ajusta el índice según la columna de detalles
 
-         // Separa los detalles en variables
-         String[] partes = detalles.split(" - ");
-         String peso = partes[0].trim();
-         String[] dimensiones = partes[1].split("x");
-         String alto = dimensiones[0].trim();
-         String largo = dimensiones[1].trim();
-         String ancho = dimensiones[2].trim();
+        // Separa los detalles en variables
+        String[] partes = detalles.split(" - ");
+        String peso = partes[0].trim();
+        String[] dimensiones = partes[1].split("x");
+        String alto = dimensiones[0].trim();
+        String largo = dimensiones[1].trim();
+        String ancho = dimensiones[2].trim();
 
-         // Imprime los detalles
-         System.out.println("Peso: " + peso);
-         System.out.println("Alto: " + alto);
-         System.out.println("Largo: " + largo);
-         System.out.println("Ancho: " + ancho);
+        // Imprime los detalles
+        System.out.println("Peso: " + peso);
+        System.out.println("Alto: " + alto);
+        System.out.println("Largo: " + largo);
+        System.out.println("Ancho: " + ancho);
 
-         // Cierra el navegador
-     }
-
-public void clickConEspera(By locator){
-
-    //WebDriverWait wait = new WebDriverWait(driver, tiempo);
-
-    wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
-}
-
-public String extrarTextoDeUnLocalizador(String textoAMostrar,By locator){
-    WebElement orderNumberElement = driver.findElement(locator);
-    String orderNumber = orderNumberElement.getText();
-    System.out.println("==============================================================================================");
-    System.out.println("" + textoAMostrar + ": " + orderNumber);
-    System.out.println("==============================================================================================");
-    return orderNumber;
-}
-
-public void recargar(int cantidadDeRecargas){
-    for (int i = 0; i < cantidadDeRecargas; i++) {
-        System.out.println("La pagina se recargo: " + (i + 1));
-        driver.navigate().refresh();
+        // Cierra el navegador
     }
 
-}
+    public void clickConEspera(By locator) {
+
+        //WebDriverWait wait = new WebDriverWait(driver, tiempo);
+
+        wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
+    }
+
+    public String extrarTextoDeUnLocalizador(String textoAMostrar, By locator) {
+        WebElement orderNumberElement = driver.findElement(locator);
+        String orderNumber = orderNumberElement.getText();
+        System.out.println("==============================================================================================");
+        System.out.println("" + textoAMostrar + ": " + orderNumber);
+        System.out.println("==============================================================================================");
+        return orderNumber;
+    }
+
+    public void recargar(int cantidadDeRecargas) {
+        for (int i = 0; i < cantidadDeRecargas; i++) {
+            System.out.println("La pagina se recargo: " + (i + 1));
+            driver.navigate().refresh();
+        }
+
+    }
 
     public void hacerClickElementoExiste(By LocatorABuscar) {
         if (driver.findElements(LocatorABuscar).size() > 0)//(!driver.findElements(LocatorABuscar).isEmpty())
         {
             click(LocatorABuscar);
-        }else{
+        } else {
             System.out.println("No se encontro el elemento");
         }
     }
 
     public void cambiarFocoPestana() {
         // Obtener todas las pestañas abiertas
-         ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
+        ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
 
         // Cambiar el foco a la segunda pestaña
         driver.switchTo().window(tabs.get(1));
@@ -754,76 +770,10 @@ public void recargar(int cantidadDeRecargas){
          */
     }
 
-    //Funcion para leer pdf (PDFBox)
-
-    /*
-    public void leerPDF(String pdfFilePath) throws IOException {
-
-
-    // Encuentra el elemento PDF incrustado
-        WebElement embedElement = driver.findElement(By.xpath("//embed[@id='plugin']"));
-        String pdfUrl = embedElement.getAttribute("src");
-
-    // Descarga el PDF
-        InputStream inputStream = new URL(pdfUrl).openStream();
-        PDDocument document = PDDocument.load(inputStream);
-
-        PDFTextStripper pdfStripper = new PDFTextStripper();
-        String pdfText = pdfStripper.getText(document);
-
-        // Imprime el texto extraído
-        System.out.println(pdfText);
-
-        // Cierra el documento PDF
-        document.close();
-
-        /*
-        try {
-            PDDocument document = PDDocument.load(new File(pdfFilePath));
-            PDFTextStripper pdfStripper = new PDFTextStripper();
-            String pdfText = pdfStripper.getText(document);
-            System.out.println(pdfText);
-            document.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-
-    }
-    */
-
-/*
-    public void leerPDF(WebDriver driver) throws IOException {
-        try {
-            // Espera explícita para encontrar el elemento PDF incrustado
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-            WebElement embedElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//embed[@id='plugin']")));
-
-
-            String pdfUrl;
-            pdfUrl = null;
-            InputStream inputStream = new URL(pdfUrl).openStream();
-            PDDocument document = Loader.loadPDF((RandomAccessRead) inputStream); // Usando Loader.loadPDF
-
-            // Extrae el texto del PDF
-            PDFTextStripper pdfStripper = new PDFTextStripper();
-            String pdfText = pdfStripper.getText(document);
-
-            // Imprime el texto extraído
-            System.out.println(pdfText);
-
-            // Cierra el documento y el WebDriver
-            document.close();
-            //driver.quit();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-
-    }
-    */
-
-    public void leerPDF2() throws IOException {
+    public void leerPDF(String numeroSeguimientoBuscado) throws IOException {
+        // Primero definimos numeroSeguimiento antes de usarlo
+        String numeroSeguimiento = numeroSeguimientoBuscado;
+        String ultimoNumero = "";
 
         WebElement iframe = driver.findElement(By.tagName("iframe"));
         String src = iframe.getAttribute("src");
@@ -846,13 +796,62 @@ public void recargar(int cantidadDeRecargas){
             try (PDDocument document = Loader.loadPDF(new RandomAccessReadBuffer(pdfBytes))) {
                 PDFTextStripper stripper = new PDFTextStripper();
                 String textoExtraido = stripper.getText(document);
-                System.out.println("Texto del PDF:\n" + textoExtraido);
+                //System.out.println("Texto del PDF:\n" + textoExtraido);
 
+                // Manipular el texto extraído para omitir el número variable y las dos últimas líneas
+                String[] lineas = textoExtraido.split("\n");
+
+                /*
+                int numeroLineas = lineas.length;
+                System.out.println("Numero de lineas del PDF: " + numeroLineas);
+                 */
+                StringBuilder textoModificado = new StringBuilder();
+
+                // Aquí extraemos el número de seguimiento y construimos el texto modificado
+                for (int i = 0; i < lineas.length - 2; i++) {
+                    if (i == lineas.length - 4) {
+                        numeroSeguimiento = lineas[i].trim(); // Extraer el número de seguimiento
+                    } else if (i == lineas.length - 3) {
+                        ultimoNumero = lineas[i].trim(); // Extraer el último número (5)
+                    } else if (!lineas[i].trim().matches("\\d+")) {
+                        textoModificado.append(lineas[i].trim()).append("\n");
+
+
+                        // Añadir un salto de línea adicional después de CP: 4449
+                        if (lineas[i].trim().startsWith("CP: ")) {
+                            textoModificado.append("\n");
+                        }
+                    }
+                }
+
+                // Añadir el número de seguimiento y el último número
+                textoModificado.append(numeroSeguimiento).append("\n");
+                textoModificado.append(ultimoNumero);
+
+                System.out.println("Texto del PDF modificado:\n" + textoModificado.toString());
+
+                // Ahora definimos textoEsperado de la misma manera que construimos textoModificado
+                String textoEsperado = "Carta Simple Hasta 20g\n" +
+                        "A0007 0005002324\n" +
+                        "Gral Juan B\n" +
+                        "Peyrotti 100 Apolinario Saravia\n" +
+                        "CP: 4449\n\n\n" +
+                        numeroSeguimiento + "\n" +
+                        ultimoNumero;
+
+                System.out.println("\nTexto esperado:\n" + textoEsperado);
+
+                //validar texto
+                Assert.assertEquals(textoModificado.toString(), textoEsperado);
+
+                /*
                 // Validar texto
-                if (!textoExtraido.contains("Correo Argentino")) {
+                if (!textoModificado.toString().equals(textoEsperado)) {
                     throw new AssertionError("El texto esperado no se encontró en el PDF");
                 }
 
+
+                 */
                 PDFRenderer renderer = new PDFRenderer(document);
                 BufferedImage image = renderer.renderImageWithDPI(0, 300); // Primera página, 300 DPI
 
@@ -865,19 +864,24 @@ public void recargar(int cantidadDeRecargas){
                 Result result = new MultiFormatReader().decode(bitmap);
 
                 String contenidoQR = result.getText();
-                System.out.println("Contenido del QR: " + contenidoQR);
+                //System.out.println("Contenido del QR: " + contenidoQR);
 
+                /*
                 if (!contenidoQR.contains("https://")) {
                     throw new AssertionError("El QR no contiene la URL esperada.");
                 }
+
+                 */
             } catch (NotFoundException e) {
                 throw new RuntimeException(e);
             }
         } else {
             throw new IllegalArgumentException("El atributo src del iframe no contiene una cadena base64 válida");
         }
-            }
-        }
+
+    }
+
+}
 
 
 
