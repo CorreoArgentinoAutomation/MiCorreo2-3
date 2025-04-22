@@ -9,7 +9,6 @@ import java.io.IOException;
 public class PageFranquicia extends BasePage {
 
 
-
     By btnMenuPanel = By.xpath("//span[@class='navbar-toggler-icon']");
     By btnPuntoCorreo = By.xpath("//span[contains(@class, 'm-2') and contains(@class, 'gilroy-medium') and contains(@class, 'd-flex') and contains(@class, 'align-items-center') and contains(@class, 'color-correo-black')]/img[@alt='Punto Correo']");
     private By btnNuevoPedido = By.xpath("//a[.='Nuevo pedido']");
@@ -33,6 +32,7 @@ public class PageFranquicia extends BasePage {
 
     //imprirmir Sellos Digitales
     private By btnGenerarSellos = By.xpath("//button[@id='btn_armar_rotulos_franquicia']");
+    private By btnCancelar = By.xpath("//button[@type='button']/span[text()='Cancelar']");
     //private By  = By.xpath("");
 
 
@@ -51,8 +51,7 @@ public class PageFranquicia extends BasePage {
     }
 
 
-
-    public void Producto(String Producto, String cantidad){
+    public void Producto(String Producto, String cantidad) {
 
         int cantidadInt = Integer.parseInt(cantidad);
 
@@ -70,40 +69,42 @@ public class PageFranquicia extends BasePage {
             throw new IllegalArgumentException("Tipo de producto no válido: " + Producto);
         }
 
-        scrollPageUpDown(0,3);
+        scrollPageUpDown(0, 3);
         click(btnGuardar);
         waitForSeconds(2);
-        scrollPageUpDown(0,3);
+        scrollPageUpDown(0, 3);
     }
-    public void cartaSimple20g(int cantidad){
+
+    public void cartaSimple20g(int cantidad) {
         for (int i = 0; i < cantidad; i++) {
             click(btnSumarCantidadCartaSimple);
         }
         waitForSeconds(2);
     }
 
-    public void cartaSimple150g(int cantidad){
+    public void cartaSimple150g(int cantidad) {
         for (int i = 0; i < cantidad; i++) {
-        click(btnSumarCantidadCartaSimple150gm);
+            click(btnSumarCantidadCartaSimple150gm);
         }
         waitForSeconds(2);
     }
 
-    public void cartaCertificada(int cantidad){
+    public void cartaCertificada(int cantidad) {
         for (int i = 0; i < cantidad; i++) {
             click(btnSumarCartaCertificada);
         }
-            waitForSeconds(2);
-        }
+        waitForSeconds(2);
+    }
 
 
-    public void cartaExpreso(int cantidad){
+    public void cartaExpreso(int cantidad) {
         for (int i = 0; i < cantidad; i++) {
             click(btnSumarCartaExpreso);
         }
         waitForSeconds(2);
     }
-    public void cartaDocumento(int cantidad){
+
+    public void cartaDocumento(int cantidad) {
         for (int i = 0; i < cantidad; i++) {
             click(btnSumarCartaDocumento);
         }
@@ -111,38 +112,38 @@ public class PageFranquicia extends BasePage {
     }
 
 
-    public void pantallaPendientes(){
+    public void pantallaPendientes() {
         click(btnIrPendientes);
         waitForSeconds(2);
     }
 
 
-    public void cotizarPendientes(){
+    public void cotizarPendientes() {
         click(checkSeleccionTodos);
         click(btnCotizar);
         waitForSeconds(2);
     }
 
-    public void generar(){
+    public void generar() {
         click(btnGenerar);
         waitForSeconds(2);
     }
 
-    public String obtenerNumeroSeguimiento(){
-        String numero = extrarTextoDeUnLocalizador("El numero de seguimiento es",numeroTAndT);
+    public String obtenerNumeroSeguimiento() {
+        String numero = extrarTextoDeUnLocalizador("El numero de seguimiento es", numeroTAndT);
         return numero;
     }
 
-    public void imprimirSellosDigitales(){
+    public void imprimirSellosDigitales() {
 
-        extrarTextoDeUnLocalizador("El mensaje de pago exitoso es",msjPagoExitoso);
+        extrarTextoDeUnLocalizador("El mensaje de pago exitoso es", msjPagoExitoso);
 
         waitForSeconds(1);
         click(btnImprimirSellosDigitales);
         waitForSeconds(1);
     }
 
-    public void escribirNumeroSeguimiento(String numeroSeguimiento){
+    public void escribirNumeroSeguimiento(String numeroSeguimiento) {
         click(campoNumeroSeguimiento);
         writeText(campoNumeroSeguimiento, numeroSeguimiento);
         waitForSeconds(1);
@@ -154,25 +155,42 @@ public class PageFranquicia extends BasePage {
 
          */
 
-        extrarTextoDeUnLocalizador("El numero de track and trace es",numeroTAndTConsulta);
+        extrarTextoDeUnLocalizador("El numero de track and trace es", numeroTAndTConsulta);
 
 
     }
 
 
-    public void generarSelloDigital() throws IOException {
+    public void generarSelloDigital(String numeroSeguimiento) throws IOException {
 
         click(checkSeleccionTodos);
         waitForSeconds(1);
 
         click(btnGenerarSellos);
         waitForSeconds(3);
+        /*
 
-        String url = "https://wcpzt.correo.local/MiCorreo/public/franquicias/pagados";
+        String textoEsperado = "Carta Simple Hasta 20g\n" +
+                "A0007 0005002324\n" +
+                "Gral Juan B\n" +
+                "Peyrotti 100 Apolinario Saravia\n" +
+                "CP: 4449\n\n" +
+                numeroSeguimiento + "\n";
 
+        System.out.println(textoEsperado);
+
+
+         */
         waitForSeconds(5);
-        leerPDF2();
-        System.out.println("Prueba del PDF");
+        //leerPDF(textoEsperado, numeroSeguimiento);
+        leerPDF(numeroSeguimiento);
+
+
+        waitForSeconds(3);
+        //click(btnCancelar);
+
+        //sendTab(10);
+        //sendEnter();
 
 
     }
