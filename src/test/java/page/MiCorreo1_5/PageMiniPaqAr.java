@@ -4,6 +4,8 @@ import framework.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
+import static framework.Hooks.takeScreenShot;
+
 public class PageMiniPaqAr extends BasePage {
 
     PageFranquicia pageFranquicia;
@@ -66,6 +68,7 @@ public class PageMiniPaqAr extends BasePage {
     public void validarMsjConfirmacion(){
         compararTextoConMensajeEsperado(msjConfirmacionImpuestas, "Piezas impuestas correctamente");
         extrarTextoDeUnLocalizador("El mensaje de confirmacion es",msjConfirmacionImpuestas);
+        capturarPantalla();
     }
 
     public void cerrarSesion(){

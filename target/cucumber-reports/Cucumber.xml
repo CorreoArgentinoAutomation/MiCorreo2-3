@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Cucumber" time="227.482" tests="5" skipped="0" failures="0" errors="0">
+<testcase classname="Eliminar oficios judicialess" name="Eliminar todos los oficios judiciales - Example #1.1" time="45.599">
+<system-out><![CDATA[
+Given el usuario se situa en los campos email y password....................passed
+When el usuario 'Consumidor final' está logueado y en la page home..........passed
+And el usuario ingresa la pantalla de Oficios Judiciales....................passed
+And el usuario rellena el formulario de oficios.............................passed
+Then el usuario visualiza el message de oficio creado correctamente.........passed
+And el usuario selecciona y elimina todos los oficios.......................passed
+Then el usuario visualiza el mensaje de eliminacion correctamente...........passed
+]]></system-out>
+</testcase>
+<testcase classname="Eliminar oficios judicialess" name="Eliminar todos los oficios judiciales - Example #1.2" time="43.19">
+<system-out><![CDATA[
+Given el usuario se situa en los campos email y password....................passed
+When el usuario 'Monotributista' está logueado y en la page home............passed
+And el usuario ingresa la pantalla de Oficios Judiciales....................passed
+And el usuario rellena el formulario de oficios.............................passed
+Then el usuario visualiza el message de oficio creado correctamente.........passed
+And el usuario selecciona y elimina todos los oficios.......................passed
+Then el usuario visualiza el mensaje de eliminacion correctamente...........passed
+]]></system-out>
+</testcase>
+<testcase classname="Eliminar oficios judicialess" name="Eliminar todos los oficios judiciales - Example #1.3" time="43.795">
+<system-out><![CDATA[
+Given el usuario se situa en los campos email y password....................passed
+When el usuario 'Empresa' está logueado y en la page home...................passed
+And el usuario ingresa la pantalla de Oficios Judiciales....................passed
+And el usuario rellena el formulario de oficios.............................passed
+Then el usuario visualiza el message de oficio creado correctamente.........passed
+And el usuario selecciona y elimina todos los oficios.......................passed
+Then el usuario visualiza el mensaje de eliminacion correctamente...........passed
+]]></system-out>
+</testcase>
+<testcase classname="Eliminar oficios judicialess" name="Eliminar todos los oficios judiciales - Example #1.4" time="42.129">
+<system-out><![CDATA[
+Given el usuario se situa en los campos email y password....................passed
+When el usuario 'Usuario Invitado' está logueado y en la page home..........passed
+And el usuario ingresa la pantalla de Oficios Judiciales....................passed
+And el usuario rellena el formulario de oficios.............................passed
+Then el usuario visualiza el message de oficio creado correctamente.........passed
+And el usuario selecciona y elimina todos los oficios.......................passed
+Then el usuario visualiza el mensaje de eliminacion correctamente...........passed
+]]></system-out>
+</testcase>
+<testcase classname="Pagar oficio judicial" name="Pagar oficio judicial - Example #1.1" time="51.936">
+<system-out><![CDATA[
+Given el usuario se situa en los campos email y password....................passed
+When el usuario 'Empresa' está logueado y en la page home...................passed
+And el usuario ingresa la pantalla de Oficios Judiciales....................passed
+And el usuario rellena el formulario de oficios.............................passed
+Then el usuario visualiza el message de oficio creado correctamente.........passed
+And el usuario realiza el pago con el 'Saldo' seleccionado..................passed
+Then el usuario visualiza el mensaje de pago correctamente..................passed
+]]></system-out>
+</testcase>
+</testsuite>

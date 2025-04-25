@@ -33,7 +33,7 @@ public class PageFranquicia extends BasePage {
     //imprirmir Sellos Digitales
     private By btnGenerarSellos = By.xpath("//button[@id='btn_armar_rotulos_franquicia']");
     private By btnCancelar = By.xpath("//button[@type='button']/span[text()='Cancelar']");
-    //private By  = By.xpath("");
+    private By iframe = By.xpath("//iframe[@id='pdf-viewer']");
 
 
     public PageFranquicia(WebDriver driver) {
@@ -161,36 +161,36 @@ public class PageFranquicia extends BasePage {
     }
 
 
-    public void generarSelloDigital(String numeroSeguimiento) throws IOException {
+    public void generarSelloDigital(String producto, String numeroSeguimiento) throws IOException {
 
         click(checkSeleccionTodos);
         waitForSeconds(1);
 
         click(btnGenerarSellos);
         waitForSeconds(3);
-        /*
 
-        String textoEsperado = "Carta Simple Hasta 20g\n" +
-                "A0007 0005002324\n" +
-                "Gral Juan B\n" +
-                "Peyrotti 100 Apolinario Saravia\n" +
-                "CP: 4449\n\n" +
-                numeroSeguimiento + "\n";
+        String productoBuscado = "";
 
-        System.out.println(textoEsperado);
+        if (producto.equals("Carta Simple 20g")) {
+            productoBuscado = "Carta Simple Hasta 20g";
+        } else if (producto.equals("Carta Simple 150g")) {
+            productoBuscado = "Carta Simple Hasta 150g";
+        } else if (producto.equals("Carta Certificada")) {
+            productoBuscado = "Carta Certificada Plus\t\tHasta\n" + "150g";
+        } else if (producto.equals("Carta Expreso")) {
+            productoBuscado = "Carta Expreso Plus\t\tHasta 150g";
+        } else if (producto.equals("Carta Documento")) {
+            productoBuscado = "Carta Documento";
+        } else {
+            throw new IllegalArgumentException("Tipo de producto no válido: " + producto);
+        }
 
-
-         */
         waitForSeconds(5);
         //leerPDF(textoEsperado, numeroSeguimiento);
-        leerPDF(numeroSeguimiento);
-
-
-        waitForSeconds(3);
-        //click(btnCancelar);
-
-        //sendTab(10);
-        //sendEnter();
+        leerPDF(productoBuscado, numeroSeguimiento);
+        waitForSeconds(2);
+        capturarPantalla();
+        recargar(1);
 
 
     }

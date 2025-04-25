@@ -39,6 +39,8 @@ public class PagePayment extends BasePage {
         } else {
             System.out.println("El mensaje de confirmación del pago no coincide con el texto esperado.");
         }
+
+        capturarPantalla();
     }
 
 }
