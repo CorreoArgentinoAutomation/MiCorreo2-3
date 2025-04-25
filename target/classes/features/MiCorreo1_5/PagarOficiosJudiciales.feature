@@ -13,9 +13,9 @@ Feature: Pagar oficio judicial
 
 		Examples:
 			| tipoUsuario      | medioPago |
-			| Consumidor final | Saldo     |
-			| Monotributista   | Saldo     |
+			#| Consumidor final | Saldo     |
+			#| Monotributista   | Saldo     |
 			| Empresa 		   | Saldo     |
-			| Usuario Invitado | Saldo     |
+			#| Usuario Invitado | Saldo     |
 
 

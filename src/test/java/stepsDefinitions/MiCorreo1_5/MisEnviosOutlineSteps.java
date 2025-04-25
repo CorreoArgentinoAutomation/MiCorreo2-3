@@ -262,8 +262,9 @@ public class MisEnviosOutlineSteps {
         pageHomeLogin.loginOutline("Franquicia tipo 2");
     }
 
-    @And("el usuario genera el sello digital")
-    public void elUsuarioGeneraElSelloDigital() throws IOException {
-        pageFranquicia.generarSelloDigital(numeroSeguimiento);
+
+    @And("el usuario genera el sello digital para el {string} seleccionado")
+    public void elUsuarioGeneraElSelloDigitalParaElProductoSeleccionado(String producto) throws IOException {
+        pageFranquicia.generarSelloDigital(producto, numeroSeguimiento);
     }
 }

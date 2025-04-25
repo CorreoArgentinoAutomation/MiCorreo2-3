@@ -36,6 +36,7 @@ public class Hooks {
         // Tomar captura de pantalla al final del escenario
         takeScreenShot(scenario.isFailed());
         // Verificar si loginPage no es nulo antes de llamar a logout
+        /*
         if (pageHomelogin != null) {
             try {
                 pageHomelogin.logout();
@@ -43,6 +44,8 @@ public class Hooks {
                 System.err.println("Error al hacer logout: " + e.getMessage());
             }
         }
+
+         */
         // Cerrar el driver al final de cada escenario solo si no se ha cerrado ya
         if (DriverManager.getDriver() != null) {
             try {

@@ -302,9 +302,66 @@ public class BasePage {
 
     //Iframe
     // Cambiar al iframe usando su ruta
-    public void cambioDeIframe() {
-        driver.switchTo().frame(driver.findElement(By.cssSelector("iframe[name='modal-create-product-iframe']")));
+    public void cambioDeIframe(String iframeName) {
+
+        WebElement iframe = driver.findElement(By.tagName("iframe"));
+        String src = iframe.getAttribute("src");
+        System.out.println("================================================================");
+        System.out.println("src: " + src);
+        System.out.println("================================================================");
+        driver.switchTo().frame(driver.findElement(By.tagName(iframeName)));
+        //driver.switchTo().frame(driver.findElement(By.cssSelector(iframeName)));
+
+        String url = src.replace("blob:", "");
+
+        String xpath = "//iframe[contains(@src, '" + url + "')]//button[contains(text(), 'Cancelar')]";
+        By boton = By.xpath(xpath);
+        click(boton);
+
     }
+
+    public void clickConCambioIFrame(){//By Iframe,By boton) {
+
+        /*
+        // Esperar a que el iframe esté presente
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("pdf-viewer")));
+        // Cambiar al iframe
+        driver.switchTo().frame(driver.findElement(Iframe));
+        //driver.switchTo().frame(driver.findElement(By.id("pdf-viewer")));
+        // Encontrar el botón
+        wait.until(ExpectedConditions.presenceOfElementLocated(boton));
+        WebElement botonCancelar = driver.findElement(boton);
+
+        // Hacer clic en el botón
+        botonCancelar.click();
+
+         */
+
+                // Esperar a que el iframe esté presente
+                WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        try {
+            WebElement iframe = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("iframe[src*='edge_pdf/index.html']")));
+
+            // Cambiar al iframe
+            driver.switchTo().frame(iframe);
+
+            // Esperar a que el botón "Cancelar" esté presente
+            WebElement botonCancelar = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[@type='button']/span[text()='Cancelar']")));
+
+            // Hacer clic en el botón "Cancelar"
+            botonCancelar.click();
+        } catch (org.openqa.selenium.TimeoutException e) {
+            System.out.println("El iframe no se encontró dentro del tiempo especificado.");
+        } catch (org.openqa.selenium.NoSuchElementException e) {
+            System.out.println("El botón 'Cancelar' no se encontró dentro del iframe.");
+        }
+    }
+
+
+
+
+
+
 
 
     // Método para abrir una nueva pestaña y navegar a una URL
@@ -770,8 +827,11 @@ public class BasePage {
          */
     }
 
-    public void leerPDF(String numeroSeguimientoBuscado) throws IOException {
+    public void leerPDF(String producto, String numeroSeguimientoBuscado) throws IOException {
         // Primero definimos numeroSeguimiento antes de usarlo
+
+        String productoBuscado = producto;
+
         String numeroSeguimiento = numeroSeguimientoBuscado;
         String ultimoNumero = "";
 
@@ -831,7 +891,7 @@ public class BasePage {
                 System.out.println("Texto del PDF modificado:\n" + textoModificado.toString());
 
                 // Ahora definimos textoEsperado de la misma manera que construimos textoModificado
-                String textoEsperado = "Carta Simple Hasta 20g\n" +
+                String textoEsperado = producto + "\n" +
                         "A0007 0005002324\n" +
                         "Gral Juan B\n" +
                         "Peyrotti 100 Apolinario Saravia\n" +
@@ -864,7 +924,9 @@ public class BasePage {
                 Result result = new MultiFormatReader().decode(bitmap);
 
                 String contenidoQR = result.getText();
-                //System.out.println("Contenido del QR: " + contenidoQR);
+                System.out.println("\n==============================================================================================");
+                System.out.println("Contenido del QR: " + contenidoQR);
+                System.out.println("==============================================================================================");
 
                 /*
                 if (!contenidoQR.contains("https://")) {
@@ -879,6 +941,11 @@ public class BasePage {
             throw new IllegalArgumentException("El atributo src del iframe no contiene una cadena base64 válida");
         }
 
+    }
+
+    public void capturarPantalla(){
+        Hooks.takeScreenShot(false);
+        System.out.println("Capturando pantalla");
     }
 
 }

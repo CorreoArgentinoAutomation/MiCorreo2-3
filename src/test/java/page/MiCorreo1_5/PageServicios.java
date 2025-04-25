@@ -81,6 +81,8 @@ public class PageServicios extends BasePage {
     public void msjConfirmacionPagoRealizado(){
         compararTextoConMensajeEsperado(msjPagoRealizado, "¡Genial! Tu pago fue procesado correctamente.");
         System.out.println("El mensaje de confirmacion es: " + getText(msjPagoRealizado));
+
+        capturarPantalla();
     }
 
     public void eliminarTodosLosOficios(){
@@ -98,6 +100,7 @@ public class PageServicios extends BasePage {
 
     public void msjConfirmacionEliminado(){
         System.out.println("El mensaje de confirmacion es: " + getText(msjSinOficiosCargados));
+        capturarPantalla();
     }
 
 }

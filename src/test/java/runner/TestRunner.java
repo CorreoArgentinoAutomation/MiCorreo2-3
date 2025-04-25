@@ -18,7 +18,7 @@ import org.junit.runners.Suite;
         },
         glue = {"stepsDefinitions", "framework","MiCorreo2","Google","MiCorreo1_5"}, // Agrega el paquete de los hooks y framework
 
-        tags = "@Registro"
+        tags = "@PagoOficioJudicial"
 )
 
 public class TestRunner {
