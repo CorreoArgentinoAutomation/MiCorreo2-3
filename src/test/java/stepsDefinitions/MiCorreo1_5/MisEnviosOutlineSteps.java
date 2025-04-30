@@ -267,4 +267,9 @@ public class MisEnviosOutlineSteps {
     public void elUsuarioGeneraElSelloDigitalParaElProductoSeleccionado(String producto) throws IOException {
         pageFranquicia.generarSelloDigital(producto, numeroSeguimiento);
     }
+
+    @And("editar el {string} del envío individual")
+    public void editarElOrigenDelEnvíoIndividual(String origen) {
+        pageNuevoEnvio.origenDelEnvioIndividual(origen);
+    }
 }
