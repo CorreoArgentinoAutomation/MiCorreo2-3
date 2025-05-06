@@ -133,14 +133,19 @@ public class PageNuevoEnvio extends BasePage {
 
     }
     private void entregaSucursal(){
+
+        String nombreProvincia = "CAPITAL FEDERAL";
+        String codigoPostal = "1424";
+        String valorProvincia = "C";
+
         click(entregaSucursal);
         writeText(nomApellidoLocatoSuc,"Carlos Sanchez");
         waitForSeconds(1);
         click(seleccionarProvOrigenSuc);
         waitForSeconds(1);
-        selectOptionFromDropdownByValue("provincia2","F");
+        selectOptionFromDropdownByValue("provincia2",valorProvincia);
         waitForSeconds(2);
-        selectOptionFromDropdownByValue("sucursalDestino2","5360");
+        selectOptionFromDropdownByValue("sucursalDestino2",codigoPostal);
         waitForSeconds(1);
         writeText(correoElectronicoSuc,"hola2@yopmail.com");
         writeText(celularSuc,"3825564354");
