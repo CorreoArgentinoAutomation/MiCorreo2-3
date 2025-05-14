@@ -64,6 +64,7 @@ public class MisEnviosOutlineSteps {
     @And("se confirma que el pago se ha realizado con éxito")
     public void seConfirmaQueElPagoSeHaRealizadoConÉxito() {
         pagePayment.verificarPago();
+        pageHomeLogin.logout();
     }
 
     //Registro nuevo usuario
@@ -127,11 +128,6 @@ public class MisEnviosOutlineSteps {
     @And("el usuario ingresa la pantalla de Oficios Judiciales")
     public void elUsuarioIngresaLaPantallaDeOficiosJudiciales() {
         pageServicios.menuDeServiciosOficiosJudiciales();
-    }
-
-    @And("el usuario rellena el formulario de oficios")
-    public void elUsuarioRellenaElFormularioDeOficios() {
-        pageServicios.formularioOficioJudicial();
     }
 
     @Then("el usuario visualiza el message de oficio creado correctamente")
@@ -233,8 +229,20 @@ public class MisEnviosOutlineSteps {
         pageFranquicia.generarSelloDigital(producto, numeroSeguimiento);
     }
 
+<<<<<<< HEAD
 
 
 
 
+=======
+    @And("editar el {string} del envío individual")
+    public void editarElOrigenDelEnvíoIndividual(String origen) {
+        pageNuevoEnvio.origenDelEnvioIndividual(origen);
+    }
+
+    @And("el usuario rellena el formulario de oficios con el tipo de camara {string}")
+    public void elUsuarioRellenaElFormularioDeOficiosConElTipoDeCamaraTipoCamara(String tipoCamara) {
+        pageServicios.formularioOficioJudicial(tipoCamara);
+    }
+>>>>>>> e143e5a100eea728b65d55c19b5b3fedb6a2b380
 }

@@ -39,15 +39,34 @@ public class PageServicios extends BasePage {
         click(btnOficiosJudiciales);
     }
 
-    public void formularioOficioJudicial(){
+    public void formularioOficioJudicial(String tipoCamara){
         click(campoCamara);
         waitForSeconds(1);
+        /*
         int numerosAleatorios = Integer.parseInt(numerosAleatorios(1));
         sendFlechaAbajo(numerosAleatorios);
         //click(opcionCamara);
         //writeText(campoCamara, "justicia");
         waitForSeconds(1);
         sendEnter();
+         */
+
+        String idSelect = "camara";
+        switch (tipoCamara) {
+            case "Camara": // Cámara
+                selectIdAleatorio(idSelect, 12,1);
+                break;
+            case "Justicia Federal": // Justicia Federal
+                selectIdAleatorio(idSelect, 26,11);
+                break;
+            case "Corte Suprema": // Corte Suprema
+                selectIdAleatorio(idSelect, 27,27);
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + tipoCamara);
+        }
+
+
         String numeroExpediente = String.valueOf(numerosAleatorios(4));
         writeText(campoNroExpediente, numeroExpediente);
 

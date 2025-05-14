@@ -76,38 +76,28 @@ public class PageFranquicia extends BasePage {
     }
 
     public void cartaSimple20g(int cantidad) {
-        for (int i = 0; i < cantidad; i++) {
-            click(btnSumarCantidadCartaSimple);
-        }
+        clickMultiple(btnSumarCantidadCartaSimple, cantidad);
         waitForSeconds(2);
     }
 
     public void cartaSimple150g(int cantidad) {
-        for (int i = 0; i < cantidad; i++) {
-            click(btnSumarCantidadCartaSimple150gm);
-        }
+        clickMultiple(btnSumarCantidadCartaSimple150gm, cantidad);
         waitForSeconds(2);
     }
 
     public void cartaCertificada(int cantidad) {
-        for (int i = 0; i < cantidad; i++) {
-            click(btnSumarCartaCertificada);
-        }
+        clickMultiple(btnSumarCartaCertificada, cantidad);
         waitForSeconds(2);
     }
 
 
     public void cartaExpreso(int cantidad) {
-        for (int i = 0; i < cantidad; i++) {
-            click(btnSumarCartaExpreso);
-        }
+        clickMultiple(btnSumarCartaExpreso, cantidad);
         waitForSeconds(2);
     }
 
     public void cartaDocumento(int cantidad) {
-        for (int i = 0; i < cantidad; i++) {
-            click(btnSumarCartaDocumento);
-        }
+        clickMultiple(btnSumarCartaDocumento, cantidad);
         waitForSeconds(2);
     }
 
