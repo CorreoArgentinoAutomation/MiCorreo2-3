@@ -8,8 +8,8 @@ Feature: Pagar oficio judicial
 			And el usuario ingresa la pantalla de Oficios Judiciales
 			And el usuario rellena el formulario de oficios con el tipo de camara '<tipoCamara>'
 			And el usuario visualiza el message de oficio creado correctamente
-			#And el usuario realiza el pago con el '<medioPago>' seleccionado
-			#Then el usuario visualiza el mensaje de pago correctamente
+			And el usuario realiza el pago con el '<medioPago>' seleccionado
+			Then el usuario visualiza el mensaje de pago correctamente
 
 		Examples:
 			| tipoUsuario | tipoCamara       | medioPago |

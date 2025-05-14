@@ -6,6 +6,8 @@ import framework.BasePage;
 
 public class PageHomeLogin extends BasePage {
 
+    PageForm pageForm;
+
     public By emailLocator = By.id("email");
     public By passwordLocator = By.id("password");
     public By btnLogin = By.xpath("//button[@type=\"submit\" and @onclick=\"ValidacionLogin(event)\"]\n");
@@ -35,8 +37,17 @@ public class PageHomeLogin extends BasePage {
     private By btnAgregarUsuario = By.xpath("//a[@class= dropdown-item and @href= https://twsec02.correoargentino.com.ar/MiCorreo/public/addsubuser ' ]");
     private By btnMisUsuarios = By.xpath("//a[@id='tab2' and contains(@class, 'nav-link') and @href='#panel2']");
 
+    //Recargar saldo
+    private By btnRecargarSaldo = By.xpath("//a[.='Recargar saldo']");
+    private By checkMercadoPago = By.xpath("(//label[@id='mercadopago'])[1]");
+    private By checkTarjeta = By.xpath("(//input[@id='radioTarjeta'])[1]");
+    private By btnRecargarSaldoModalValor = By.xpath("//input[@id='valorcargaModal']");
+
+    private By btnSiguienteModal = By.xpath("//form[@id='cargaSaldoModal']//button[@class='btn btn-correo-primary']");
+
     public PageHomeLogin(WebDriver driver) {
         super(driver);
+        this.pageForm = new PageForm(driver);
     }
     public void login() {
         boolean loginExitoso = false;
@@ -197,6 +208,41 @@ public class PageHomeLogin extends BasePage {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    public void recargarSaldo(){
+        click(btnRecargarSaldo);
+    }
+
+    public void seleccionarMedioPago(String medioPago,String valorRecarga){
+
+        System.out.println("Seleccionó el medio de pago: " + medioPago);
+
+        switch (medioPago) {
+            case "Mercado Pago":
+                click(checkMercadoPago);
+                flujoComun(valorRecarga);
+                pageForm.pagoConMercadoPago();
+                break;
+            case "Tarjeta":
+                click(checkTarjeta);
+                flujoComun(valorRecarga);
+                pageForm.pagoConTarjeta();
+                break;
+            default:
+                System.out.println("Ese medio de pago no existe.");
+                break;
+        }
+        waitForSeconds(2);
+        capturarPantalla();
+    }
+
+    public void flujoComun(String valorRecarga){
+        waitForSeconds(1);
+        writeText(btnRecargarSaldoModalValor, valorRecarga);
+        waitForSeconds(1);
+        click(btnSiguienteModal);
+        waitForSeconds(3);
     }
 
 }

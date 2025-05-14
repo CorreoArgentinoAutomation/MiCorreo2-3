@@ -215,7 +215,6 @@ public class MisEnviosOutlineSteps {
     public void elUsuarioPresionaGenerar() {
         pageFranquicia.generar();
         numeroSeguimiento = pageFranquicia.obtenerNumeroSeguimiento();
-
     }
 
     @And("el usuario hace clic en Imprimi los sellos digitales que pagaste aqui")
@@ -248,7 +247,6 @@ public class MisEnviosOutlineSteps {
     public void elPedidoSeImponeCorrectamente() {
         pageMiniPaqAr.validarMsjConfirmacion();
         pageMiniPaqAr.cerrarSesion();
-
     }
 
 
@@ -272,5 +270,17 @@ public class MisEnviosOutlineSteps {
     @And("el usuario rellena el formulario de oficios con el tipo de camara {string}")
     public void elUsuarioRellenaElFormularioDeOficiosConElTipoDeCamaraTipoCamara(String tipoCamara) {
         pageServicios.formularioOficioJudicial(tipoCamara);
+    }
+
+    @When("el usuario hace clic en el boton Recargar saldo")
+    public void elUsuarioHaceClicEnElBotonRecargarSaldo() {
+        pageHomeLogin.recargarSaldo();
+    }
+
+
+    @And("el usuario seleccionar el {string} y el {string} para la recarga")
+    public void elUsuarioSeleccionarElMedioPagoYElValorRecargaParaLaRecarga(String medioPago,String valorRecarga) {
+        pageHomeLogin.seleccionarMedioPago(medioPago,valorRecarga);
+        pageHomeLogin.logout();
     }
 }

@@ -64,7 +64,7 @@ public class PageForm extends BasePage {
 
         waitForSeconds(1);
         sendTab(3);
-        sendKeys("11112112");
+        sendKeys("11111112");
 
         waitForSeconds(1);
         sendTab(1);
