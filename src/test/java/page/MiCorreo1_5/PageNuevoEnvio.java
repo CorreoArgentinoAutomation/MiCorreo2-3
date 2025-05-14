@@ -37,6 +37,7 @@ public class PageNuevoEnvio extends BasePage {
     private By observacionesLocator = By.xpath("//textarea[@id='observaciones']");
     private By envioExpresoLocator = By.xpath("//input[@class='form-check-input EXPRESO']");
     private By envioClasicoLocator = By.xpath("//input[@class='form-check-input CLASICO']");
+    private By envioPaqArHoyLocator = By.xpath("//input[@id='pqHoy']");
     private By pagoSaldo = By.xpath("//input[@id='radioSaldo']");
     private By pagoCtaCte = By.xpath("//input[@id='radioCuentaCorriente']");
     private By pagoTarjeta = By.xpath("//input[@class='form-check-input' and @id='radioTarjeta']");
@@ -71,6 +72,14 @@ public class PageNuevoEnvio extends BasePage {
     protected By numeroDocumento = By.xpath("//input[@id='card_holder_doc_number']");
     private By codigoTN = By.xpath("(//td[@class='table-text text-center']//div)[9]");
 
+    //Origen del envío individual
+    private By origenDelEnvioIndividual = By.xpath("//small[@id='ediOri']");
+    private By pickUp = By.xpath("//input[@id='checkPickUp']");
+    private By listaPickUP = By.xpath("//select[@id='dirOrigen']");
+    private By sucursal = By.xpath("//input[@id='checkSucursal']");
+   private By seleccionarProvOrigenSuc2 = By.xpath("//select[@id='sucursalProvinciaOrigen']");
+   private By sucursalOrigen = By.xpath("//select[@id='sucursalOrigen']");
+
     public PageNuevoEnvio(WebDriver driver) {
         super(driver);
     }
@@ -93,46 +102,62 @@ public class PageNuevoEnvio extends BasePage {
         waitForSeconds(2);
         if (tipoEntrega.equals("Domicilio")) {
             entregaDomicilio();
+            scrollPageUpDown(0,2);
         } else if (tipoEntrega.equals("Sucursal")) {
             entregaSucursal();
+            scrollPageUpDown(0,2);
         } else {
             throw new IllegalArgumentException("Tipo de entrega no válido: " + tipoEntrega);
         }
     }
     private void entregaDomicilio(){
+
+        String nombreProvincia = "CAPITAL FEDERAL";
+        String codigoPostal = "1424";
+        String valorProvincia = "C";
+
         click(entregaDomicilio);
         writeText(nomApellidoLocator, "Juan Perez");
         waitForSeconds(1);
         click(seleccionarProvincia);
         waitForSeconds(2);
-        selectOptionFromDropdownByValue("provincia", "X");
-        writeText(localidadLocator, "CORDOBA");
+        selectOptionFromDropdownByValue("provincia", valorProvincia);
+        writeText(localidadLocator, nombreProvincia);
         writeText(direccionLocator,"Rivadavia 1200");
-        writeText(codPostalLocator,"5000");
+        writeText(codPostalLocator,codigoPostal);
         writeText(correoElectronico,"hola1@yopmail.com");
         writeText(celularLocator,"351456789");
         writeText(observacionesLocator,"Casa con rejas negras");
         waitForSeconds(3);
+
+
     }
     private void entregaSucursal(){
+
+        String nombreProvincia = "CAPITAL FEDERAL";
+        String codigoPostal = "1424";
+        String valorProvincia = "C";
+
         click(entregaSucursal);
         writeText(nomApellidoLocatoSuc,"Carlos Sanchez");
         waitForSeconds(1);
         click(seleccionarProvOrigenSuc);
         waitForSeconds(1);
-        selectOptionFromDropdownByValue("provincia2","F");
+        selectOptionFromDropdownByValue("provincia2",valorProvincia);
         waitForSeconds(2);
-        selectOptionFromDropdownByValue("sucursalDestino2","5360");
+        selectOptionFromDropdownByValue("sucursalDestino2",codigoPostal);
         waitForSeconds(1);
         writeText(correoElectronicoSuc,"hola2@yopmail.com");
         writeText(celularSuc,"3825564354");
         waitForSeconds(3);
     }
-    public void tipoProducto(String tipoProducto){
+    public void tipoProducto(String tipoProducto) {
         if (tipoProducto.equals("Clasico")) {
             clasico();
         } else if (tipoProducto.equals("Expreso")) {
             expreso();
+        } else if (tipoProducto.equals("PaqArHoy")) {
+            paqArHoy();
         } else {
             throw new IllegalArgumentException("Tipo de producto no válido: " + tipoProducto);
         }
@@ -144,6 +169,11 @@ public class PageNuevoEnvio extends BasePage {
     }
     public void clasico(){
         clickWithRetry(envioClasicoLocator);
+        waitForSeconds(2);
+    }
+
+    public void paqArHoy(){
+        clickWithRetry(envioPaqArHoyLocator);
         waitForSeconds(2);
     }
     public void preionarPagar1(){clickDoble(btnPagarLocator);waitForSeconds(1);}
@@ -263,4 +293,52 @@ public class PageNuevoEnvio extends BasePage {
         }
         //crear el else para cerrar el camino correcto
     }
+
+    //Origen del envío individual
+    public void origenDelEnvioIndividual(String origen){
+
+        if (origen.equals("PickUP")) {
+            click(origenDelEnvioIndividual);
+            waitForSeconds(2);
+            origenPickUp();
+            scrollPageUpDown(0,2);
+        } else if (origen.equals("Sucursal")) {
+            click(origenDelEnvioIndividual);
+            waitForSeconds(2);
+            origenSucursal();
+            scrollPageUpDown(0,2);
+        } else {
+            throw new IllegalArgumentException("Tipo de origen no válido: " + origen);
+        }
+
+    }
+
+    public void origenPickUp(){
+        click(pickUp);
+        waitForSeconds(1);
+        click(listaPickUP);
+        sendFlechaAbajo(1);
+        sendEnter();
+        click(btnNextLocator);
+    }
+
+    public void origenSucursal(){
+        click(sucursal);
+        waitForSeconds(1);
+
+        click(seleccionarProvOrigenSuc2);
+        sendFlechaAbajo(2);
+        sendEnter();
+
+        click(sucursalOrigen);
+        sendFlechaAbajo(2);
+        sendEnter();
+        /*
+        String valorProvincia = "C";
+        selectOptionFromDropdownByValue("provincia", valorProvincia);
+         */
+
+        click(btnNextLocator);
+    }
+
 }

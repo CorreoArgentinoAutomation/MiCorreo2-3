@@ -85,7 +85,6 @@ public class BasePage {
         }
     }
 
-
     public void moveToElementAndClick(By locator) {
         Actions actions = new Actions(driver);
         WebElement element = findElement(locator);
@@ -106,7 +105,6 @@ public class BasePage {
         Select dropdown = new Select(dropdownElement);
         dropdown.selectByValue(value);
     }
-
 
     public String getCurrentURL() {
         return driver.getCurrentUrl();
@@ -320,7 +318,7 @@ public class BasePage {
 
     }
 
-    public void clickConCambioIFrame(){//By Iframe,By boton) {
+    public void clickConCambioIFrame() {//By Iframe,By boton) {
 
         /*
         // Esperar a que el iframe esté presente
@@ -337,8 +335,8 @@ public class BasePage {
 
          */
 
-                // Esperar a que el iframe esté presente
-                WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        // Esperar a que el iframe esté presente
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
         try {
             WebElement iframe = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("iframe[src*='edge_pdf/index.html']")));
 
@@ -356,12 +354,6 @@ public class BasePage {
             System.out.println("El botón 'Cancelar' no se encontró dentro del iframe.");
         }
     }
-
-
-
-
-
-
 
 
     // Método para abrir una nueva pestaña y navegar a una URL
@@ -619,17 +611,40 @@ public class BasePage {
         return sb.toString();
     }
 
-    public String numerosAleatorios(int length) {
+    public String numerosAleatorios(int rangoCifra) {
         String characters = "012356789";
         Random random = new Random();
-        StringBuilder sb = new StringBuilder(length);
+        StringBuilder sb = new StringBuilder(rangoCifra);
 
-        for (int i = 0; i < length; i++) {
+        for (int i = 0; i < rangoCifra; i++) {
             int index = random.nextInt(characters.length());
             sb.append(characters.charAt(index));
         }
 
         return sb.toString();
+    }
+
+    public void selectIdAleatorio(String idElement, int valorMaximo, int valorMinimo) {
+        // Encuentra el elemento select por su id
+        WebElement selectElement = driver.findElement(By.id(idElement));
+
+        // Crea una instancia de Select
+        Select select = new Select(selectElement);
+
+        // Genera un número aleatorio para seleccionar una opción
+        Random random = new Random();
+
+        // Selecciona la opción por su valor
+        if (valorMaximo == valorMinimo) {
+            System.out.println("Los 2 números son iguales: " + valorMaximo);
+            select.selectByValue(String.valueOf(valorMaximo));
+        } else {
+            System.out.println("Los 2 números no son iguales.");
+            int randomNumber = random.nextInt(valorMinimo, valorMaximo);
+            select.selectByValue(String.valueOf(randomNumber));
+        }
+
+
     }
 
 
@@ -943,7 +958,7 @@ public class BasePage {
 
     }
 
-    public void capturarPantalla(){
+    public void capturarPantalla() {
         Hooks.takeScreenShot(false);
         System.out.println("Capturando pantalla");
     }
