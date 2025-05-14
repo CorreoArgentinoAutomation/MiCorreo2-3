@@ -1,8 +1,16 @@
 package page.MiCorreo1_5;
 
+import org.apache.xmlbeans.SchemaTypeLoader;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import framework.BasePage;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class PageHomeLogin extends BasePage {
 
@@ -32,8 +40,16 @@ public class PageHomeLogin extends BasePage {
     private By campoDireccion = By.xpath("//input[@id='direccion']");
     private By campoCodigoPostal = By.xpath("//input[@id='cp']");
     private By btnRegistrarmeModal = By.xpath("//button[@id='btn-register-fisica']");
-    private By btnAgregarUsuario = By.xpath("//a[@class= dropdown-item and @href= https://twsec02.correoargentino.com.ar/MiCorreo/public/addsubuser ' ]");
+    private By btnAgregarUsuario = By.xpath("//a[@class='dropdown-item' and normalize-space(text())='Agregar Usuarios']");
+    //private By btnMisUsuarios = By.xpath("//a[contains(text(), 'Mis Usuarios') and contains(@class, 'nav-link')]");
+    private By btnSeleccionarUsuario = By.xpath("//select[contains(@class, 'form-control') and contains(@id, 'sub_')]");
+    //private By msjErrorAgregarUI = By.xpath("//small[contains(@class, 'text-danger') and contains(text(), 'El Rol seleccionado')]");
+    private By selectorRol = By.xpath("//select[@class='form-control cmbRoles' and @id='sub_2732']");
+    //private By selectorRolDinamico = By.xpath("//select[contains(@id, 'sub_')]");
     private By btnMisUsuarios = By.xpath("//a[@id='tab2' and contains(@class, 'nav-link') and @href='#panel2']");
+    private By btnCampoUsuarioInvitado = By.xpath("//td[@class='table-text text-center']/div[contains(text(), '@yopmail.com')]");
+    //private By btnSeleccionarUsuario = By.xpath("//select[@id='sub_2732']");
+    private By msjErrorAgregarUI = By.xpath("//small[@id='error' and @class='text-danger fw-semibold']");
 
     public PageHomeLogin(WebDriver driver) {
         super(driver);
@@ -183,20 +199,172 @@ public class PageHomeLogin extends BasePage {
         waitForSeconds(15);
     }
 
-    public void miCuentaUI(){
+    /*public void miCuentaUI() {
         click(miCuentaLocator);
-        waitForSeconds(1);
+        click(btnAgregarUsuario);
+        click(btnMisUsuarios);
+        System.out.println("Step completado");
+    }*/
 
-    }
-
-    public void agregarUI() {
+    // Método para agregar el rol al usuario
+    /*public void agregarUI(String rolDeseado) {
         try {
-            click(btnAgregarUsuario);
-            click(btnMisUsuarios);
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+            System.out.println("El nombre de la variable rolDeseado es: " + rolDeseado);
+            miCuentaUI(); // Navegar a la sección de usuarios
+
+            // Verificar si el usuario ya tiene el rol deseado
+            By usuarioRolLocator = By.xpath("//td[contains(text(),'"+rolDeseado+"')]");
+            if (isElementPresent(usuarioRolLocator)) {
+                System.out.println("El usuario ya tiene asignado el rol: " + rolDeseado);
+                return;
+            }
+
+            // Seleccionar el rol deseado en el combo
+            WebElement comboRol = findElement(btnSeleccionarUsuario);
+            Select select = new Select(comboRol);
+            select.selectByVisibleText(rolDeseado);
+            System.out.println("Rol cambiado a: " + rolDeseado);
+
+            // Verificar si aparece el mensaje de error
+            if (isElementPresent(msjErrorAgregarUI)) {
+                String mensajeError = getText(msjErrorAgregarUI);
+                System.out.println("Error al cambiar el rol: " + mensajeError);
+            } else {
+                System.out.println("Rol asignado correctamente.");
+            }
+
+        } catch (Exception e) {
+            System.out.println("Error en agregarUI: " + e.getMessage());
         }
     }
+
+    // Método para verificar si un elemento está presente
+    private boolean isElementPresent(By locator) {
+        try {
+            return findElement(locator).isDisplayed();
+        } catch (NoSuchElementException e) {
+            return false;
+        }
+    }*/
+    /*public void miCuentaUI() {
+        click(miCuentaLocator);
+        click(btnAgregarUsuario);
+        click(btnMisUsuarios);
+        System.out.println("step completado");
+    }*/
+
+
+
+    /*public MetodoAgregarUI(WebDriver driver) {
+        this.driver = driver;
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+    }*/
+
+
+
+
+    /*public void agregarUI(String rolDeseado) {
+        System.out.println("El nombre de la variable rol deseado es: " + rolDeseado);
+
+        try {
+            click(miCuentaLocator);
+            click(btnAgregarUsuario);
+            click(btnMisUsuarios);
+            System.out.println("Accedí a la pestaña de usuarios");
+
+            // Esperamos que el selector de roles esté visible
+            WebElement comboRol = wait.until(ExpectedConditions.visibilityOfElementLocated(selectorRolDinamico));
+
+            // Verificamos si es un <select>
+            if (comboRol.getTagName().equalsIgnoreCase("select")) {
+                Select select = new Select(comboRol);
+                select.selectByVisibleText(rolDeseado);
+                System.out.println("Rol seleccionado: " + rolDeseado);
+            } else {
+                // Si no es un <select>, intentamos un clic manual
+                comboRol.click();
+                WebElement opcionRol = findElement(By.xpath("//option[text()='" + rolDeseado + "']"));
+                opcionRol.click();
+                System.out.println("Rol seleccionado (método alternativo): " + rolDeseado);
+            }
+
+            // Verificamos si aparece un mensaje de error
+            if (isElementPresent(msjErrorAgregarUI)) {
+                String mensajeError = getText(msjErrorAgregarUI);
+                System.out.println("Mensaje de error capturado: " + mensajeError);
+            } else {
+                System.out.println("Rol asignado correctamente.");
+            }
+        } catch (Exception e) {
+            System.out.println("Error al intentar agregar el rol: " + e.getMessage());
+        }
+    }
+
+    private boolean isElementPresent(By locator) {
+        try {
+            return findElement(locator).isDisplayed();
+        } catch (NoSuchElementException e) {
+            return false;
+        }
+    }*/
+
+    public void miCuentaUI(){
+        click(miCuentaLocator);
+        click(btnAgregarUsuario);
+        click(btnMisUsuarios);
+        click(btnCampoUsuarioInvitado);
+        click(btnSeleccionarUsuario);
+        waitForSeconds(1);
+
+        System.out.printf("step completado");
+    }
+
+    public void agregarUI(String rolDeseado) {
+
+        System.out.println("Antes del Try");
+
+        System.out.printf("el nombre de la variable rol deseado es: " + rolDeseado);
+
+        try {
+
+            /*
+            click(miCuentaLocator);
+            click(btnAgregarUsuario);
+            click(btnMisUsuarios);
+            */
+
+            //esestos xpath no van aca
+            By usuarioConRolLocator = By.xpath("//td[contains(text(),'Operador con Pago') or contains(text(),'Operador sin Pago')]");
+            By usuarioSinRolLocator = By.xpath("//td[not(contains(text(),'Operador con Pago')) and not(contains(text(),'Operador sin Pago'))]");
+            waitForSeconds(1);
+            String rolActual = getText(usuarioConRolLocator);
+
+            if (rolActual.equals(rolDeseado)) {
+                System.out.println("El usuario ya tiene asignado el rol: " + rolActual);
+                return;
+            }
+
+
+            System.out.println("Rol actual: " + rolActual + ". Procediendo a cambiarlo a: " + rolDeseado);
+
+
+            By selectorRol = By.xpath("//select[@id='sub_2732']");
+            WebElement comboRol = findElement(selectorRol);
+            Select select = new Select(comboRol);
+
+
+            select.selectByVisibleText(rolDeseado);
+            System.out.println("Rol cambiado a: " + rolDeseado);
+
+        } catch (Exception e) {
+            System.out.println("Error al intentar agregar el rol: " + e.getMessage());
+        }
+
+        System.out.println("Despues del try");
+    }
+
+    /*public void MsjErrorAgregarUI(){
+
+    }*/
 
 }
