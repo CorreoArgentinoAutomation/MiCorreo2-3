@@ -229,12 +229,6 @@ public class MisEnviosOutlineSteps {
         pageFranquicia.generarSelloDigital(producto, numeroSeguimiento);
     }
 
-<<<<<<< HEAD
-
-
-
-
-=======
     @And("editar el {string} del envío individual")
     public void editarElOrigenDelEnvíoIndividual(String origen) {
         pageNuevoEnvio.origenDelEnvioIndividual(origen);
@@ -244,5 +238,5 @@ public class MisEnviosOutlineSteps {
     public void elUsuarioRellenaElFormularioDeOficiosConElTipoDeCamaraTipoCamara(String tipoCamara) {
         pageServicios.formularioOficioJudicial(tipoCamara);
     }
->>>>>>> e143e5a100eea728b65d55c19b5b3fedb6a2b380
+
 }
