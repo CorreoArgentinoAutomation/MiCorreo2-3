@@ -14,10 +14,3 @@ Feature: Gestión activación de usuarios
 			| Usuario Invitado |
 
 
-	Scenario: Desactivación de un usuario
-		Given un usuario existente con estado "Activo"
-		When un administrador accede a la gestión de usuarios
-		And selecciona al usuario específico
-		And desactiva la cuenta del usuario
-		Then muestra el mensaje usuario desactivado correctamente
-

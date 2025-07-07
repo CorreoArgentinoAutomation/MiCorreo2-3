@@ -1,4 +1,4 @@
-
+@UsuarioInvitado
 Feature: Gestión de roles y activación de usuarios
 
 

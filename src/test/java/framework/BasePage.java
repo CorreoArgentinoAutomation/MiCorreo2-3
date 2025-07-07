@@ -382,6 +382,19 @@ public class BasePage {
         }
     }
 
+    // Método para cambiar el foco al nuevo tab
+    public void switchToNewTab2() {
+        // Obtener todas las ventanas o tabs abiertas
+        Set<String> ventanas = driver.getWindowHandles();
+        Iterator<String> iterador = ventanas.iterator();
+
+        // Cambiar el foco a la nueva ventana
+        while (iterador.hasNext()) {
+            String nuevaVentana = iterador.next();
+            driver.switchTo().window(nuevaVentana);
+        }
+    }
+
     // Método para validar la existencia de un campo por su XPath
     public boolean validarCampoExistente(By locator) {
         try {
@@ -547,7 +560,7 @@ public class BasePage {
         Random random = new Random();
 
         // Generar un nombre de usuario aleatorio
-        String username = "user" + random.nextInt(1000);
+        String username = "user" + random.nextInt(100000);
 
         // Seleccionar un dominio aleatorio
         String domain = domains[random.nextInt(domains.length)];
@@ -961,6 +974,18 @@ public class BasePage {
     public void capturarPantalla() {
         Hooks.takeScreenShot(false);
         System.out.println("Capturando pantalla");
+    }
+    //funciones de los Ecommerce
+
+    public String extrarNumeroDePedido(By locator) {
+        WebElement orderNumberElement = driver.findElement(locator);
+        String orderNumber = orderNumberElement.getText();
+        System.out.println("El número de orden es: " + orderNumber);
+        return orderNumber;
+    }
+
+    public void cambioDeIframe() {
+        driver.switchTo().frame(driver.findElement(By.cssSelector("iframe[name='modal-create-product-iframe']")));
     }
 
 }
