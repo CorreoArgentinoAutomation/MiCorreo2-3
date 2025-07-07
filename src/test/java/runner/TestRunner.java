@@ -14,11 +14,11 @@ import org.junit.runners.Suite;
         stepNotifications = true,
         publish = true,
         snippets = CucumberOptions.SnippetType.CAMELCASE,
-        features = {"src/main/resources/features/MiCorreo1_5"
+        features = {"src/main/resources/features"
         },
-        glue = {"stepsDefinitions", "framework","MiCorreo2","Google","MiCorreo1_5"}, // Agrega el paquete de los hooks y framework
+        glue = {"stepsDefinitions","PlataformaIntegracion","framework","MiCorreo2","Google","MiCorreo1_5"}, // Agrega el paquete de los hooks y framework
 
-        tags = "UsuariosInvitados"
+        tags = "@loguinUnificado"
 )
 
 public class TestRunner {
