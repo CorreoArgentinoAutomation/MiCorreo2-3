@@ -95,70 +95,35 @@ public class MisEnviosOutlineSteps {
         pageYopMail.buscarEmailTemporal(email);
     }
 
-    @And("el usuario hace clic en el boton Activa tu usuario")
-    public void el_usuario_hace_clic_en_el_boton_activa_tu_usuario() {
-
-    }
-
-    @Then("el usuario deberia ver el mensaje de bienvenida")
-    public void el_usuario_deberia_ver_el_mensaje_de_bienvenida() {
-    }
-
     //usuarioInvitado
-    @Given("selecciona Mi cuenta")
-    public void selecciona_mi_cuenta() { pageHomeLogin.miCuentaUI();
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
-    }
-
     @Given("el usuario se situa en la pestaña agregar usuarios")
-    public void el_usuario_se_situa_en_la_pestaña_agregar_usuarios() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
-    }
-
-    @Given("selecciona un usuario")
-    public void selecciona_un_usuario() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
-    }
-
-    @When("cambia el rol del usuario a {string}")
-    public void cambia_el_rol_del_usuario_a(String string) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
-    }
-
-    @Then("muestra un mensaje de rol cambiado correctamente")
-    public void muestra_un_mensaje_de_rol_cambiado_correctamente() {
+    public void el_usuario_se_situa_en_la_pestaña_agregar_usuarios() { pageHomeLogin.agregarUI("Operador con Pago");
         // Write code here that turns the phrase above into concrete actions
         throw new io.cucumber.java.PendingException();
     }
 
 
-    @Then("muestra un mensaje usuario activado correctamente")
-    public void muestraUnMensajeUsuarioActivadoCorrectamente() {
+    @And("un administrador accede a la gestion de usuarios")
+    public void un_administrador_accede_a_la_gestion_de_usuarios() { pageHomeLogin.miCuentaUI();
+        // Write code here that turns the phrase above into concrete actions
+
         
     }
-
-    @And("un usuario existente con estado {string}")
-    public void unUsuarioExistenteConEstado(String arg0) {
-        
-    }
-
-    @When("un administrador accede a la gestión de usuarios")
-    public void unAdministradorAccedeALaGestiónDeUsuarios() {
-        
-    }
-
-    @And("selecciona al usuario")
-    public void seleccionaAlUsuario() {
-        
+    @And("selecciona al usuario {string}")
+    public void seleccionaAlUsuarioTipoDeRol(String tipoDeRol) { pageHomeLogin.agregarUI(tipoDeRol);
     }
 
     @And("activa la cuenta del usuario")
     public void activaLaCuentaDelUsuario() {
+        System.out.println("Falta desarrollar esta parte");
     }
+
+    @Then("muestra un mensaje usuario activado correctamente")
+    public void muestraUnMensajeUsuarioActivadoCorrectamente() {
+        System.out.println("Mensaje de confirmación: Usuario activado correctamente");
+        System.out.println("Falta desarrola esta parte");
+    }
+
 
     @And("el usuario ingresa la pantalla de Oficios Judiciales")
     public void elUsuarioIngresaLaPantallaDeOficiosJudiciales() {
@@ -272,6 +237,7 @@ public class MisEnviosOutlineSteps {
         pageServicios.formularioOficioJudicial(tipoCamara);
     }
 
+
     @When("el usuario hace clic en el boton Recargar saldo")
     public void elUsuarioHaceClicEnElBotonRecargarSaldo() {
         pageHomeLogin.recargarSaldo();
@@ -283,4 +249,5 @@ public class MisEnviosOutlineSteps {
         pageHomeLogin.seleccionarMedioPago(medioPago,valorRecarga);
         pageHomeLogin.logout();
     }
+
 }
