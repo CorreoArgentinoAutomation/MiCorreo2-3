@@ -1,5 +1,5 @@
-@PPDIPI-3232
-  @loguinUnificado
+@PTA-23
+@loguinUnificado
 Feature: Configuracion de servicios de Correo Argentino en WooCommerce
 
   Scenario Outline: Configuracion de servicio <servicio> en WooCommerce
@@ -15,5 +15,8 @@ Feature: Configuracion de servicios de Correo Argentino en WooCommerce
     Then valido que se guarden los a justes
 
     Examples:
-      | tipoUsuario | servicio |
-      | PaqAr       | PaqAr    |
+      | tipoUsuario      | servicio  |
+      | Consumidor final | Mi Correo |
+      | Monotributista   | Mi Correo |
+      | Empresa          | Mi Correo |
+      | PaqAr            | PaqAr     |
