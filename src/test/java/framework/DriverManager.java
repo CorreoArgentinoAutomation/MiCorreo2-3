@@ -1,6 +1,6 @@
 package framework;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
+//import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -38,19 +38,19 @@ public class DriverManager {
 
             switch (browser) {
                 case "chrome":
-                    WebDriverManager.chromedriver().setup();
+                    //WebDriverManager.chromedriver().setup();
                     ChromeOptions chromeOptions = new ChromeOptions();
                     chromeOptions.addArguments("--ignore-certificate-errors");
                     driver = new ChromeDriver(chromeOptions);
                     break;
                 case "firefox":
-                    WebDriverManager.firefoxdriver().setup();
+                    //WebDriverManager.firefoxdriver().setup();
                     FirefoxOptions firefoxOptions = new FirefoxOptions();
                     firefoxOptions.addArguments("--ignore-certificate-errors");
                     driver = new FirefoxDriver(firefoxOptions);
                     break;
                 case "edge":
-                    WebDriverManager.edgedriver().setup();
+                    //WebDriverManager.edgedriver().setup();
                     EdgeOptions edgeOptions = new EdgeOptions();
                     edgeOptions.addArguments("--ignore-certificate-errors");
                     driver = new EdgeDriver(edgeOptions);

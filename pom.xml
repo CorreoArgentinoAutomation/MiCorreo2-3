@@ -70,12 +70,13 @@
             <optional>true</optional>
         </dependency>
 
-        <!-- webdrivermanager -->
+        <!-- webdrivermanager
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
             <version>5.6.3</version>
         </dependency>
+        -->
 
         <!-- slf4j-api -->
         <dependency>
