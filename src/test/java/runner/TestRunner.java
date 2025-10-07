@@ -17,7 +17,7 @@ import org.junit.runners.Suite;
         features = {"src/main/resources/features"
         },
         glue = {"stepsDefinitions","PlataformaIntegracion","framework","MiCorreo2","Google","MiCorreo1_5"}, // Agrega el paquete de los hooks y framework
-        tags = "@loguinUnificado"
+        tags = "@EnvioIndivual"
 
 )
 
