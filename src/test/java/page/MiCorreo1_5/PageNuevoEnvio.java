@@ -77,40 +77,429 @@ public class PageNuevoEnvio extends BasePage {
     private By pickUp = By.xpath("//input[@id='checkPickUp']");
     private By listaPickUP = By.xpath("//select[@id='dirOrigen']");
     private By sucursal = By.xpath("//input[@id='checkSucursal']");
-   private By seleccionarProvOrigenSuc2 = By.xpath("//select[@id='sucursalProvinciaOrigen']");
-   private By sucursalOrigen = By.xpath("//select[@id='sucursalOrigen']");
+    private By seleccionarProvOrigenSuc2 = By.xpath("//select[@id='sucursalProvinciaOrigen']");
+    private By sucursalOrigen = By.xpath("//select[@id='sucursalOrigen']");
 
     public PageNuevoEnvio(WebDriver driver) {
         super(driver);
     }
 
-    public void caracteristicasDelPaquete(){
-        writeText(campoLargoLocator, "25");
-        writeText(campoAnchoLocator,"20");
-        writeText(campoAltoLocator, "25");
-        writeText(campoPesoLocator, "5");
-        writeText(campoValorDelContenido, "6500");
+    public void caracteristicasDelPaqueteCM(String codigoMaterial) {
+
+        String largo = "0";
+        String ancho = "0";
+        String alto = "0";
+        String peso = "0";
+        String valorContenido = "1";
+
+        switch (codigoMaterial) {
+            case "0,5kg": {
+                largo = "10";
+                ancho = "15";
+                alto = "2";
+                peso = "0,5";
+            }
+            break;
+            case "1,0kg": {
+                largo = "5";
+                ancho = "5";
+                alto = "5";
+                peso = "1";
+            }
+            break;
+            case "2,0kg": {
+                largo = "10";
+                ancho = "10";
+                alto = "10";
+                peso = "2";
+            }
+            break;
+            case "3,0kg": {
+                largo = "10";
+                ancho = "10";
+                alto = "10";
+                peso = "3";
+            }
+            break;
+            case "5kg": {
+                largo = "10";
+                ancho = "10";
+                alto = "10";
+                peso = "4";
+            }
+            break;
+            case "10kg": {
+                largo = "10";
+                ancho = "10";
+                alto = "10";
+                peso = "6";
+            }
+            break;
+            case "15kg": {
+                largo = "10";
+                ancho = "12";
+                alto = "14";
+                peso = "12";
+            }
+            break;
+            case "20kg": {
+                largo = "2";
+                ancho = "11";
+                alto = "12";
+                peso = "15,6";
+            }
+            break;
+            case "25kg": {
+                largo = "100";
+                ancho = "30";
+                alto = "50";
+                peso = "15";
+            }
+            break;
+            case "30kg": {
+                largo = "50";
+                ancho = "80";
+                alto = "43";
+                peso = "25";
+            }
+            break;
+            case "35kg": {
+                largo = "100";
+                ancho = "45";
+                alto = "43";
+                peso = "30";
+            }
+            break;
+            case "40kg": {
+                largo = "45";
+                ancho = "50";
+                alto = "100";
+                peso = "7";
+            }
+            break;
+            case "50kg": {
+                largo = "50";
+                ancho = "50";
+                alto = "100";
+                peso = "12";
+            }
+            break;
+            case "60kg": {
+                largo = "100";
+                ancho = "70";
+                alto = "32";
+                peso = "17";
+            }
+            break;
+            case "70kg": {
+                largo = "27";
+                ancho = "100";
+                alto = "100";
+                peso = "23";
+            }
+            break;
+            case "80kg": {
+                largo = "100";
+                ancho = "60";
+                alto = "50";
+                peso = "30";
+            }
+            break;
+            case "90kg": {
+                largo = "50";
+                ancho = "100";
+                alto = "67";
+                peso = "34";
+            }
+            break;
+            case "100kg": {
+                largo = "60";
+                ancho = "75";
+                alto = "85";
+                peso = "40";
+            }
+            break;
+            case "110kg": {
+                largo = "30";
+                ancho = "105";
+                alto = "130";
+                peso = "50";
+            }
+            break;
+            case "120kg": {
+                largo = "40";
+                ancho = "118";
+                alto = "100";
+                peso = "50";
+            }
+            break;
+            case "130kg": {
+                largo = "40";
+                ancho = "115";
+                alto = "111";
+                peso = "50";
+            }
+            break;
+            case "140kg": {
+                largo = "40";
+                ancho = "115";
+                alto = "120";
+                peso = "50";
+            }
+            break;
+            case "150kg": {
+                largo = "50";
+                ancho = "118";
+                alto = "100";
+                peso = "50";
+            }
+            break;
+            case "170kg": {
+                largo = "80";
+                ancho = "90";
+                alto = "90";
+                peso = "50";
+            }
+            break;
+            case "190kg": {
+                largo = "85";
+                ancho = "70";
+                alto = "122";
+                peso = "50";
+            }
+            break;
+            case "210kg": {
+                largo = "100";
+                ancho = "80";
+                alto = "100";
+                peso = "50";
+            }
+            break;
+            case "230kg": {
+                largo = "86";
+                ancho = "100";
+                alto = "100";
+                peso = "50";
+            }
+            break;
+            case "250kg": {
+                largo = "100";
+                ancho = "100";
+                alto = "100";
+                peso = "50";
+            }
+            break;
+            default:
+                System.out.println("No Esta definido ese producto: " + codigoMaterial + "no existe");
+                break;
+        }
+
+
+        writeText(campoLargoLocator, largo);
+        writeText(campoAnchoLocator, ancho);
+        writeText(campoAltoLocator, alto);
+        writeText(campoPesoLocator, peso);
+        writeText(campoValorDelContenido, valorContenido);
         waitForSeconds(1);
-        try{
+        try {
             click(btnNextLocator);
-        }catch (Exception e){
+        } catch (Exception e) {
             click(btnNextLocator);
         }
     }
-    public void tipoEntrega(String tipoEntrega){
+
+    //funcion vieja
+    public void caracteristicasDelPaquete() {
+
+        String largo = "25";
+        writeText(campoLargoLocator, largo);
+
+        String ancho = "25";
+        writeText(campoAnchoLocator, ancho);
+
+        String alto = "25";
+        writeText(campoAltoLocator, alto);
+
+        String peso = "10";
+        writeText(campoPesoLocator, peso);
+
+        String valorContenido = "6500";
+        writeText(campoValorDelContenido, valorContenido);
+        waitForSeconds(1);
+        try {
+            click(btnNextLocator);
+        } catch (Exception e) {
+            click(btnNextLocator);
+        }
+    }
+
+    public void tipoEntrega(String tipoEntrega) {
         click(tipoDeEntrega);
         waitForSeconds(2);
         if (tipoEntrega.equals("Domicilio")) {
             entregaDomicilio();
-            scrollPageUpDown(0,2);
+            scrollPageUpDown(0, 2);
         } else if (tipoEntrega.equals("Sucursal")) {
             entregaSucursal();
-            scrollPageUpDown(0,2);
+            scrollPageUpDown(0, 2);
         } else {
             throw new IllegalArgumentException("Tipo de entrega no válido: " + tipoEntrega);
         }
     }
-    private void entregaDomicilio(){
+
+
+    // funcion vieja
+    public void tipoEntregaZonas(String tipoEntrega) {
+        click(tipoDeEntrega);
+        waitForSeconds(2);
+
+        String valorProvincia;
+        String codigoPostal;
+        String nombreProvincia;
+
+        /*
+        "B" // BUENOS AIRES
+        "C" // CAPITAL FEDERAL
+        "K" // CATAMARCA
+        "H" // CHACO
+        "U" // CHUBUT
+        "X" // CORDOBA
+        "W" // CORRIENTES
+        "E" // ENTRE RIOS
+        "P" // FORMOSA
+        "Y" // JUJUY
+        "L" // LA PAMPA
+        "F" // LA RIOJA
+        "M" // MENDOZA
+        "N" // MISIONES
+        "Q" // NEUQUEN
+        "R" // RIO NEGRO
+        "A" // SALTA
+        "J" // SAN JUAN
+        "D" // SAN LUIS
+        "Z" // SANTA CRUZ
+        "S" // SANTA FE
+        "G" // SANTIAGO DEL ESTERO
+        "V" // TIERRA DEL FUEGO
+        "T" // TUCUMAN
+         */
+
+        switch (tipoEntrega) {
+            case "DomicilioZona1", "zona 5": {
+                valorProvincia = "C";
+                codigoPostal = "1424";
+                nombreProvincia = "CAPITAL FEDERAL";
+                entregaDomicilioZonas(valorProvincia, codigoPostal, nombreProvincia);
+            }
+            break;
+            case "DomicilioZona2": {
+                valorProvincia = "X";
+                codigoPostal = "5000";
+                nombreProvincia = "CORDOBA";
+                entregaDomicilioZonas(valorProvincia, codigoPostal, nombreProvincia);
+            }
+            break;
+            case "DomicilioZona3": {
+                valorProvincia = "K";
+                codigoPostal = "4700";
+                nombreProvincia = "CATAMARCA";
+                entregaDomicilioZonas(valorProvincia, codigoPostal, nombreProvincia);
+            }
+            break;
+            case "DomicilioZona4": {
+                valorProvincia = "U";
+                codigoPostal = "9103";
+                nombreProvincia = "CHUBUT";
+                entregaDomicilioZonas(valorProvincia, codigoPostal, nombreProvincia);
+            }
+            break;
+            case "DomicilioZona5": {
+                valorProvincia = "C";
+                codigoPostal = "1020";
+                nombreProvincia = "CAPITAL FEDERAL";
+                entregaDomicilioZonas(valorProvincia, codigoPostal, nombreProvincia);
+            }
+            break;
+            case "DomicilioZona6": {
+                valorProvincia = "C";
+                codigoPostal = "1650";//San Martin
+                nombreProvincia = "BUENOS AIRES";
+                entregaDomicilioZonas(valorProvincia, codigoPostal, nombreProvincia);
+            }
+            break;
+            case "DomicilioZona7": {
+                valorProvincia = "B";
+                codigoPostal = "1648";//Tigre
+                nombreProvincia = "BUENOS AIRES";
+                entregaDomicilioZonas(valorProvincia, codigoPostal, nombreProvincia);
+            }
+            break;
+            case "SucursalZona1": {
+                valorProvincia = "C";
+                codigoPostal = "1424";//CABA
+                entregaSucursalZonas(valorProvincia, codigoPostal);
+            }
+            break;
+            case "SucursalZona2": {
+                valorProvincia = "X";
+                codigoPostal = "5000";//CORDOBA
+                entregaSucursalZonas(valorProvincia, codigoPostal);
+            }
+            break;
+            case "SucursalZona3": {
+                valorProvincia = "K";
+                codigoPostal = "4700";//CATAMARCA
+                entregaSucursalZonas(valorProvincia, codigoPostal);
+            }
+            break;
+            case "SucursalZona4": {
+                valorProvincia = "U";
+                codigoPostal = "9103";//CHUBUT
+                entregaSucursalZonas(valorProvincia, codigoPostal);
+            }
+            break;
+            default:
+                System.out.println("No Esta definido ese producto: " + tipoEntrega + "no existe");
+                break;
+        }
+
+    }
+
+    private void entregaDomicilioZonas(String valorProvincia, String codigoPostal, String nombreProvincia) {
+        click(entregaDomicilio);
+        writeText(nomApellidoLocator, "Juan Perez");
+        waitForSeconds(1);
+        click(seleccionarProvincia);
+        waitForSeconds(2);
+        selectOptionFromDropdownByValue("provincia", valorProvincia);
+        writeText(localidadLocator, nombreProvincia);
+        writeText(direccionLocator, "Rivadavia 1200");
+        writeText(codPostalLocator, codigoPostal);
+        writeText(correoElectronico, "hola1@yopmail.com");
+        writeText(celularLocator, "351456789");
+        writeText(observacionesLocator, "Casa con rejas negras");
+        waitForSeconds(3);
+    }
+
+    private void entregaSucursalZonas(String valorProvincia, String codigoPostal) {
+        click(entregaSucursal);
+        writeText(nomApellidoLocatoSuc, "Carlos Sanchez");
+        waitForSeconds(1);
+        click(seleccionarProvOrigenSuc);
+        waitForSeconds(1);
+        selectOptionFromDropdownByValue("provincia2", valorProvincia);
+        waitForSeconds(2);
+        selectOptionFromDropdownByValue("sucursalDestino2", codigoPostal);
+        waitForSeconds(1);
+        writeText(correoElectronicoSuc, "hola2@yopmail.com");
+        writeText(celularSuc, "3825564354");
+        waitForSeconds(3);
+    }
+
+
+    //funcion vieja
+
+    private void entregaDomicilio() {
 
         String nombreProvincia = "CAPITAL FEDERAL";
         String codigoPostal = "1424";
@@ -123,34 +512,36 @@ public class PageNuevoEnvio extends BasePage {
         waitForSeconds(2);
         selectOptionFromDropdownByValue("provincia", valorProvincia);
         writeText(localidadLocator, nombreProvincia);
-        writeText(direccionLocator,"Rivadavia 1200");
-        writeText(codPostalLocator,codigoPostal);
-        writeText(correoElectronico,"hola1@yopmail.com");
-        writeText(celularLocator,"351456789");
-        writeText(observacionesLocator,"Casa con rejas negras");
+        writeText(direccionLocator, "Rivadavia 1200");
+        writeText(codPostalLocator, codigoPostal);
+        writeText(correoElectronico, "hola1@yopmail.com");
+        writeText(celularLocator, "351456789");
+        writeText(observacionesLocator, "Casa con rejas negras");
         waitForSeconds(3);
-
-
     }
-    private void entregaSucursal(){
+
+    //funcion vieja
+
+    private void entregaSucursal() {
 
         String nombreProvincia = "CAPITAL FEDERAL";
         String codigoPostal = "1424";
         String valorProvincia = "C";
 
         click(entregaSucursal);
-        writeText(nomApellidoLocatoSuc,"Carlos Sanchez");
+        writeText(nomApellidoLocatoSuc, "Carlos Sanchez");
         waitForSeconds(1);
         click(seleccionarProvOrigenSuc);
         waitForSeconds(1);
-        selectOptionFromDropdownByValue("provincia2",valorProvincia);
+        selectOptionFromDropdownByValue("provincia2", valorProvincia);
         waitForSeconds(2);
-        selectOptionFromDropdownByValue("sucursalDestino2",codigoPostal);
+        selectOptionFromDropdownByValue("sucursalDestino2", codigoPostal);
         waitForSeconds(1);
-        writeText(correoElectronicoSuc,"hola2@yopmail.com");
-        writeText(celularSuc,"3825564354");
+        writeText(correoElectronicoSuc, "hola2@yopmail.com");
+        writeText(celularSuc, "3825564354");
         waitForSeconds(3);
     }
+
     public void tipoProducto(String tipoProducto) {
         if (tipoProducto.equals("Clasico")) {
             clasico();
@@ -163,23 +554,29 @@ public class PageNuevoEnvio extends BasePage {
         }
         preionarPagar1();
     }
-    public void expreso(){
+
+    public void expreso() {
         clickWithRetry(envioExpresoLocator);
         waitForSeconds(2);
     }
-    public void clasico(){
+
+    public void clasico() {
         clickWithRetry(envioClasicoLocator);
         waitForSeconds(2);
     }
 
-    public void paqArHoy(){
+    public void paqArHoy() {
         clickWithRetry(envioPaqArHoyLocator);
         waitForSeconds(2);
     }
-    public void preionarPagar1(){clickDoble(btnPagarLocator);waitForSeconds(1);}
+
+    public void preionarPagar1() {
+        clickDoble(btnPagarLocator);
+        waitForSeconds(1);
+    }
 
 
-    public void MPUnaTarjeta(){
+    public void MPUnaTarjeta() {
         waitForSeconds(2);
         click(btnPagarLocator);
         waitForSeconds(2);
@@ -187,17 +584,18 @@ public class PageNuevoEnvio extends BasePage {
         waitForSeconds(2);
         try {
             click(btnPagar2);
-        }catch(Exception e){
-            click(btnPagar2);}
+        } catch (Exception e) {
+            click(btnPagar2);
+        }
         completarFormularioMercadoPago();
         waitForSeconds(5);
     }
 
-    public void EmpDomicilioClasicoMPDosTarjetas(){
+    public void EmpDomicilioClasicoMPDosTarjetas() {
         waitForSeconds(2);
-        try{
+        try {
             click(btnNextLocator);
-        }catch (Exception e){
+        } catch (Exception e) {
             click(btnNextLocator);
         }
         waitForSeconds(2);
@@ -208,16 +606,16 @@ public class PageNuevoEnvio extends BasePage {
         completarFormularioMercadoPagoDosTarjetas();
     }
 
-    public void completarFormularioMercadoPago(){
+    public void completarFormularioMercadoPago() {
         WebElement iframe = findElement(By.tagName("iframe"));
         switchToFrame(iframe);
         // Aceptar cookies si es necesario
-        if (elementExists(By.xpath("//button[text()='Aceptar cookies']")) ) {
+        if (elementExists(By.xpath("//button[text()='Aceptar cookies']"))) {
             click(By.xpath("//button[text()='Aceptar cookies']"));
         }
         click(nuevaTarjetaMP);
 // Aceptar cookies nuevamente si es necesario
-        if (elementExists(By.xpath("//*[contains(text(),'Aceptar cookies')]")) ) {
+        if (elementExists(By.xpath("//*[contains(text(),'Aceptar cookies')]"))) {
             click(By.xpath("//*[contains(text(),'Aceptar cookies')]"));
         }
         waitForSeconds(2);
@@ -242,7 +640,7 @@ public class PageNuevoEnvio extends BasePage {
         waitForSeconds(3);
         // Verificar si aparecen mensajes de error
         if (elementExists(By.xpath("(//*[normalize-space()='Algo salió mal...'])[1]")) ||
-            elementExists(By.xpath("(//*[normalize-space()='No pudimos procesar tu pago'])[1]"))){
+                elementExists(By.xpath("(//*[normalize-space()='No pudimos procesar tu pago'])[1]"))) {
             // Realizar acciones en caso de error
             System.out.println("Algo salio mal...\nNo pudimos procesar tu pago\n");
             click(By.id("mp-close-btn"));
@@ -251,16 +649,17 @@ public class PageNuevoEnvio extends BasePage {
         }
         //crear el else para cerrar el camino correcto
     }
-    public void completarFormularioMercadoPagoDosTarjetas(){
+
+    public void completarFormularioMercadoPagoDosTarjetas() {
         WebElement iframe = findElement(By.tagName("iframe"));
         switchToFrame(iframe);
         // Aceptar cookies si es necesario
-        if (elementExists(By.xpath("//button[text()='Aceptar cookies']")) ) {
+        if (elementExists(By.xpath("//button[text()='Aceptar cookies']"))) {
             click(By.xpath("//button[text()='Aceptar cookies']"));
         }
         click(dosTarjetasMP);
 // Aceptar cookies nuevamente si es necesario
-        if (elementExists(By.xpath("//*[contains(text(),'Aceptar cookies')]")) ) {
+        if (elementExists(By.xpath("//*[contains(text(),'Aceptar cookies')]"))) {
             click(By.xpath("//*[contains(text(),'Aceptar cookies')]"));
         }
         waitForSeconds(2);
@@ -276,7 +675,7 @@ public class PageNuevoEnvio extends BasePage {
         click(veinticincoAnoMP);
         waitForSeconds(2);
         writeText(codSeguridadUnoMP, "123");
-        writeText(documentoUnoMP,"11111111");
+        writeText(documentoUnoMP, "11111111");
 
         click(By.xpath("//button[@aria-label='Cuotas: Elegí']"));
         click(By.xpath("//li[@name='[1]']"));
@@ -284,7 +683,7 @@ public class PageNuevoEnvio extends BasePage {
 
         // Verificar si aparecen mensajes de error
         if (elementExists(By.xpath("(//*[normalize-space()='Algo salió mal...'])[1]")) ||
-                elementExists(By.xpath("(//*[normalize-space()='No pudimos procesar tu pago'])[1]"))){
+                elementExists(By.xpath("(//*[normalize-space()='No pudimos procesar tu pago'])[1]"))) {
             // Realizar acciones en caso de error
             System.out.println("Algo salio mal...\nNo pudimos procesar tu pago\n");
             click(By.id("mp-close-btn"));
@@ -295,25 +694,27 @@ public class PageNuevoEnvio extends BasePage {
     }
 
     //Origen del envío individual
-    public void origenDelEnvioIndividual(String origen){
+
+    //Funcion vieja
+    public void origenDelEnvioIndividual(String origen) {
 
         if (origen.equals("PickUP")) {
             click(origenDelEnvioIndividual);
             waitForSeconds(2);
             origenPickUp();
-            scrollPageUpDown(0,2);
+            scrollPageUpDown(0, 2);
         } else if (origen.equals("Sucursal")) {
             click(origenDelEnvioIndividual);
             waitForSeconds(2);
-            origenSucursal();
-            scrollPageUpDown(0,2);
+            //origenSucursal();
+            scrollPageUpDown(0, 2);
         } else {
             throw new IllegalArgumentException("Tipo de origen no válido: " + origen);
         }
 
     }
 
-    public void origenPickUp(){
+    public void origenPickUp() {
         click(pickUp);
         waitForSeconds(1);
         click(listaPickUP);
@@ -322,13 +723,60 @@ public class PageNuevoEnvio extends BasePage {
         click(btnNextLocator);
     }
 
-    public void origenSucursal(){
+    public void origenDelEnvioIndividualConZonas(String origen) {
+
+        click(origenDelEnvioIndividual);
+        waitForSeconds(2);
+
+        String valorProvincia;
+
+        switch (origen) {
+            case "PickUP": {
+                origenPickUp();
+            }
+            break;
+            case "SucursalZona1": {
+                valorProvincia = "C";//CABA
+                origenSucursal(valorProvincia);
+            }
+            break;
+            case "SucursalZona2": {
+                valorProvincia = "B";//Buenos Aires
+                origenSucursal(valorProvincia);
+            }
+            break;
+            case "SucursalZona3": {
+                valorProvincia = "P";//Formosa
+                origenSucursal(valorProvincia);
+            }
+            break;
+            case "SucursalZona4": {
+                valorProvincia = "Y";//Jujuy
+                origenSucursal(valorProvincia);
+            }
+            break;
+            default:
+                System.out.println("No Esta definido ese producto: " + origen + "no existe");
+                break;
+        }
+        scrollPageUpDown(0, 2);
+
+    }
+
+
+    public void origenSucursal(String valorProvincia) {
         click(sucursal);
         waitForSeconds(1);
 
         click(seleccionarProvOrigenSuc2);
+        selectOptionFromDropdownByValue("sucursalProvinciaOrigen", valorProvincia);
+        waitForSeconds(1);
+
+        /*
         sendFlechaAbajo(2);
         sendEnter();
+
+         */
 
         click(sucursalOrigen);
         sendFlechaAbajo(2);

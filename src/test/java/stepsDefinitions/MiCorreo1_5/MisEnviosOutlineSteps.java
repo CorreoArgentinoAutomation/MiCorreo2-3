@@ -12,7 +12,7 @@ import java.io.IOException;
 
 public class MisEnviosOutlineSteps {
     private WebDriver driver = DriverManager.getDriver();
-    private String baseUrl = DriverManager.config.getProperty("url");
+    private String baseUrl = DriverManager.config.getProperty("urlTest");
     private PageHomeLogin pageHomeLogin = new PageHomeLogin(driver);
     private PageMessageHome pageMessageHome = new PageMessageHome(driver);
     private PageNuevoEnvio pageNuevoEnvio = new PageNuevoEnvio(driver);
@@ -47,7 +47,8 @@ public class MisEnviosOutlineSteps {
     }
     @And("selecciona el {string} completa el formulario de destino")
     public void seleccionaElCompletaElFormularioDeDestino(String tipoEntrega) {
-        pageNuevoEnvio.tipoEntrega(tipoEntrega);
+        //pageNuevoEnvio.tipoEntrega(tipoEntrega);//funcion vieja
+        pageNuevoEnvio.tipoEntregaZonas(tipoEntrega);
     }
     @And("selecciona el {string} y procede a pagar")
     public void seleccionaElYProcedeAPagar(String tipoProducto) {
@@ -229,7 +230,7 @@ public class MisEnviosOutlineSteps {
 
     @And("editar el {string} del envío individual")
     public void editarElOrigenDelEnvíoIndividual(String origen) {
-        pageNuevoEnvio.origenDelEnvioIndividual(origen);
+        pageNuevoEnvio.origenDelEnvioIndividualConZonas(origen);
     }
 
     @And("el usuario rellena el formulario de oficios con el tipo de camara {string}")
@@ -250,4 +251,8 @@ public class MisEnviosOutlineSteps {
         pageHomeLogin.logout();
     }
 
+    @And("llena los campos de paquete segun el {string} y las dimensiones")
+    public void llenaLosCamposDePaqueteSegunElYLasDimensiones(String arg0) {
+        pageNuevoEnvio.caracteristicasDelPaqueteCM(arg0);
+    }
 }

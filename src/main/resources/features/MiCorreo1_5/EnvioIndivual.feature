@@ -1,4 +1,4 @@
-@EnvioIndivual
+#caso viejo borrar
 @RegresionRequerimientoEvolutivo
 #@MCIB-133 Numero de referencia de envío en el proyecto de jira
 Feature: TE - Nuevo envio individual
@@ -21,9 +21,9 @@ Feature: TE - Nuevo envio individual
     And se confirma que el pago se ha realizado con éxito
 
     Examples:
-      | tipoUsuario       | tipoOrigen | tipoEntrega | tipoProducto | medioPago |
+      | tipoUsuario | tipoOrigen | tipoEntrega | tipoProducto | medioPago |
       #| Consumidor final  |Sucursal  |  Domicilio  | Clasico      | Saldo     |
-      #| Consumidor final  |PickUP    |  Sucursal  | PaqArHoy     | Saldo     |
+      | Consumidor final  |PickUP    |  Sucursal  | PaqArHoy     | Saldo     |
 
 
 		#Posibles combinaciones de tipoUsuario, tipoEntrega y tipoProducto

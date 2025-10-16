@@ -1,69 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<<<<<<< HEAD
-<testsuite name="Cucumber" time="87.78" tests="1" skipped="0" failures="0" errors="0">
-<testcase classname="TE - Nuevo envio individual" name="Nuevo envio individual - Example #1.1" time="87.089">
+<testsuite name="Cucumber" time="154.613" tests="2" skipped="0" failures="1" errors="0">
+<testcase classname="TE - Nuevo envio individual" name="Nuevo envio individual - Example #1.1" time="56.599">
+<failure type="org.openqa.selenium.ElementNotInteractableException" message="element not interactable
+  (Session info: chrome=141.0.7390.107)
+Build info: version: '4.16.1', revision: '9b4c83354e'
+System info: os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.3'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [7fc05d69bc5475716279b162ccdec4eb, clickElement {id=f.9904DA605DFAA50D3004873DA4F9CA43.d.4649F9AFFAB93941F7207D47EB520FEF.e.225}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 141.0.7390.107, chrome: {chromedriverVersion: 141.0.7390.78 (2b53b0e231fc..., userDataDir: C:\Users\RODRIG~1.VAR\AppDa...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:64180}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:64180/devtoo..., se:cdpVersion: 141.0.7390.107, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Element: [[ChromeDriver: chrome on windows (7fc05d69bc5475716279b162ccdec4eb)] -&gt; xpath: //input[@id='pqHoy']]
+Session ID: 7fc05d69bc5475716279b162ccdec4eb">
+<![CDATA[org.openqa.selenium.ElementNotInteractableException: element not interactable
+  (Session info: chrome=141.0.7390.107)
+Build info: version: '4.16.1', revision: '9b4c83354e'
+System info: os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.3'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [7fc05d69bc5475716279b162ccdec4eb, clickElement {id=f.9904DA605DFAA50D3004873DA4F9CA43.d.4649F9AFFAB93941F7207D47EB520FEF.e.225}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 141.0.7390.107, chrome: {chromedriverVersion: 141.0.7390.78 (2b53b0e231fc..., userDataDir: C:\Users\RODRIG~1.VAR\AppDa...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:64180}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:64180/devtoo..., se:cdpVersion: 141.0.7390.107, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Element: [[ChromeDriver: chrome on windows (7fc05d69bc5475716279b162ccdec4eb)] -> xpath: //input[@id='pqHoy']]
+Session ID: 7fc05d69bc5475716279b162ccdec4eb
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:52)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:191)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:200)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:175)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:523)
+	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:224)
+	at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:77)
+	at framework.BasePage.click(BasePage.java:53)
+	at framework.BasePage.clickWithRetry(BasePage.java:68)
+	at page.MiCorreo1_5.PageNuevoEnvio.paqArHoy(PageNuevoEnvio.java:569)
+	at page.MiCorreo1_5.PageNuevoEnvio.tipoProducto(PageNuevoEnvio.java:551)
+	at stepsDefinitions.MiCorreo1_5.MisEnviosOutlineSteps.seleccionaElYProcedeAPagar(MisEnviosOutlineSteps.java:55)
+	at ?.selecciona el 'PaqArHoy' y procede a pagar(file:///C:/Users/Rodrigo.Vargas/Documents/Correo%20Argentino/Driver%20arreglado/MiCorreo2-3/src/main/resources/features/MiCorreo1_5/EnvioIndivual.feature:18)
+]]>
+</failure>
 <system-out><![CDATA[
 Given el usuario se situa en los campos email y password....................passed
-Given el usuario 'Empresa' está logueado y en la page home..................passed
-When el usuario hace clic en el boton Recargar saldo........................passed
-And el usuario seleccionar el 'Mercado Pago' y el '1000' para la recarga....passed
-=======
-<testsuite name="Cucumber" time="540.553" tests="4" skipped="0" failures="0" errors="0">
-<testcase classname="Configuracion de servicios de Correo Argentino en WooCommerce" name="Configuracion de servicio &lt;servicio&gt; en WooCommerce - Example #1.1" time="133.741">
-<system-out><![CDATA[
-Given que estoy en el Dashboard de WordPress................................passed
-And hago clic en el boton de plugin.........................................passed
-And desactivo el plugin.....................................................passed
-And Activo el plugin........................................................passed
-When hago clic en el boton Conexion Api.....................................passed
-And hago clic en el menu desplegable de "Mi Correo".........................passed
-And hago clic en el boton Guardar Cambios...................................passed
-And ingreso el usuario y la contrasena con el "Consumidor final"............passed
-And completo los datos del negocio en el formulario.........................passed
-Then valido que se guarden los a justes.....................................passed
+Given el usuario 'Consumidor final' está logueado y en la page home.........passed
+When ingresa en nuevo envío individual......................................passed
+And editar el 'PickUP' del envío individual.................................passed
+And llena los campos de paquete.............................................passed
+And selecciona el 'Sucursal' completa el formulario de destino..............passed
+And selecciona el 'PaqArHoy' y procede a pagar..............................failed
+And se muestra la grilla de checkout........................................skipped
+Then realiza el pago con 'Saldo' del envío..................................skipped
+And se confirma que el pago se ha realizado con éxito.......................skipped
 ]]></system-out>
 </testcase>
-<testcase classname="Configuracion de servicios de Correo Argentino en WooCommerce" name="Configuracion de servicio &lt;servicio&gt; en WooCommerce - Example #1.2" time="132.884">
+<testcase classname="TE - Nuevo envio individual" name="Nuevo envio individual - Example #1.1" time="96.974">
 <system-out><![CDATA[
-Given que estoy en el Dashboard de WordPress................................passed
-And hago clic en el boton de plugin.........................................passed
-And desactivo el plugin.....................................................passed
-And Activo el plugin........................................................passed
-When hago clic en el boton Conexion Api.....................................passed
-And hago clic en el menu desplegable de "Mi Correo".........................passed
-And hago clic en el boton Guardar Cambios...................................passed
-And ingreso el usuario y la contrasena con el "Monotributista"..............passed
-And completo los datos del negocio en el formulario.........................passed
-Then valido que se guarden los a justes.....................................passed
-]]></system-out>
-</testcase>
-<testcase classname="Configuracion de servicios de Correo Argentino en WooCommerce" name="Configuracion de servicio &lt;servicio&gt; en WooCommerce - Example #1.3" time="135.249">
-<system-out><![CDATA[
-Given que estoy en el Dashboard de WordPress................................passed
-And hago clic en el boton de plugin.........................................passed
-And desactivo el plugin.....................................................passed
-And Activo el plugin........................................................passed
-When hago clic en el boton Conexion Api.....................................passed
-And hago clic en el menu desplegable de "Mi Correo".........................passed
-And hago clic en el boton Guardar Cambios...................................passed
-And ingreso el usuario y la contrasena con el "Empresa".....................passed
-And completo los datos del negocio en el formulario.........................passed
-Then valido que se guarden los a justes.....................................passed
-]]></system-out>
-</testcase>
-<testcase classname="Configuracion de servicios de Correo Argentino en WooCommerce" name="Configuracion de servicio &lt;servicio&gt; en WooCommerce - Example #1.4" time="137.948">
-<system-out><![CDATA[
-Given que estoy en el Dashboard de WordPress................................passed
-And hago clic en el boton de plugin.........................................passed
-And desactivo el plugin.....................................................passed
-And Activo el plugin........................................................passed
-When hago clic en el boton Conexion Api.....................................passed
-And hago clic en el menu desplegable de "PaqAr".............................passed
-And hago clic en el boton Guardar Cambios...................................passed
-And ingreso el usuario y la contrasena con el "PaqAr".......................passed
-And completo los datos del negocio en el formulario.........................passed
-Then valido que se guarden los a justes.....................................passed
->>>>>>> develop
+Given el usuario se situa en los campos email y password....................passed
+Given el usuario 'Consumidor final' está logueado y en la page home.........passed
+When ingresa en nuevo envío individual......................................passed
+And editar el 'SucursalZona1' del envío individual..........................passed
+And llena los campos de paquete segun el '40kg' y las dimensiones...........passed
+And selecciona el 'SucursalZona1' completa el formulario de destino.........passed
+And selecciona el 'Clasico' y procede a pagar...............................passed
+And se muestra la grilla de checkout........................................passed
+Then realiza el pago con 'Saldo' del envío..................................passed
+And se confirma que el pago se ha realizado con éxito.......................passed
 ]]></system-out>
 </testcase>
 </testsuite>
