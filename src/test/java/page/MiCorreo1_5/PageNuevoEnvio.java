@@ -385,7 +385,7 @@ public class PageNuevoEnvio extends BasePage {
          */
 
         switch (tipoEntrega) {
-            case "DomicilioZona1", "zona 5": {
+            case "DomicilioZona1": {
                 valorProvincia = "C";
                 codigoPostal = "1424";
                 nombreProvincia = "CAPITAL FEDERAL";

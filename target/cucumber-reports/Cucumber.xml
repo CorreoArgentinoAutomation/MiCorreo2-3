@@ -1,24 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Cucumber" time="154.613" tests="2" skipped="0" failures="1" errors="0">
-<testcase classname="TE - Nuevo envio individual" name="Nuevo envio individual - Example #1.1" time="56.599">
-<failure type="org.openqa.selenium.ElementNotInteractableException" message="element not interactable
+<testsuite name="Cucumber" time="141.102" tests="1" skipped="0" failures="1" errors="0">
+<testcase classname="TE - Nuevo envio individual" name="Nuevo envio individual - Example #1.1" time="140.193">
+<failure type="org.openqa.selenium.TimeoutException" message="Expected condition failed: waiting for presence of element located by: By.xpath: //h6[@class='mb-1 text-muted' and normalize-space()='¡Genial! Tu pago fue procesado correctamente.'] (tried for 20 second(s) with 500 milliseconds interval)">
+<![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for presence of element located by: By.xpath: //h6[@class='mb-1 text-muted' and normalize-space()='�Genial! Tu pago fue procesado correctamente.'] (tried for 20 second(s) with 500 milliseconds interval)
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:229)
+	at framework.BasePage.findElement(BasePage.java:229)
+	at framework.BasePage.getText(BasePage.java:134)
+	at framework.BasePage.compararTextoConMensajeEsperado(BasePage.java:139)
+	at page.MiCorreo1_5.PagePayment.verificarPago(PagePayment.java:22)
+	at stepsDefinitions.MiCorreo1_5.MisEnviosOutlineSteps.seConfirmaQueElPagoSeHaRealizadoCon�xito(MisEnviosOutlineSteps.java:67)
+	at ?.se confirma que el pago se ha realizado con �xito(file:///C:/Users/Rodrigo.Vargas/Documents/Correo%20Argentino/Driver%20arreglado/MiCorreo2-3/src/main/resources/features/MiCorreo1_5/EnvioIndivualCodgoMaterial.feature:22)
+Caused by: org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"xpath","selector":"//h6[@class='mb-1 text-muted' and normalize-space()='�Genial! Tu pago fue procesado correctamente.']"}
   (Session info: chrome=141.0.7390.107)
+For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
 Build info: version: '4.16.1', revision: '9b4c83354e'
 System info: os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.3'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [7fc05d69bc5475716279b162ccdec4eb, clickElement {id=f.9904DA605DFAA50D3004873DA4F9CA43.d.4649F9AFFAB93941F7207D47EB520FEF.e.225}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 141.0.7390.107, chrome: {chromedriverVersion: 141.0.7390.78 (2b53b0e231fc..., userDataDir: C:\Users\RODRIG~1.VAR\AppDa...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:64180}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:64180/devtoo..., se:cdpVersion: 141.0.7390.107, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Element: [[ChromeDriver: chrome on windows (7fc05d69bc5475716279b162ccdec4eb)] -&gt; xpath: //input[@id='pqHoy']]
-Session ID: 7fc05d69bc5475716279b162ccdec4eb">
-<![CDATA[org.openqa.selenium.ElementNotInteractableException: element not interactable
-  (Session info: chrome=141.0.7390.107)
-Build info: version: '4.16.1', revision: '9b4c83354e'
-System info: os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.3'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [7fc05d69bc5475716279b162ccdec4eb, clickElement {id=f.9904DA605DFAA50D3004873DA4F9CA43.d.4649F9AFFAB93941F7207D47EB520FEF.e.225}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 141.0.7390.107, chrome: {chromedriverVersion: 141.0.7390.78 (2b53b0e231fc..., userDataDir: C:\Users\RODRIG~1.VAR\AppDa...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:64180}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:64180/devtoo..., se:cdpVersion: 141.0.7390.107, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Element: [[ChromeDriver: chrome on windows (7fc05d69bc5475716279b162ccdec4eb)] -> xpath: //input[@id='pqHoy']]
-Session ID: 7fc05d69bc5475716279b162ccdec4eb
+Command: [f40a71bebad3fa720b2c821610e86f5e, findElement {using=xpath, value=//h6[@class='mb-1 text-muted' and normalize-space()='�Genial! Tu pago fue procesado correctamente.']}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 141.0.7390.107, chrome: {chromedriverVersion: 141.0.7390.78 (2b53b0e231fc..., userDataDir: C:\Users\RODRIG~1.VAR\AppDa...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:56766}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:56766/devtoo..., se:cdpVersion: 141.0.7390.107, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: f40a71bebad3fa720b2c821610e86f5e
 	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
 	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
 	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
@@ -29,14 +30,67 @@ Session ID: 7fc05d69bc5475716279b162ccdec4eb
 	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:200)
 	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:175)
 	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:523)
-	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:224)
-	at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:77)
-	at framework.BasePage.click(BasePage.java:53)
-	at framework.BasePage.clickWithRetry(BasePage.java:68)
-	at page.MiCorreo1_5.PageNuevoEnvio.paqArHoy(PageNuevoEnvio.java:569)
-	at page.MiCorreo1_5.PageNuevoEnvio.tipoProducto(PageNuevoEnvio.java:551)
-	at stepsDefinitions.MiCorreo1_5.MisEnviosOutlineSteps.seleccionaElYProcedeAPagar(MisEnviosOutlineSteps.java:55)
-	at ?.selecciona el 'PaqArHoy' y procede a pagar(file:///C:/Users/Rodrigo.Vargas/Documents/Correo%20Argentino/Driver%20arreglado/MiCorreo2-3/src/main/resources/features/MiCorreo1_5/EnvioIndivual.feature:18)
+	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:165)
+	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:360)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:354)
+	at org.openqa.selenium.support.ui.ExpectedConditions$6.apply(ExpectedConditions.java:171)
+	at org.openqa.selenium.support.ui.ExpectedConditions$6.apply(ExpectedConditions.java:168)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:204)
+	at framework.BasePage.findElement(BasePage.java:229)
+	at framework.BasePage.getText(BasePage.java:134)
+	at framework.BasePage.compararTextoConMensajeEsperado(BasePage.java:139)
+	at page.MiCorreo1_5.PagePayment.verificarPago(PagePayment.java:22)
+	at stepsDefinitions.MiCorreo1_5.MisEnviosOutlineSteps.seConfirmaQueElPagoSeHaRealizadoCon�xito(MisEnviosOutlineSteps.java:67)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at io.cucumber.java.Invoker.doInvoke(Invoker.java:66)
+	at io.cucumber.java.Invoker.invoke(Invoker.java:24)
+	at io.cucumber.java.AbstractGlueDefinition.invokeMethod(AbstractGlueDefinition.java:47)
+	at io.cucumber.java.JavaStepDefinition.execute(JavaStepDefinition.java:29)
+	at io.cucumber.core.runner.CoreStepDefinition.execute(CoreStepDefinition.java:66)
+	at io.cucumber.core.runner.PickleStepDefinitionMatch.runStep(PickleStepDefinitionMatch.java:63)
+	at io.cucumber.core.runner.ExecutionMode$1.execute(ExecutionMode.java:10)
+	at io.cucumber.core.runner.TestStep.executeStep(TestStep.java:84)
+	at io.cucumber.core.runner.TestStep.run(TestStep.java:56)
+	at io.cucumber.core.runner.PickleStepTestStep.run(PickleStepTestStep.java:51)
+	at io.cucumber.core.runner.TestCase.run(TestCase.java:84)
+	at io.cucumber.core.runner.Runner.runPickle(Runner.java:75)
+	at io.cucumber.junit.PickleRunners$WithStepDescriptions.lambda$run$1(PickleRunners.java:109)
+	at io.cucumber.core.runtime.CucumberExecutionContext.lambda$runTestCase$5(CucumberExecutionContext.java:137)
+	at io.cucumber.core.runtime.RethrowingThrowableCollector.executeAndThrow(RethrowingThrowableCollector.java:23)
+	at io.cucumber.core.runtime.CucumberExecutionContext.runTestCase(CucumberExecutionContext.java:137)
+	at io.cucumber.junit.PickleRunners$WithStepDescriptions.run(PickleRunners.java:106)
+	at io.cucumber.junit.FeatureRunner.runChild(FeatureRunner.java:144)
+	at io.cucumber.junit.FeatureRunner.runChild(FeatureRunner.java:28)
+	at org.junit.runners.ParentRunner$4.run(ParentRunner.java:331)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:79)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:329)
+	at org.junit.runners.ParentRunner.access$100(ParentRunner.java:66)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:293)
+	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:413)
+	at io.cucumber.junit.FeatureRunner.run(FeatureRunner.java:137)
+	at io.cucumber.junit.Cucumber.runChild(Cucumber.java:196)
+	at io.cucumber.junit.Cucumber.runChild(Cucumber.java:89)
+	at org.junit.runners.ParentRunner$4.run(ParentRunner.java:331)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:79)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:329)
+	at org.junit.runners.ParentRunner.access$100(ParentRunner.java:66)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:293)
+	at io.cucumber.core.runtime.CucumberExecutionContext.lambda$runFeatures$6(CucumberExecutionContext.java:148)
+	at io.cucumber.core.runtime.CucumberExecutionContext.execute(CucumberExecutionContext.java:163)
+	at io.cucumber.core.runtime.CucumberExecutionContext.runFeatures(CucumberExecutionContext.java:146)
+	at io.cucumber.junit.Cucumber$StartAndFinishTestRun.evaluate(Cucumber.java:226)
+	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:413)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:137)
+	at com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:69)
+	at com.intellij.rt.junit.IdeaTestRunner$Repeater$1.execute(IdeaTestRunner.java:38)
+	at com.intellij.rt.execution.junit.TestsRepeater.repeat(TestsRepeater.java:11)
+	at com.intellij.rt.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:35)
+	at com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:232)
+	at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:55)
 ]]>
 </failure>
 <system-out><![CDATA[
@@ -44,26 +98,12 @@ Given el usuario se situa en los campos email y password....................pass
 Given el usuario 'Consumidor final' está logueado y en la page home.........passed
 When ingresa en nuevo envío individual......................................passed
 And editar el 'PickUP' del envío individual.................................passed
-And llena los campos de paquete.............................................passed
-And selecciona el 'Sucursal' completa el formulario de destino..............passed
-And selecciona el 'PaqArHoy' y procede a pagar..............................failed
-And se muestra la grilla de checkout........................................skipped
-Then realiza el pago con 'Saldo' del envío..................................skipped
-And se confirma que el pago se ha realizado con éxito.......................skipped
-]]></system-out>
-</testcase>
-<testcase classname="TE - Nuevo envio individual" name="Nuevo envio individual - Example #1.1" time="96.974">
-<system-out><![CDATA[
-Given el usuario se situa en los campos email y password....................passed
-Given el usuario 'Consumidor final' está logueado y en la page home.........passed
-When ingresa en nuevo envío individual......................................passed
-And editar el 'SucursalZona1' del envío individual..........................passed
-And llena los campos de paquete segun el '40kg' y las dimensiones...........passed
-And selecciona el 'SucursalZona1' completa el formulario de destino.........passed
-And selecciona el 'Clasico' y procede a pagar...............................passed
+And llena los campos de paquete segun el '250kg' y las dimensiones..........passed
+And selecciona el 'DomicilioZona1' completa el formulario de destino........passed
+And selecciona el 'Expreso' y procede a pagar...............................passed
 And se muestra la grilla de checkout........................................passed
-Then realiza el pago con 'Saldo' del envío..................................passed
-And se confirma que el pago se ha realizado con éxito.......................passed
+Then realiza el pago con 'Mercado Pago' del envío...........................passed
+And se confirma que el pago se ha realizado con éxito.......................failed
 ]]></system-out>
 </testcase>
 </testsuite>
