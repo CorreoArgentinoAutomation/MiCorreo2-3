@@ -63,7 +63,8 @@ public class PageForm extends BasePage {
         sendKeys("1234");
 
         waitForSeconds(1);
-        sendTab(3);
+        sendTab(4);
+        waitForSeconds(1);
         sendKeys("11111112");
 
         waitForSeconds(1);
