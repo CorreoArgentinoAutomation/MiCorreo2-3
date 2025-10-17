@@ -252,7 +252,7 @@ public class MisEnviosOutlineSteps {
     }
 
     @And("llena los campos de paquete segun el {string} y las dimensiones")
-    public void llenaLosCamposDePaqueteSegunElYLasDimensiones(String arg0) {
-        pageNuevoEnvio.caracteristicasDelPaqueteCM(arg0);
+    public void llenaLosCamposDePaqueteSegunElYLasDimensiones(String codigoMaterial) {
+        pageNuevoEnvio.caracteristicasDelPaqueteCM(codigoMaterial);
     }
 }

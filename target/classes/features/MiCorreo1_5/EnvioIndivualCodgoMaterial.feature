@@ -22,16 +22,8 @@ Feature: TE - Nuevo envio individual
     And se confirma que el pago se ha realizado con éxito
 
     Examples:
-      | tipoUsuario      | tipoOrigen | peso  | tipoEntrega    | tipoProducto | medioPago    |
-      | Consumidor final | PickUP     | 250kg | DomicilioZona1 | Expreso      | Mercado Pago |
+      | tipoUsuario      | tipoOrigen | peso | tipoEntrega    | tipoProducto | medioPago |
+      | Consumidor final | PickUP     | 1kg  | DomicilioZona1 | PaqArHoy     | Saldo     |
 
-
-		#Posibles combinaciones de tipoUsuario, tipoEntrega y tipoProducto
-
-
-		#Ejemplos
-  #| Consumidor final  | PickUP     | Domicilio   | Clasico      | Tarjeta       |
-  #| Monotributista    | PickUP     | Domicilio   | Clasico      | Tarjeta       |
-  #| Empresa           | PickUP     | Domicilio   | Clasico      | Tarjeta       |
 
 		
