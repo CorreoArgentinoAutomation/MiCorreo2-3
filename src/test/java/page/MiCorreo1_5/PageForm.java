@@ -32,11 +32,11 @@ public class PageForm extends BasePage {
     public void pagoConTarjeta(){
         click(visaLocator);
         writeText(numeroTarjeta,"4507990000004905");
-        writeText(codSeguridad,"775");
-        writeText(mesVencimiento,"08");
-        writeText(anoVencimiento,"25");
-        writeText(nombreTitular,"TARJETA VISA");
-        writeText(numeroDocumento,"27859328");
+        writeText(codSeguridad,"123");
+        writeText(mesVencimiento,"12");
+        writeText(anoVencimiento,"29");
+        writeText(nombreTitular,"Jose Perez");
+        writeText(numeroDocumento,"38555826");
         waitForSeconds(2);
         clickWithRetry(btnPagarLocator);
         waitForSeconds(5);

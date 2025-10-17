@@ -100,21 +100,21 @@ public class PageNuevoEnvio extends BasePage {
                 peso = "0,5";
             }
             break;
-            case "1,0kg": {
+            case "1kg": {
                 largo = "5";
                 ancho = "5";
                 alto = "5";
                 peso = "1";
             }
             break;
-            case "2,0kg": {
+            case "2kg": {
                 largo = "10";
                 ancho = "10";
                 alto = "10";
                 peso = "2";
             }
             break;
-            case "3,0kg": {
+            case "3kg": {
                 largo = "10";
                 ancho = "10";
                 alto = "10";
@@ -290,10 +290,15 @@ public class PageNuevoEnvio extends BasePage {
             }
             break;
             default:
-                System.out.println("No Esta definido ese producto: " + codigoMaterial + "no existe");
+                System.out.println("No Esta definido ese producto: " + codigoMaterial + " no existe");
                 break;
         }
 
+        waitForSeconds(1);
+        System.out.println("Valor de peso: " + peso + " kg");
+        System.out.println("Alto: " + alto + " cm");
+        System.out.println("Largo: " + largo + " cm");
+        System.out.println("Ancho: " + ancho + " cm");
 
         writeText(campoLargoLocator, largo);
         writeText(campoAnchoLocator, ancho);
@@ -353,9 +358,9 @@ public class PageNuevoEnvio extends BasePage {
         click(tipoDeEntrega);
         waitForSeconds(2);
 
-        String valorProvincia;
-        String codigoPostal;
-        String nombreProvincia;
+        String valorProvincia = "C";;
+        String codigoPostal = "1424";;
+        String nombreProvincia= "CAPITAL FEDERAL";;
 
         /*
         "B" // BUENOS AIRES
@@ -398,7 +403,6 @@ public class PageNuevoEnvio extends BasePage {
                 nombreProvincia = "CORDOBA";
                 entregaDomicilioZonas(valorProvincia, codigoPostal, nombreProvincia);
             }
-            break;
             case "DomicilioZona3": {
                 valorProvincia = "K";
                 codigoPostal = "4700";
@@ -458,10 +462,13 @@ public class PageNuevoEnvio extends BasePage {
                 entregaSucursalZonas(valorProvincia, codigoPostal);
             }
             break;
-            default:
-                System.out.println("No Esta definido ese producto: " + tipoEntrega + "no existe");
-                break;
+            default: System.out.println("No Esta definido ese producto: " + tipoEntrega + "no existe");
         }
+
+        System.out.println("Valor de provincia: " + valorProvincia);
+        System.out.println("Codigo de postal: " + codigoPostal);
+        System.out.println("Nombre de provincia: " + nombreProvincia);
+
 
     }
 
