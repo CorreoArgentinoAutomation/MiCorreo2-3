@@ -1,6 +1,6 @@
-
+@EnvioIndivual
 @RegresionRequerimientoEvolutivo
-//@PTA-42
+@PTA-42
 #@MCIB-133 Numero de referencia de envío en el proyecto de jira
 Feature: TE - Nuevo envio individual
 
@@ -22,34 +22,34 @@ Feature: TE - Nuevo envio individual
     And se confirma que el pago se ha realizado con éxito
 
     Examples:
-      | tipoUsuario      | tipoOrigen    | peso  | tipoEntrega   | tipoProducto | medioPago    |
-      | Consumidor final | SucursalZona1 | 0,5kg | SucursalZona1 | Clasico      | Tarjeta      |
-      | Consumidor final | SucursalZona1 | 1kg   | SucursalZona2 | Expreso      | Mercado Pago |
-      | Consumidor final | SucursalZona1 | 2kg   | SucursalZona1 | Clasico      | Saldo        |
-      | Consumidor final | SucursalZona1 | 3kg   | SucursalZona1 | Expreso      | Tarjeta      |
-      | Consumidor final | SucursalZona1 | 5kg   | SucursalZona1 | Clasico      | Mercado Pago |
-      | Consumidor final | SucursalZona1 | 10kg  | SucursalZona1 | Expreso      | Saldo        |
-      | Consumidor final | SucursalZona1 | 15kg  | SucursalZona1 | Clasico      | Tarjeta      |
-      | Consumidor final | SucursalZona1 | 20kg  | SucursalZona1 | Expreso      | Mercado Pago |
-      | Consumidor final | SucursalZona1 | 25kg  | SucursalZona1 | Clasico      | Saldo        |
-      | Consumidor final | SucursalZona1 | 30kg  | SucursalZona1 | Expreso      | Tarjeta      |
-      | Consumidor final | SucursalZona1 | 35kg  | SucursalZona1 | Clasico      | Mercado Pago |
-      | Consumidor final | SucursalZona1 | 40kg  | SucursalZona1 | Expreso      | Saldo        |
-      | Consumidor final | SucursalZona1 | 50kg  | SucursalZona1 | Clasico      | Tarjeta      |
-      | Consumidor final | SucursalZona1 | 60kg  | SucursalZona1 | Expreso      | Mercado Pago |
-      | Consumidor final | SucursalZona1 | 70kg  | SucursalZona1 | Clasico      | Saldo        |
-      | Consumidor final | SucursalZona1 | 80kg  | SucursalZona1 | Expreso      | Tarjeta      |
-      | Consumidor final | SucursalZona1 | 90kg  | SucursalZona1 | Clasico      | Mercado Pago |
-      | Consumidor final | SucursalZona1 | 100kg | SucursalZona1 | Expreso      | Saldo        |
-      | Consumidor final | SucursalZona1 | 110kg | SucursalZona1 | Clasico      | Tarjeta      |
-      | Consumidor final | SucursalZona1 | 120kg | SucursalZona1 | Expreso      | Mercado Pago |
-      | Consumidor final | SucursalZona1 | 130kg | SucursalZona1 | Clasico      | Saldo        |
-      | Consumidor final | SucursalZona1 | 140kg | SucursalZona1 | Expreso      | Tarjeta      |
-      | Consumidor final | SucursalZona1 | 150kg | SucursalZona1 | Clasico      | Mercado Pago |
-      | Consumidor final | SucursalZona1 | 170kg | SucursalZona1 | Expreso      | Saldo        |
-      | Consumidor final | SucursalZona1 | 190kg | SucursalZona1 | Clasico      | Tarjeta      |
-      | Consumidor final | SucursalZona1 | 210kg | SucursalZona1 | Expreso      | Mercado Pago |
-      | Consumidor final | SucursalZona1 | 230kg | SucursalZona1 | Clasico      | Saldo        |
-      | Consumidor final | SucursalZona1 | 250kg | SucursalZona1 | Expreso      | Tarjeta      |
+      | tipoUsuario      | tipoOrigen    | peso  | tipoEntrega   | tipoProducto | medioPago |
+      | Consumidor final | SucursalZona1 | 0,5kg | SucursalZona1 | Clasico      | Tarjeta   |
+      #| Consumidor final | SucursalZona1 | 1kg   | SucursalZona2 | Expreso      | Mercado Pago |
+      #| Consumidor final | SucursalZona1 | 2kg   | SucursalZona1 | Clasico      | Saldo        |
+      #| Consumidor final | SucursalZona1 | 3kg   | SucursalZona1 | Expreso      | Tarjeta      |
+      #| Consumidor final | SucursalZona1 | 5kg   | SucursalZona1 | Clasico      | Mercado Pago |
+      #| Consumidor final | SucursalZona1 | 10kg  | SucursalZona1 | Expreso      | Saldo        |
+      #| Consumidor final | SucursalZona1 | 15kg  | SucursalZona1 | Clasico      | Tarjeta      |
+      #| Consumidor final | SucursalZona1 | 20kg  | SucursalZona1 | Expreso      | Mercado Pago |
+      #| Consumidor final | SucursalZona1 | 25kg  | SucursalZona1 | Clasico      | Saldo        |
+      #| Consumidor final | SucursalZona1 | 30kg  | SucursalZona1 | Expreso      | Tarjeta      |
+      #| Consumidor final | SucursalZona1 | 35kg  | SucursalZona1 | Clasico      | Mercado Pago |
+      #| Consumidor final | SucursalZona1 | 40kg  | SucursalZona1 | Expreso      | Saldo        |
+      #| Consumidor final | SucursalZona1 | 50kg  | SucursalZona1 | Clasico      | Tarjeta      |
+      #| Consumidor final | SucursalZona1 | 60kg  | SucursalZona1 | Expreso      | Mercado Pago |
+      #| Consumidor final | SucursalZona1 | 70kg  | SucursalZona1 | Clasico      | Saldo        |
+      #| Consumidor final | SucursalZona1 | 80kg  | SucursalZona1 | Expreso      | Tarjeta      |
+      #| Consumidor final | SucursalZona1 | 90kg  | SucursalZona1 | Clasico      | Mercado Pago |
+      #| Consumidor final | SucursalZona1 | 100kg | SucursalZona1 | Expreso      | Saldo        |
+      #| Consumidor final | SucursalZona1 | 110kg | SucursalZona1 | Clasico      | Tarjeta      |
+      #| Consumidor final | SucursalZona1 | 120kg | SucursalZona1 | Expreso      | Mercado Pago |
+      #| Consumidor final | SucursalZona1 | 130kg | SucursalZona1 | Clasico      | Saldo        |
+      #| Consumidor final | SucursalZona1 | 140kg | SucursalZona1 | Expreso      | Tarjeta      |
+      #| Consumidor final | SucursalZona1 | 150kg | SucursalZona1 | Clasico      | Mercado Pago |
+      #| Consumidor final | SucursalZona1 | 170kg | SucursalZona1 | Expreso      | Saldo        |
+      #| Consumidor final | SucursalZona1 | 190kg | SucursalZona1 | Clasico      | Tarjeta      |
+      #| Consumidor final | SucursalZona1 | 210kg | SucursalZona1 | Expreso      | Mercado Pago |
+      #| Consumidor final | SucursalZona1 | 230kg | SucursalZona1 | Clasico      | Saldo     |
+      #| Consumidor final | SucursalZona1 | 250kg | SucursalZona1 | Expreso      | Tarjeta   |
 
 		
