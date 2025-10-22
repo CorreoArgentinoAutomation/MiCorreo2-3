@@ -23,7 +23,7 @@ Feature: TE - Nuevo envio individual
 
     Examples:
       | tipoUsuario      | tipoOrigen | peso | tipoEntrega    | tipoProducto | medioPago |
-      | Consumidor final | PickUP     | 1kg  | DomicilioZona1 | PaqArHoy     | Saldo     |
+      | Consumidor final | PickUP     | 1kg  | DomicilioZona1 | PaqArHoy     | Tarjeta   |
 
 
 		
