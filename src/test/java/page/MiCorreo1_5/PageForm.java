@@ -30,6 +30,7 @@ public class PageForm extends BasePage {
         super (driver);
     }
     public void pagoConTarjeta(){
+        waitForSeconds(3);
         click(visaLocator);
         writeText(numeroTarjeta,"4507990000004905");
         writeText(codSeguridad,"123");
