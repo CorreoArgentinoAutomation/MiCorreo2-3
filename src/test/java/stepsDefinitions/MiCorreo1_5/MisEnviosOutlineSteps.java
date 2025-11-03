@@ -62,8 +62,8 @@ public class MisEnviosOutlineSteps {
     public void realizaElPagoConDelEnvío(String medioPago) {
         pageCheckOut.medioPago(medioPago);
     }
-    @And("se confirma que el pago se ha realizado con éxito")
-    public void seConfirmaQueElPagoSeHaRealizadoConÉxito() {
+    @And("se confirma que el pago se ha realizado con exito")
+    public void seConfirmaQueElPagoSeHaRealizadoConExito() {
         pagePayment.verificarPago();
         pageHomeLogin.logout();
     }
