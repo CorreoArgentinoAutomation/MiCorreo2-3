@@ -1,6 +1,6 @@
-@EnvioIndivual
-@RegresionRequerimientoEvolutivo
-@PTA-42
+#@EnvioIndivual
+#@RegresionRequerimientoEvolutivo
+#@PTA-42
 #@MCIB-133 Numero de referencia de envío en el proyecto de jira
 Feature: TE - Nuevo envio individual
 
@@ -23,7 +23,7 @@ Feature: TE - Nuevo envio individual
 
     Examples:
       | tipoUsuario      | tipoOrigen | peso | tipoEntrega    | tipoProducto | medioPago |
-      | Consumidor final | PickUP     | 1kg  | DomicilioZona1 | PaqArHoy     | Saldo     |
+      | Consumidor final | PickUP     | 1kg  | DomicilioZona1 | PaqArHoy     | Tarjeta   |
 
 
 		

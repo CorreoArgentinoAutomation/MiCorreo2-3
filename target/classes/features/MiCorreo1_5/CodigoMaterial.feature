@@ -19,7 +19,7 @@ Feature: TE - Nuevo envio individual
     And selecciona el '<tipoProducto>' y procede a pagar
     And se muestra la grilla de checkout
     Then realiza el pago con '<medioPago>' del envío
-    And se confirma que el pago se ha realizado con éxito
+    And se confirma que el pago se ha realizado con exito
 
     Examples:
       | tipoUsuario      | tipoOrigen    | peso  | tipoEntrega   | tipoProducto | medioPago |

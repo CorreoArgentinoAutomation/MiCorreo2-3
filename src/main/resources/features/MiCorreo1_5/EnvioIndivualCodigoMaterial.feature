@@ -1,4 +1,4 @@
-@EnvioIndivual
+#@EnvioIndivual
 #@RegresionRequerimientoEvolutivo
 #@PTA-42
 #@MCIB-133 Numero de referencia de envío en el proyecto de jira
