@@ -1,4 +1,5 @@
 @recargarSaldo
+@RegresionConUsuarioED
 @PTA-46
 Feature: Recargar saldo
 
@@ -11,10 +12,11 @@ Feature: Recargar saldo
     Then el usuario seleccionar el '<medioPago>' y el '<valorRecarga>' para la recarga
 
     Examples:
-      | tipoUsuario      | medioPago | valorRecarga |
-      | Consumidor final | Tarjeta   | 10000        |
-      | Monotributista   | Tarjeta   | 10000        |
-      | Empresa          | Tarjeta   | 10000        |
+      | tipoUsuario | medioPago | valorRecarga |
+      | usuario ED  | Tarjeta   | 10000        |
+      #| Consumidor final | Tarjeta   | 10000        |
+      #| Monotributista | Tarjeta   | 10000        |
+      #| Empresa     | Tarjeta   | 10000        |
       #| Consumidor final | Mercado Pago | 10000        |
       #| Monotributista   | Mercado Pago | 10000        |
       #| Empresa          | Mercado Pago | 10000        |

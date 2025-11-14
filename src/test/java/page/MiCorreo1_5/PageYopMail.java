@@ -22,7 +22,6 @@ public class PageYopMail extends BasePage {
         String email = letras + numero;
         String emailCreado = letras + numero + "@" + dominio;
 
-
         writeText(campoEmail, email);
         waitForSeconds(1);
         sendEnter();

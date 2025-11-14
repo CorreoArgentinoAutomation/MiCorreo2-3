@@ -1,4 +1,5 @@
 @PagoOficioJudicial
+@RegresionConUsuarioED
 @PTA-44
 
 Feature: Eliminar oficios judicialess
@@ -13,10 +14,11 @@ Feature: Eliminar oficios judicialess
     Then el usuario visualiza el mensaje de eliminacion correctamente
 
     Examples:
-      | tipoUsuario      |
-      | Consumidor final |
-      | Monotributista   |
-      | Empresa          |
-      | Usuario Invitado |
+      | tipoUsuario |
+      | usuario ED  |
+      #| Consumidor final |
+      #| Monotributista   |
+      #| Empresa          |
+      #| Usuario Invitado |
 		
 
