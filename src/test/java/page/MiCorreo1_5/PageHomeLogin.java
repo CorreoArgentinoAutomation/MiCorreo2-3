@@ -122,6 +122,9 @@ public class PageHomeLogin extends BasePage {
         } else if (tipoUsuario.equals("Franquicia tipo 2")) {
             email = "A0007@correoargentino.com.ar";
             password = "044495";
+        } else if (tipoUsuario.equals("usuario ED")) {
+            email = "edcf08qa@yopmail.com";
+            password = "Test1234!";
         } else {
             throw new IllegalArgumentException("Tipo de usuario no válido: " + tipoUsuario);
         }

@@ -22,8 +22,8 @@ Feature: TE - Nuevo envio individual
     And se confirma que el pago se ha realizado con éxito
 
     Examples:
-      | tipoUsuario      | tipoOrigen | peso | tipoEntrega    | tipoProducto | medioPago |
-      | Consumidor final | PickUP     | 1kg  | DomicilioZona1 | PaqArHoy     | Tarjeta   |
+      | tipoUsuario | tipoOrigen | peso | tipoEntrega    | tipoProducto | medioPago |
+      | usuario ED  | PickUP     | 1kg  | DomicilioZona1 | PaqArHoy     | Tarjeta   |
 
 
 		
