@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Cucumber" time="326.239" tests="3" skipped="0" failures="2" errors="0">
-<testcase classname="TE - Nuevo envio individual" name="Nuevo envio individual - Example #1.1" time="93.665">
+<testsuite name="Cucumber" time="316.095" tests="3" skipped="0" failures="2" errors="0">
+<testcase classname="TE - Nuevo envio individual" name="Nuevo envio individual - Example #1.1" time="92.714">
 <system-out><![CDATA[
 Given el usuario se situa en los campos email y password....................passed
 Given el usuario 'usuario ED' está logueado y en la page home...............passed
@@ -14,7 +14,7 @@ Then realiza el pago con 'Tarjeta' del envío................................pas
 And se confirma que el pago se ha realizado con exito.......................passed
 ]]></system-out>
 </testcase>
-<testcase classname="TE - Nuevo envio individual" name="Nuevo envio individual - Example #1.2" time="135.725">
+<testcase classname="TE - Nuevo envio individual" name="Nuevo envio individual - Example #1.2" time="130.978">
 <failure type="org.openqa.selenium.TimeoutException" message="Expected condition failed: waiting for presence of element located by: By.xpath: //h6[@class='mb-1 text-muted' and normalize-space()='¡Genial! Tu pago fue procesado correctamente.'] (tried for 20 second(s) with 500 milliseconds interval)">
 <![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for presence of element located by: By.xpath: //h6[@class='mb-1 text-muted' and normalize-space()='�Genial! Tu pago fue procesado correctamente.'] (tried for 20 second(s) with 500 milliseconds interval)
 	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
@@ -31,9 +31,9 @@ For documentation on this error, please visit: https://www.selenium.dev/document
 Build info: version: '4.16.1', revision: '9b4c83354e'
 System info: os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.3'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [af72bbeeb734ccc4a5dc0e4c39ccfe88, findElement {using=xpath, value=//h6[@class='mb-1 text-muted' and normalize-space()='�Genial! Tu pago fue procesado correctamente.']}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 142.0.7444.135, chrome: {chromedriverVersion: 142.0.7444.162 (c076baf266c..., userDataDir: C:\Users\RODRIG~1.VAR\AppDa...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:56258}, goog:processID: 11292, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:56258/devtoo..., se:cdpVersion: 142.0.7444.135, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: af72bbeeb734ccc4a5dc0e4c39ccfe88
+Command: [a5530c6ccc621e3aaff50dfad49192a4, findElement {using=xpath, value=//h6[@class='mb-1 text-muted' and normalize-space()='�Genial! Tu pago fue procesado correctamente.']}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 142.0.7444.135, chrome: {chromedriverVersion: 142.0.7444.162 (c076baf266c..., userDataDir: C:\Users\RODRIG~1.VAR\AppDa...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:58775}, goog:processID: 20656, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:58775/devtoo..., se:cdpVersion: 142.0.7444.135, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: a5530c6ccc621e3aaff50dfad49192a4
 	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
 	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
 	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
@@ -120,7 +120,7 @@ Then realiza el pago con 'Mercado Pago' del envío...........................pas
 And se confirma que el pago se ha realizado con exito.......................failed
 ]]></system-out>
 </testcase>
-<testcase classname="TE - Nuevo envio individual" name="Nuevo envio individual - Example #1.3" time="95.975">
+<testcase classname="TE - Nuevo envio individual" name="Nuevo envio individual - Example #1.3" time="91.529">
 <failure type="org.openqa.selenium.TimeoutException" message="Expected condition failed: waiting for presence of element located by: By.xpath: //h6[@class='mb-1 text-muted' and normalize-space()='¡Genial! Tu pago fue procesado correctamente.'] (tried for 20 second(s) with 500 milliseconds interval)">
 <![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for presence of element located by: By.xpath: //h6[@class='mb-1 text-muted' and normalize-space()='�Genial! Tu pago fue procesado correctamente.'] (tried for 20 second(s) with 500 milliseconds interval)
 	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
@@ -137,9 +137,9 @@ For documentation on this error, please visit: https://www.selenium.dev/document
 Build info: version: '4.16.1', revision: '9b4c83354e'
 System info: os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.3'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [0daf42c754d925c6fb1a4e5bdb1713e0, findElement {using=xpath, value=//h6[@class='mb-1 text-muted' and normalize-space()='�Genial! Tu pago fue procesado correctamente.']}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 142.0.7444.135, chrome: {chromedriverVersion: 142.0.7444.162 (c076baf266c..., userDataDir: C:\Users\RODRIG~1.VAR\AppDa...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:56645}, goog:processID: 10260, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:56645/devtoo..., se:cdpVersion: 142.0.7444.135, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 0daf42c754d925c6fb1a4e5bdb1713e0
+Command: [9974373210f49e677816b6855b16494c, findElement {using=xpath, value=//h6[@class='mb-1 text-muted' and normalize-space()='�Genial! Tu pago fue procesado correctamente.']}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 142.0.7444.135, chrome: {chromedriverVersion: 142.0.7444.162 (c076baf266c..., userDataDir: C:\Users\RODRIG~1.VAR\AppDa...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:59092}, goog:processID: 2996, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:59092/devtoo..., se:cdpVersion: 142.0.7444.135, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 9974373210f49e677816b6855b16494c
 	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
 	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
 	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
