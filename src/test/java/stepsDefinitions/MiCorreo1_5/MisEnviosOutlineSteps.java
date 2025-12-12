@@ -69,17 +69,24 @@ public class MisEnviosOutlineSteps {
     }
 
     //Registro nuevo usuario
+    // NOTA: Estos steps están duplicados con EcosistemaDigitalSteps.java
+    // La implementación en EcosistemaDigitalSteps es más completa (mejor manejo de errores, mensajes informativos)
+    // Comentados para revisión posterior - si MiCorreo1_5 necesita implementación específica, descomentar y ajustar
+    
+    /*
     @Given("el usuario crea un email temporal")
     public void elUsuarioCreaUnEmailTemporal() {
         driver.get("https://yopmail.com/es/");
         email = pageYopMail.crearMailTemporal();
 
     }
+    */
     @Given("que el usuario ingresa al sitio")
     public void que_el_usuario_ingresa_al_sitio() {
         driver.get(baseUrl);
     }
 
+    /*
     @When("el usuario hace clic en el boton Registrarme")
     public void el_usuario_hace_clic_en_el_boton_registrarme() {
         pageHomeLogin.registro();
@@ -95,6 +102,7 @@ public class MisEnviosOutlineSteps {
         driver.get("https://yopmail.com/es/");
         pageYopMail.buscarEmailTemporal(email);
     }
+    */
 
     //usuarioInvitado
     @Given("el usuario se situa en la pestaña agregar usuarios")
