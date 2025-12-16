@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Cucumber" time="38.735" tests="1" skipped="0" failures="1" errors="0">
-<testcase classname="Registro de usuario" name="Registro exitoso de un nuevo usuario" time="38.596">
+<testsuite name="Cucumber" time="109.954" tests="1" skipped="0" failures="1" errors="0">
+<testcase classname="Registro de usuario" name="Registro exitoso de un nuevo usuario" time="109.148">
 <failure type="java.lang.AssertionError" message="✗ Error al llenar el formulario de registro: Expected condition failed: waiting for presence of element located by: By.xpath: //input[@name='nombre' or @id='nombre' or contains(@placeholder, 'Nombre')] (tried for 20 second(s) with 500 milliseconds interval)">
-<![CDATA[java.lang.AssertionError: ✗ Error al llenar el formulario de registro: Expected condition failed: waiting for presence of element located by: By.xpath: //input[@name='nombre' or @id='nombre' or contains(@placeholder, 'Nombre')] (tried for 20 second(s) with 500 milliseconds interval)
+<![CDATA[java.lang.AssertionError: ? Error al llenar el formulario de registro: Expected condition failed: waiting for presence of element located by: By.xpath: //input[@name='nombre' or @id='nombre' or contains(@placeholder, 'Nombre')] (tried for 20 second(s) with 500 milliseconds interval)
 	at page.EcosistemaDigital.PageHomeLoginED.llenarFormularioRegistro(PageHomeLoginED.java:471)
 	at stepsDefinitions.EcosistemaDigital.EcosistemaDigitalSteps.elUsuarioLlenaElFormularioDeRegistro(EcosistemaDigitalSteps.java:159)
-	at ✽.el usuario llena el formulario de registro(file:///C:/Users/Rodrigo/Documents/trabajo/MiCorreo2-3/src/main/resources/features/EcosistemaDigital/RegistroED.feature:8)
+	at ?.el usuario llena el formulario de registro(file:///C:/Users/Rodrigo.Vargas/Documents/Correo%20Argentino/Driver%20arreglado/MiCorreo2-3/src/main/resources/features/EcosistemaDigital/RegistroED.feature:8)
 ]]>
 </failure>
 <system-out><![CDATA[

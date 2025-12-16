@@ -31,8 +31,9 @@ public class PageHomeLoginED extends BasePage {
     
     // Locators para registro de usuario
     public By btnRegistrarme = By.xpath("//a[contains(text(), 'Registrarme') or contains(text(), 'Registrarse') or contains(text(), 'registrarme')] | //button[contains(text(), 'Registrarme')]");
-    public By campoNombre = By.xpath("//input[@name='nombre' or @id='nombre' or contains(@placeholder, 'Nombre')]");
-    public By campoApellido = By.xpath("//input[@name='apellido' or @id='apellido' or contains(@placeholder, 'Apellido')]");
+    public By campoNombre = By.xpath("//input[@name='name' or @id='nombre' or contains(@placeholder, 'Nombre')]");
+    public By campoApellido = By.xpath("//input[@name='lastname' or @id='apellido' or contains(@placeholder, 'Apellido')]");
+    public By comboDNI = By.xpath("//div[@role='combobox']//span[text()='Seleccionar']");
     public By campoDocumento = By.xpath("//input[@name='documento' or @id='documento' or contains(@placeholder, 'Documento')]");
     public By campoCelular = By.xpath("//input[@name='celular' or @id='celular' or contains(@placeholder, 'Celular') or contains(@placeholder, 'Teléfono')]");
     public By campoEmailRegistro = By.xpath("//input[@type='email' or @name='email' or @id='email' or contains(@placeholder, 'Correo')]");
@@ -431,6 +432,7 @@ public class PageHomeLoginED extends BasePage {
             System.out.println("✓ Se ingresó el apellido");
             
             // Documento
+            click(comboDNI);
             String numeroDocumento = numerosAleatorios(8);
             writeText(campoDocumento, numeroDocumento);
             System.out.println("✓ Se ingresó el documento: " + numeroDocumento);
