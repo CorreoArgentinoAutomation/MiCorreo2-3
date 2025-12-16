@@ -17,5 +17,5 @@ Feature: Autenticación de usuario en la plataforma ComunidadCorreo
     Examples:
       | email                   | pass         | mensajeEsperado                                        |
       | cf_tester02@yopmail.com | 123123       | Hola                                                   |
-      | usuario@correo.com      | ClaveErronea | Credenciales inválidas                                 |
+      | cf_tester02@yopmail.com | ClaveErronea | Credenciales inválidas                                 |
       |                         |              | El correo es obligatorio; La contrasena es obligatoria |

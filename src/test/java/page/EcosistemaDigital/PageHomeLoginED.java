@@ -33,14 +33,28 @@ public class PageHomeLoginED extends BasePage {
     public By btnRegistrarme = By.xpath("//a[contains(text(), 'Registrarme') or contains(text(), 'Registrarse') or contains(text(), 'registrarme')] | //button[contains(text(), 'Registrarme')]");
     public By campoNombre = By.xpath("//input[@name='name' or @id='nombre' or contains(@placeholder, 'Nombre')]");
     public By campoApellido = By.xpath("//input[@name='lastname' or @id='apellido' or contains(@placeholder, 'Apellido')]");
+    // Combos de Tipo de documento y Rubro
     public By comboDNI = By.xpath("//div[@role='combobox']//span[text()='Seleccionar']");
-    public By campoDocumento = By.xpath("//input[@name='documento' or @id='documento' or contains(@placeholder, 'Documento')]");
-    public By campoCelular = By.xpath("//input[@name='celular' or @id='celular' or contains(@placeholder, 'Celular') or contains(@placeholder, 'Teléfono')]");
-    public By campoEmailRegistro = By.xpath("//input[@type='email' or @name='email' or @id='email' or contains(@placeholder, 'Correo')]");
-    public By campoPasswordRegistro = By.xpath("//input[@type='password' and (contains(@name, 'password') or contains(@id, 'password') or contains(@placeholder, 'Contraseña'))]");
-    public By campoPasswordConfirmRegistro = By.xpath("//input[@type='password' and (contains(@name, 'confirm') or contains(@id, 'confirm') or contains(@placeholder, 'Confirmar'))]");
-    public By checkTerminos = By.xpath("//input[@type='checkbox' and (contains(@name, 'terminos') or contains(@id, 'terminos') or contains(@name, 'terms'))]");
-    public By btnRegistrarse = By.xpath("//button[contains(text(), 'Registrarse') or contains(text(), 'Registrar') or contains(text(), 'Crear cuenta')]");
+    public By opcionDNI = By.xpath("//li[@data-value='DNI']");
+    public By comboRubro = By.xpath("//input[@role='combobox']");
+    public By opcionRubroPrimera = By.xpath("//input[@value='Alimentos y Bebidas']");
+    public By campoDocumento = By.xpath("//input[@name='document.id']");
+    public By campoCelular = By.xpath("//input[@name='phone']");
+    public By campoEmailRegistro = By.xpath("(//input[@type='email' or @name='email' or @id='email' or contains(@placeholder, 'Correo')])[2]");
+    public By campoPasswordRegistro = By.xpath("(//input[@type='password' and (contains(@name, 'password') or contains(@id, 'password') or contains(@placeholder, 'Contraseña'))])[2]");
+    public By campoPasswordConfirmRegistro = By.xpath("(//input[@type='password' and (contains(@name, 'password') or contains(@id, 'password') or contains(@placeholder, 'Contraseña'))])[3]");
+    public By checkTerminos = By.xpath("//input[@type='checkbox' and @data-indeterminate='false']");
+    public By btnSiguiente = By.xpath("//button[@type='submit' and normalize-space(text())='Siguiente']");
+    
+    // Locators para Paso 2 del registro (Dirección)
+    public By comboProvincia = By.xpath("(//input[@role='combobox' or @value='Seleccione'])[1]");
+    public By opcionProvincia = By.xpath("//li[contains(@data-value, 'Capital') or contains(text(), 'Capital')] | //li[@data-value][1]");
+    public By comboLocalidad = By.xpath("(//input[@role='combobox' or @value='Seleccione'])[2]");
+    public By opcionLocalidad = By.xpath("//li[@data-value][1] | //li[contains(text(), 'CABA') or contains(text(), 'Capital')][1]");
+    public By campoDireccion = By.xpath("//input[@name='address' or @id='address' or contains(@placeholder, 'Dirección')]");
+    public By campoCodigoPostal = By.xpath("//input[@name='postalCode' or @id='postalCode' or contains(@placeholder, 'Código postal') or contains(@placeholder, 'postal')]");
+    public By btnRegistrarseFinal = By.xpath("(//button[contains(text(), 'Registrarme') and not(contains(text(), 'Siguiente'))] | //button[@type='submit' and contains(text(), 'Registrarme')])[2]");
+    
     public By mensajeBienvenida = By.xpath("//*[contains(text(), 'Bienvenido') or contains(text(), 'bienvenido') or contains(text(), 'Bienvenida') or contains(text(), 'Cuenta creada') or contains(text(), 'Registro exitoso')]");
     
     // Variable para almacenar la contraseña generada
@@ -433,11 +447,29 @@ public class PageHomeLoginED extends BasePage {
             
             // Documento
             click(comboDNI);
+            waitForSeconds(1);
+            click(opcionDNI);
             String numeroDocumento = numerosAleatorios(8);
+            waitForSeconds(1);
             writeText(campoDocumento, numeroDocumento);
             System.out.println("✓ Se ingresó el documento: " + numeroDocumento);
             
+            // Rubro (selecciona la primera opción disponible)
+            try {
+                click(comboRubro);
+                waitForSeconds(1);
+                //click(opcionRubroPrimera);
+                String numero = numerosAleatorios(1);
+                sendFlechaAbajo(Integer.parseInt(numero+1));
+                sendEnter();
+                System.out.println("La opcion seleccionada es: "  + numero);
+                System.out.println("✓ Se seleccionó un rubro");
+            } catch (Exception e) {
+                System.out.println("⚠ No se pudo seleccionar el rubro: " + e.getMessage());
+            }
+            
             // Celular
+            waitForSeconds(1);
             writeText(campoCelular, generadorNumeroTelefono());
             System.out.println("✓ Se ingresó el celular");
             
@@ -464,10 +496,87 @@ public class PageHomeLoginED extends BasePage {
             
             waitForSeconds(1);
             
-            // Enviar formulario
-            click(btnRegistrarse);
-            System.out.println("✓ Se envió el formulario de registro");
-            waitForSeconds(3); // Esperar respuesta del servidor
+            // Enviar formulario Paso 1
+            click(btnSiguiente);
+            System.out.println("✓ Se hizo clic en 'Siguiente' - Paso 1 completado");
+            waitForSeconds(3); // Esperar a que cargue el Paso 2
+            
+            // ========== PASO 2: Completar dirección ==========
+            System.out.println("Iniciando Paso 2: Completar dirección");
+            
+            // Provincia
+            try {
+                waitForSeconds(2);
+                click(comboProvincia);
+                waitForSeconds(1);
+                sendBorrar(13);
+                // Seleccionar la primera opción disponible o Capital Federal
+                try {
+                    //click(opcionProvincia);
+                    writeText(comboProvincia,"capital");
+                    waitForSeconds(1);
+                    sendFlechaAbajo(1);
+                    sendEnter();
+                } catch (Exception e) {
+                    // Si no encuentra la opción específica, usar flechas
+                    sendFlechaAbajo(1);
+                    sendEnter();
+                }
+                System.out.println("✓ Se seleccionó la provincia");
+            } catch (Exception e) {
+                System.out.println("⚠ No se pudo seleccionar la provincia: " + e.getMessage());
+            }
+            
+            // Localidad
+            try {
+                waitForSeconds(1);
+                click(comboLocalidad);
+                sendBorrar(13);
+                // Seleccionar la primera opción disponible
+                try {
+                    //click(opcionLocalidad);
+                    writeText(comboLocalidad,"ciudad");
+                    waitForSeconds(1);
+                    sendFlechaAbajo(1);
+                    sendEnter();
+                } catch (Exception e) {
+                    // Si no encuentra la opción específica, usar flechas
+                    sendFlechaAbajo(1);
+                    sendEnter();
+                }
+                System.out.println("✓ Se seleccionó la localidad");
+            } catch (Exception e) {
+                System.out.println("⚠ No se pudo seleccionar la localidad: " + e.getMessage());
+            }
+            
+            // Dirección
+            try {
+                waitForSeconds(1);
+                writeText(campoDireccion, "Av. Test " + numerosAleatorios(4));
+                System.out.println("✓ Se ingresó la dirección");
+            } catch (Exception e) {
+                System.out.println("⚠ No se pudo ingresar la dirección: " + e.getMessage());
+            }
+            
+            // Código postal
+            try {
+                waitForSeconds(1);
+                writeText(campoCodigoPostal, "1020"); // Código postal por defecto para Capital Federal
+                System.out.println("✓ Se ingresó el código postal");
+            } catch (Exception e) {
+                System.out.println("⚠ No se pudo ingresar el código postal: " + e.getMessage());
+            }
+            
+            waitForSeconds(1);
+            
+            // Hacer clic en el botón "Registrarme" final
+            try {
+                click(btnRegistrarseFinal);
+                System.out.println("✓ Se hizo clic en 'Registrarme' - Paso 2 completado");
+                waitForSeconds(3); // Esperar respuesta del servidor y finalización del registro
+            } catch (Exception e) {
+                throw new AssertionError("✗ No se pudo hacer clic en el botón Registrarme final: " + e.getMessage());
+            }
             
         } catch (Exception e) {
             throw new AssertionError("✗ Error al llenar el formulario de registro: " + e.getMessage());

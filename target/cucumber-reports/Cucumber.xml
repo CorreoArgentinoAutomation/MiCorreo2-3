@@ -1,20 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Cucumber" time="109.954" tests="1" skipped="0" failures="1" errors="0">
-<testcase classname="Registro de usuario" name="Registro exitoso de un nuevo usuario" time="109.148">
-<failure type="java.lang.AssertionError" message="✗ Error al llenar el formulario de registro: Expected condition failed: waiting for presence of element located by: By.xpath: //input[@name='nombre' or @id='nombre' or contains(@placeholder, 'Nombre')] (tried for 20 second(s) with 500 milliseconds interval)">
-<![CDATA[java.lang.AssertionError: ? Error al llenar el formulario de registro: Expected condition failed: waiting for presence of element located by: By.xpath: //input[@name='nombre' or @id='nombre' or contains(@placeholder, 'Nombre')] (tried for 20 second(s) with 500 milliseconds interval)
-	at page.EcosistemaDigital.PageHomeLoginED.llenarFormularioRegistro(PageHomeLoginED.java:471)
-	at stepsDefinitions.EcosistemaDigital.EcosistemaDigitalSteps.elUsuarioLlenaElFormularioDeRegistro(EcosistemaDigitalSteps.java:159)
-	at ?.el usuario llena el formulario de registro(file:///C:/Users/Rodrigo.Vargas/Documents/Correo%20Argentino/Driver%20arreglado/MiCorreo2-3/src/main/resources/features/EcosistemaDigital/RegistroED.feature:8)
+<testsuite name="Cucumber" time="49.418" tests="1" skipped="0" failures="1" errors="0">
+<testcase classname="Registro de usuario" name="Registro exitoso de un nuevo usuario" time="49.258">
+<failure type="java.lang.AssertionError" message="✗ Error al hacer clic en el enlace de activación: invalid element state
+  (Session info: chrome=143.0.7499.41)
+Build info: version: '4.16.1', revision: '9b4c83354e'
+System info: os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.6'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [d39586775dd127c3b386f94e0466e652, clearElement {id=f.5999E4F960A300C76A4A502B448585E2.d.D86AF24F38F03720D9C0D8D7224B1EFF.e.55}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 143.0.7499.41, chrome: {chromedriverVersion: 143.0.7499.42 (24bdc8c48a0c..., userDataDir: C:\Users\Rodrigo\AppData\Lo...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:56642}, goog:processID: 756, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:56642/devtoo..., se:cdpVersion: 143.0.7499.41, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Element: [[ChromeDriver: chrome on windows (d39586775dd127c3b386f94e0466e652)] -&gt; xpath: //input[@id='login']]
+Session ID: d39586775dd127c3b386f94e0466e652">
+<![CDATA[java.lang.AssertionError: ✗ Error al hacer clic en el enlace de activación: invalid element state
+  (Session info: chrome=143.0.7499.41)
+Build info: version: '4.16.1', revision: '9b4c83354e'
+System info: os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.6'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [d39586775dd127c3b386f94e0466e652, clearElement {id=f.5999E4F960A300C76A4A502B448585E2.d.D86AF24F38F03720D9C0D8D7224B1EFF.e.55}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 143.0.7499.41, chrome: {chromedriverVersion: 143.0.7499.42 (24bdc8c48a0c..., userDataDir: C:\Users\Rodrigo\AppData\Lo...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:56642}, goog:processID: 756, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:56642/devtoo..., se:cdpVersion: 143.0.7499.41, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Element: [[ChromeDriver: chrome on windows (d39586775dd127c3b386f94e0466e652)] -> xpath: //input[@id='login']]
+Session ID: d39586775dd127c3b386f94e0466e652
+	at page.EcosistemaDigital.PageYopMailED.clicEnEnlaceActivacion(PageYopMailED.java:357)
+	at stepsDefinitions.EcosistemaDigital.EcosistemaDigitalSteps.elUsuarioHaceClicEnElBotonActivaTuUsuario(EcosistemaDigitalSteps.java:170)
+	at ✽.el usuario hace clic en el boton Activa tu usuario(file:///C:/Users/Rodrigo/Documents/trabajo/MiCorreo2-3/src/main/resources/features/EcosistemaDigital/RegistroED.feature:10)
 ]]>
 </failure>
 <system-out><![CDATA[
 Given el usuario crea un email temporal.....................................passed
 When que el usuario ingresa al sitio de ecosistema digital..................passed
 And el usuario hace clic en el boton Registrarme............................passed
-And el usuario llena el formulario de registro..............................failed
-And el usuario abre el servicio de correo electronico.......................skipped
-And el usuario hace clic en el boton Activa tu usuario......................skipped
+And el usuario llena el formulario de registro..............................passed
+And el usuario abre el servicio de correo electronico.......................passed
+And el usuario hace clic en el boton Activa tu usuario......................failed
 Then el usuario deberia ver el mensaje de bienvenida........................skipped
 ]]></system-out>
 </testcase>
