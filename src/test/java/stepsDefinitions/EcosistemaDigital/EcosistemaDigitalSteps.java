@@ -7,13 +7,13 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
 import page.EcosistemaDigital.PageHomeLoginED;
-import page.MiCorreo1_5.PageYopMail;
+import page.EcosistemaDigital.PageYopMailED;
 
 public class EcosistemaDigitalSteps {
     private WebDriver driver = DriverManager.getDriver();
     private String baseUrl = DriverManager.config.getProperty("urlED");
     private PageHomeLoginED pageHomeLoginED = new PageHomeLoginED(driver);
-    private PageYopMail pageYopMail = new PageYopMail(driver);
+    private PageYopMailED pageYopMail = new PageYopMailED(driver);
 
     public String email;
     public String numeroSeguimiento;
