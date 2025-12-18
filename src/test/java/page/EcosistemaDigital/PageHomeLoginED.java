@@ -57,6 +57,9 @@ public class PageHomeLoginED extends BasePage {
     
     public By mensajeBienvenida = By.xpath("//*[contains(text(), 'Bienvenido') or contains(text(), 'bienvenido') or contains(text(), 'Bienvenida') or contains(text(), 'Cuenta creada') or contains(text(), 'Registro exitoso')]");
     
+    // Locator para mensajes de validación (caja roja con errores)
+    public By mensajesValidacion = By.xpath("//*[contains(@class, 'error') or contains(@class, 'validation') or contains(@style, 'red') or contains(@style, 'error')]//*[contains(text(), 'Debe') or contains(text(), 'debe')] | //div[contains(@class, 'MuiAlert')]//*[contains(text(), 'Debe') or contains(text(), 'debe')]");
+    
     // Variable para almacenar la contraseña generada
     private String contrasenaGenerada;
     
@@ -608,6 +611,197 @@ public class PageHomeLoginED extends BasePage {
             }
         } catch (Exception e) {
             throw new AssertionError("✗ Error al validar mensaje de bienvenida: " + e.getMessage());
+        }
+    }
+
+    /**
+     * Ingresa un valor en un campo específico del formulario de registro
+     * Nota: El sistema muestra errores solo después de hacer clic en el campo y luego hacer clic fuera (blur)
+     */
+    public void ingresarValorEnCampo(String campo, String valor) {
+        try {
+            waitForSeconds(1);
+            By locatorCampo = null;
+            
+            switch (campo.toLowerCase()) {
+                case "nombre":
+                    locatorCampo = campoNombre;
+                    break;
+                case "apellido":
+                    locatorCampo = campoApellido;
+                    break;
+                case "documento":
+                    locatorCampo = campoDocumento;
+                    break;
+                case "celular":
+                    locatorCampo = campoCelular;
+                    break;
+                case "email":
+                    locatorCampo = campoEmailRegistro;
+                    break;
+                case "contraseña":
+                case "password":
+                    locatorCampo = campoPasswordRegistro;
+                    break;
+                case "confirmarcontraseña":
+                case "confirmar contraseña":
+                case "confirmarpassword":
+                    locatorCampo = campoPasswordConfirmRegistro;
+                    break;
+                case "tipo":
+                    // Para tipo de documento, solo hacer clic si no está vacío
+                    if (valor != null && !valor.isEmpty()) {
+                        click(comboDNI);
+                        waitForSeconds(1);
+                        click(opcionDNI);
+                        // Hacer clic fuera para disparar validación
+                        hacerClicFueraDelCampo();
+                    } else {
+                        // Si está vacío, hacer clic en el combo y luego fuera
+                        click(comboDNI);
+                        waitForSeconds(1);
+                        hacerClicFueraDelCampo();
+                    }
+                    return; // Salir temprano para tipo
+                default:
+                    throw new IllegalArgumentException("Campo no reconocido: " + campo);
+            }
+            
+            if (locatorCampo != null) {
+                // Primero hacer clic en el campo para enfocarlo
+                WebElement elemento = findElement(locatorCampo);
+                click(locatorCampo);
+                try {
+                    Thread.sleep(500); // Esperar 0.5 segundos
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
+                
+                if (valor == null || valor.isEmpty()) {
+                    // Limpiar el campo si el valor está vacío
+                    elemento.clear();
+                } else {
+                    // Limpiar primero y luego escribir
+                    elemento.clear();
+                    elemento.sendKeys(valor);
+                }
+                
+                // Hacer clic fuera del campo para disparar la validación (blur event)
+                hacerClicFueraDelCampo();
+                
+                System.out.println("✓ Se ingresó en " + campo + ": " + (valor == null || valor.isEmpty() ? "(vacío)" : valor));
+            }
+        } catch (Exception e) {
+            throw new AssertionError("✗ Error al ingresar valor en campo " + campo + ": " + e.getMessage());
+        }
+    }
+
+    /**
+     * Hace clic en un lugar vacío de la página para disparar eventos blur y validaciones
+     */
+    private void hacerClicFueraDelCampo() {
+        try {
+            // Hacer clic en el título del modal o en un área vacía
+            // Intentar hacer clic en el título "Creá tu Cuenta" o en el body
+            By tituloModal = By.xpath("//h1[contains(text(), 'Creá tu Cuenta') or contains(text(), 'Crea tu Cuenta')] | //h2[contains(text(), 'Creá tu Cuenta')]");
+            
+            try {
+                if (elementExists(tituloModal)) {
+                    click(tituloModal);
+                } else {
+                    // Si no existe el título, hacer clic en el body o en un área vacía del modal
+                    WebElement body = getDriver().findElement(By.tagName("body"));
+                    // Hacer clic en una posición específica (por ejemplo, esquina superior izquierda del modal)
+                    org.openqa.selenium.interactions.Actions actions = new org.openqa.selenium.interactions.Actions(getDriver());
+                    actions.moveToElement(body, 100, 100).click().perform();
+                }
+            } catch (Exception e) {
+                // Si falla, intentar hacer clic en cualquier otro campo que no sea el actual
+                // o simplemente presionar Tab para mover el foco
+                try {
+                    WebElement body = getDriver().findElement(By.tagName("body"));
+                    body.click();
+                } catch (Exception e2) {
+                    // Último recurso: usar Tab para mover el foco
+                    WebElement body = getDriver().findElement(By.tagName("body"));
+                    body.sendKeys(org.openqa.selenium.Keys.TAB);
+                }
+            }
+            
+            try {
+                Thread.sleep(500); // Pequeña pausa para que se procese el evento blur
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+        } catch (Exception e) {
+            System.out.println("⚠ No se pudo hacer clic fuera del campo, pero se continuará: " + e.getMessage());
+        }
+    }
+
+    /**
+     * Hace clic en el botón Siguiente del formulario de registro
+     */
+    public void clicBotonSiguiente() {
+        try {
+            waitForSeconds(1);
+            click(btnSiguiente);
+            System.out.println("✓ Se hizo clic en el botón Siguiente");
+            waitForSeconds(2); // Esperar a que aparezcan los mensajes de validación
+        } catch (Exception e) {
+            throw new AssertionError("✗ Error al hacer clic en el botón Siguiente: " + e.getMessage());
+        }
+    }
+
+    /**
+     * Valida que se muestra un mensaje de validación específico
+     */
+    public void validarMensajeValidacion(String mensajeEsperado) {
+        try {
+            waitForSeconds(2);
+            
+            // Buscar el mensaje en diferentes ubicaciones posibles
+            String mensajeLower = mensajeEsperado.toLowerCase();
+            
+            // Buscar en elementos de error/validación
+            try {
+                java.util.List<WebElement> elementosError = getDriver().findElements(mensajesValidacion);
+                for (WebElement elemento : elementosError) {
+                    String texto = elemento.getText().toLowerCase();
+                    if (texto.contains(mensajeLower) || mensajeLower.contains(texto)) {
+                        System.out.println("✓ Mensaje de validación encontrado: " + elemento.getText());
+                        return;
+                    }
+                }
+            } catch (Exception e) {
+                // Continuar con otros métodos de búsqueda
+            }
+            
+            // Buscar en todo el body de la página
+            String pageText = getDriver().findElement(By.tagName("body")).getText().toLowerCase();
+            if (pageText.contains(mensajeLower)) {
+                System.out.println("✓ Mensaje de validación encontrado en la página: " + mensajeEsperado);
+                return;
+            }
+            
+            // Buscar por texto exacto o parcial en cualquier elemento
+            String xpathMensaje = "//*[contains(text(), '" + mensajeEsperado + "')]";
+            try {
+                WebElement mensaje = getDriver().findElement(By.xpath(xpathMensaje));
+                if (mensaje.isDisplayed()) {
+                    System.out.println("✓ Mensaje de validación encontrado: " + mensaje.getText());
+                    return;
+                }
+            } catch (Exception e) {
+                // Continuar
+            }
+            
+            // Si no se encuentra, lanzar error
+            throw new AssertionError("✗ No se encontró el mensaje de validación esperado: " + mensajeEsperado);
+            
+        } catch (AssertionError e) {
+            throw e;
+        } catch (Exception e) {
+            throw new AssertionError("✗ Error al validar mensaje de validación: " + e.getMessage());
         }
     }
 

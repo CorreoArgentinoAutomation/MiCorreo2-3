@@ -174,4 +174,22 @@ public class EcosistemaDigitalSteps {
     public void elUsuarioDeberiaVerElMensajeDeBienvenida() {
         pageHomeLoginED.validarMensajeBienvenida();
     }
+
+    // Step definitions para validaciones de campos
+    @When("el usuario ingresa {string} con el valor {string}")
+    public void elUsuarioIngresaConElValor(String campo, String valor) {
+        // Si el valor está vacío en el feature, convertirlo a null
+        String valorFinal = (valor == null || valor.trim().isEmpty()) ? null : valor;
+        pageHomeLoginED.ingresarValorEnCampo(campo, valorFinal);
+    }
+
+    @And("el usuario hace clic en el boton Siguiente")
+    public void elUsuarioHaceClicEnElBotonSiguiente() {
+        pageHomeLoginED.clicBotonSiguiente();
+    }
+
+    @Then("el sistema debe mostrar el mensaje de validación {string}")
+    public void elSistemaDebeMostrarElMensajeDeValidacion(String mensajeEsperado) {
+        pageHomeLoginED.validarMensajeValidacion(mensajeEsperado);
+    }
 }
