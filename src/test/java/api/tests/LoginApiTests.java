@@ -79,7 +79,7 @@ public class LoginApiTests extends ApiTestBase {
     @Test
     @DisplayName("GC-2427: Login usuario nuevo")
     public void testGC2427_LoginUsuarioNuevo() {
-        LoginRequest loginRequest = new LoginRequest("usuario.nuevo@test.com", "Password123!");
+        LoginRequest loginRequest = new LoginRequest("apitestjava@yopmail.com", "123123");
 
         Response response = given()
                 .spec(getRequestSpec())
@@ -100,7 +100,7 @@ public class LoginApiTests extends ApiTestBase {
     @Test
     @DisplayName("GC-2428: Login usuario ED")
     public void testGC2428_LoginUsuarioED() {
-        LoginRequest loginRequest = new LoginRequest("usuario.ed@test.com", "Password123!");
+        LoginRequest loginRequest = new LoginRequest("apitestjava@yopmail.com", "123123");
 
         Response response = given()
                 .spec(getRequestSpec())
@@ -140,7 +140,7 @@ public class LoginApiTests extends ApiTestBase {
     @Test
     @DisplayName("GC-2431: Login sesión activa")
     public void testGC2431_LoginSesionActiva() {
-        LoginRequest loginRequest = new LoginRequest("usuario@test.com", "Password123!");
+        LoginRequest loginRequest = new LoginRequest("apitestjava@yopmail.com", "123123");
 
         // Primero hacer login
         given()
