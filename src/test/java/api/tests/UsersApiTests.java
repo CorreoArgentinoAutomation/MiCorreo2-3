@@ -61,7 +61,7 @@ public class UsersApiTests extends ApiTestBase {
     public void testGetUserByEmail() {
         Response response = given()
                 .spec(getRequestSpec())
-                .queryParam("email", "test@example.com")
+                .queryParam("email", "apitestjava@yopmail.com")
                 .when()
                 .get("/v2/users/email")
                 .then()

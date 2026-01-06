@@ -13,7 +13,8 @@ public class PageForm extends BasePage {
     protected By anoVencimiento = By.xpath("//input[@id='card_expiration_year']");
     protected By nombreTitular = By.xpath("//input[@id='card_holder_name']");
     protected By numeroDocumento = By.xpath("//input[@id='card_holder_doc_number']");
-    protected By btnPagarLocator = By.xpath("//button[@id='pagar']");
+    //protected By btnPagarLocator = By.xpath("//button[@id='pagar']");
+    protected By btnPagarLocator = By.xpath("//button[@id='pagardecidir']");
 
     //Pago con Mercado Pago
     protected By pagarTarjCredito = By.xpath("//span[text()='Tarjeta de cr']");//button[.='Tarjeta de cr�dito']");

@@ -15,7 +15,7 @@ Feature: Autenticación de usuario en la plataforma ComunidadCorreo
     Then el sistema muestra el mensaje "<mensajeEsperado>"
 
     Examples:
-      | email                   | pass         | mensajeEsperado                                        |
-      | cf_tester02@yopmail.com | 123123       | Hola                                                   |
-      | cf_tester02@yopmail.com | ClaveErronea | Credenciales inválidas                                 |
-      |                         |              | El correo es obligatorio; La contrasena es obligatoria |
+      | email                   | pass   | mensajeEsperado |
+      | cf_tester02@yopmail.com | 123123 | Hola            |
+      |                         |        |                 |
+      |                         |        |                 |

@@ -34,6 +34,8 @@ public class PageNuevoEnvio extends BasePage {
     private By codPostalLocator = By.xpath("//input[@id='cpCpa']");
     private By correoElectronico = By.xpath("//input[@id='correoElectronico']");
     private By celularLocator = By.xpath("//input[@id='celular']");
+    private By celularCodArea = By.xpath("//input[@id='codAreaPaqDom']");
+    private By celularNumeroTelefono = By.xpath("//input[@id='celularPaqDom']");
     private By observacionesLocator = By.xpath("//textarea[@id='observaciones']");
     private By envioExpresoLocator = By.xpath("//input[@class='form-check-input EXPRESO']");
     private By envioClasicoLocator = By.xpath("//input[@class='form-check-input CLASICO']");
@@ -483,7 +485,12 @@ public class PageNuevoEnvio extends BasePage {
         writeText(direccionLocator, "Rivadavia 1200");
         writeText(codPostalLocator, codigoPostal);
         writeText(correoElectronico, "hola1@yopmail.com");
-        writeText(celularLocator, "351456789");
+        //Se realizo un cambio de campo para que no se requiera el celular ahora son 2 campos codigo de area y numero de telefono
+        //writeText(celularLocator, "351456789");
+
+        writeText(celularCodArea, "351");
+        writeText(celularNumeroTelefono, "1456789");
+
         writeText(observacionesLocator, "Casa con rejas negras");
         waitForSeconds(3);
     }
@@ -499,7 +506,12 @@ public class PageNuevoEnvio extends BasePage {
         selectOptionFromDropdownByValue("sucursalDestino2", codigoPostal);
         waitForSeconds(1);
         writeText(correoElectronicoSuc, "hola2@yopmail.com");
-        writeText(celularSuc, "3825564354");
+
+        //se realizo un cambio de campo para que no se requiera el celular ahora son 2 campos codigo de area y numero de telefono
+        //writeText(celularSuc, "3825564354");
+        writeText(celularCodArea, "351");
+        writeText(celularNumeroTelefono, "1456789");
+
         waitForSeconds(3);
     }
 
@@ -522,7 +534,13 @@ public class PageNuevoEnvio extends BasePage {
         writeText(direccionLocator, "Rivadavia 1200");
         writeText(codPostalLocator, codigoPostal);
         writeText(correoElectronico, "hola1@yopmail.com");
-        writeText(celularLocator, "351456789");
+
+        //se realizo un cambio de campo para que no se requiera el celular ahora son 2 campos codigo de area y numero de telefono
+        //writeText(celularLocator, "351456789");
+
+        writeText(celularCodArea, "351");
+        writeText(celularNumeroTelefono, "1456789");
+
         writeText(observacionesLocator, "Casa con rejas negras");
         waitForSeconds(3);
     }
@@ -545,7 +563,12 @@ public class PageNuevoEnvio extends BasePage {
         selectOptionFromDropdownByValue("sucursalDestino2", codigoPostal);
         waitForSeconds(1);
         writeText(correoElectronicoSuc, "hola2@yopmail.com");
-        writeText(celularSuc, "3825564354");
+
+        //se realizo un cambio de campo para que no se requiera el celular ahora son 2 campos codigo de area y numero de telefono
+        //writeText(celularSuc, "3825564354");
+        writeText(celularCodArea, "351");
+        writeText(celularNumeroTelefono, "1456789");
+
         waitForSeconds(3);
     }
 
