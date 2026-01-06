@@ -23,7 +23,7 @@ public class AuthApiTests extends ApiTestBase {
     @Test
     @DisplayName("POST /v2/auth/login - Login exitoso")
     public void testLoginExitoso() {
-        LoginRequest loginRequest = new LoginRequest("test@example.com", "password123");
+        LoginRequest loginRequest = new LoginRequest("apitestjava@yopmail.com", "123123");
 
         Response response = given()
                 .spec(getRequestSpec())
@@ -72,7 +72,7 @@ public class AuthApiTests extends ApiTestBase {
     @Test
     @DisplayName("POST /v2/auth/recover-password - Recuperación de contraseña")
     public void testRecoverPassword() {
-        RecoverPasswordRequest recoverRequest = new RecoverPasswordRequest("test@example.com");
+        RecoverPasswordRequest recoverRequest = new RecoverPasswordRequest("apitestjava@yopmail.com");
 
         Response response = given()
                 .spec(getRequestSpec())
@@ -92,7 +92,7 @@ public class AuthApiTests extends ApiTestBase {
     @Test
     @DisplayName("PATCH /v2/auth/profile/password - Actualizar contraseña")
     public void testUpdatePassword() {
-        UpdatePasswordRequest updateRequest = new UpdatePasswordRequest("test@example.com", "newPassword123");
+        UpdatePasswordRequest updateRequest = new UpdatePasswordRequest("apitestjava@yopmail.com", "12341234");
 
         given()
                 .spec(getRequestSpec())
