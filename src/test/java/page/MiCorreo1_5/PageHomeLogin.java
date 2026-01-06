@@ -54,7 +54,7 @@ public class PageHomeLogin extends BasePage {
     private By msjErrorAgregarUI = By.xpath("//small[@id='error' and @class='text-danger fw-semibold']");
 
     //Recargar saldo
-    private By btnRecargarSaldo = By.xpath("//a[.='Recargar saldo']");
+    private By btnRecargarSaldo = By.xpath("//a[normalize-space(text())='Recargar saldo']");
     private By checkMercadoPago = By.xpath("(//label[@id='mercadopago'])[1]");
     private By checkTarjeta = By.xpath("(//input[@id='radioTarjeta'])[1]");
     private By btnRecargarSaldoModalValor = By.xpath("//input[@id='valorcargaModal']");

@@ -46,6 +46,41 @@ public class PageForm extends BasePage {
 
     public void pagoConMercadoPago(){
 
+
+        waitForSeconds(2);
+
+        sendTab(2);
+        sendEnter();
+
+        waitForSeconds(3);
+        sendKeys("371180303257522");
+
+        sendTab(1);
+        sendKeys("APRO");
+
+        sendTab(1);
+        sendKeys("1130");
+
+        waitForSeconds(1);
+        sendTab(1);
+        sendKeys("1234");
+
+        waitForSeconds(1);
+        sendTab(4);
+        waitForSeconds(1);
+        sendKeys("12345678");
+
+        waitForSeconds(1);
+        sendTab(1);
+        sendEnter();
+
+        waitForSeconds(1);
+        writeText(campoEmailMercadoPago,"test_user_1826015362@testuser.com");
+
+        click(btnPagarMercadoPago);
+
+
+        /*
         waitForSeconds(2);
 
         sendTab(2);
@@ -77,6 +112,8 @@ public class PageForm extends BasePage {
         writeText(campoEmailMercadoPago,"test_user_1826015362@testuser.com");
 
         click(btnPagarMercadoPago);
+
+         */
 
         /*
         waitForSeconds(1);
