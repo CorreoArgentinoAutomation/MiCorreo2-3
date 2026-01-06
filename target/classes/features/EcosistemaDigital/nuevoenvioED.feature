@@ -1,8 +1,5 @@
-@LoginED
-Feature: Autenticación de usuario en la plataforma ComunidadCorreo
-  Como usuario registrado
-  Quiero iniciar sesión en la plataforma
-  Para acceder a mis funcionalidades privadas
+@nuevoEnvioED
+Feature: Nuevo envio individual
 
   Scenario Outline: Intento de login con diferentes combinaciones
     Given que el usuario está en la página de login
@@ -19,5 +16,9 @@ Feature: Autenticación de usuario en la plataforma ComunidadCorreo
     And se confirma que el pago se ha realizado con exito
 
     Examples:
-      | email                   | pass   | tipoOrigen | peso | tipoEntrega    | tipoProducto | medioPago |
-      | cf_tester02@yopmail.com | 123123 | PickUP     | 1kg  | DomicilioZona1 | PaqArHoy     | Tarjeta   |
+      | email                      | pass   | tipoOrigen    | peso | tipoEntrega    | tipoProducto | medioPago        |
+      | mono_tester@yopmail.com    | 123123 | SucursalZona1 | 1kg  | DomicilioZona1 | Clasico      | Tarjeta          |
+      | cf_tester02@yopmail.com    | 123123 | PickUP        | 1kg  | DomicilioZona1 | Expreso      | Saldo            |
+      | empctacte_test@yopmail.com | 123123 | PickUP        | 1kg  | DomicilioZona1 | PaqArHoy     | Cuenta Corriente |
+      | cf_tester02@yopmail.com    | 123123 | PickUP        | 1kg  | DomicilioZona1 | PaqArHoy     | Mercado Pago     |
+
