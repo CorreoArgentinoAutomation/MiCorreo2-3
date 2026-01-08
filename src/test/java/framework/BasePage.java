@@ -169,6 +169,47 @@ public class BasePage {
     }
 
 
+
+    public Long limpiarFormatoDeSaldo(By locator) {
+        String saldoRaw = getText(locator);
+        if (saldoRaw == null || saldoRaw.trim().isEmpty()) {
+            System.out.println("[ERROR] El texto del saldo está vacío o es null.");
+            return null;
+        }
+
+        System.out.println(saldoRaw);
+
+        // Eliminar todo lo que no sea dígito, punto o coma
+        String soloNumeros = saldoRaw.replaceAll("[^\\d,\\.]", "");
+        // Ejemplo: "$8.705.319,00" -> "8.705.319,00"
+
+        // Eliminar separadores de miles (puntos)
+        soloNumeros = soloNumeros.replace(".", "");
+
+        // Si tiene coma decimal, la quitamos junto con los dos ceros
+        if (soloNumeros.contains(",")) {
+            soloNumeros = soloNumeros.split(",")[0]; // Tomamos solo la parte entera
+        }
+
+        // Validación final
+        if (!soloNumeros.matches("\\d+")) {
+            System.out.println("[ERROR] Formato inesperado tras limpiar: " + soloNumeros);
+            return null;
+        }
+
+        try {
+            Long valorLimpio = Long.parseLong(soloNumeros);
+            System.out.println("Valor limpio (entero): " + valorLimpio);
+            return valorLimpio;
+        } catch (NumberFormatException e) {
+            System.out.println("[ERROR] No se pudo convertir a número: " + soloNumeros);
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+
+
     public void esperaImplicita(By locator) {
         wait.until(ExpectedConditions.elementToBeClickable(locator));
     }
