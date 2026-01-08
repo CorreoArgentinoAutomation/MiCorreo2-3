@@ -1,0 +1,6 @@
+email,pass,tipoOrigen,peso,tipoEntrega,tipoProducto,medioPago,descripcion
+mono_tester@yopmail.com,123123,SucursalZona1,1kg,DomicilioZona1,Clasico,Tarjeta,Envío con Sucursal Clásico y Tarjeta
+cf_tester02@yopmail.com,123123,PickUP,1kg,DomicilioZona1,Expreso,Saldo,Envío con PickUP Expreso y Saldo
+empctacte_test@yopmail.com,123123,PickUP,1kg,DomicilioZona1,PaqArHoy,Cuenta Corriente,Envío con PickUP PaqArHoy y Cuenta Corriente
+cf_tester02@yopmail.com,123123,PickUP,1kg,DomicilioZona1,PaqArHoy,Mercado Pago,Envío con PickUP PaqArHoy y Mercado Pago
+

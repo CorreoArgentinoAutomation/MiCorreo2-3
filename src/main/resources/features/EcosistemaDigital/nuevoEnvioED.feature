@@ -1,4 +1,5 @@
 @nuevoEnvioED
+  @PTA-56
 Feature: Nuevo envio individual
 
   Scenario Outline: Intento de login con diferentes combinaciones
