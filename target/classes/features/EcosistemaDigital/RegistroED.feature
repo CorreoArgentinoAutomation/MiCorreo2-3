@@ -5,7 +5,7 @@ Feature: Registro de usuario
     Given el usuario crea un email temporal
     When que el usuario ingresa al sitio de ecosistema digital
     And el usuario hace clic en el boton Registrarme
-    And el usuario llena el formulario de registro
+    And el usuario llena el formulario de r egistro
     And el usuario abre el servicio de correo electronico
     And el usuario hace clic en el boton Activa tu usuario
     Then el usuario deberia ver el mensaje de bienvenida
@@ -62,4 +62,15 @@ Feature: Registro de usuario
       | ConfirmarContraseña | 1234                             | La confirmación de contraseña debe contener entre 6 y 20 caracteres. |
       | ConfirmarContraseña | 12345                            | La confirmación de contraseña debe contener entre 6 y 20 caracteres. |
       | ConfirmarContraseña | 123456789012345678901            | La confirmación de contraseña debe contener entre 6 y 20 caracteres. |
+
+  Scenario: Registro exitoso de un nuevo usuario con CUIT
+    Given el usuario crea un email temporal
+    And el usuario valida y obtiene un CUIT válido
+    When que el usuario ingresa al sitio de ecosistema digital
+    And el usuario hace clic en el boton Registrarme
+    And el usuario llena el formulario de registro con CUIT
+    And el usuario abre el servicio de correo electronico
+    And el usuario hace clic en el boton Activa tu usuario
+    Then el usuario deberia ver el mensaje de bienvenida
+    And el sistema guarda los datos del usuario creado con CUIT en un archivo
 

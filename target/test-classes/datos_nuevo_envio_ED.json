@@ -1,0 +1,70 @@
+{
+  "datosEnvio": [
+    {
+      "email": "mono_tester@yopmail.com",
+      "pass": "123123",
+      "tipoOrigen": "SucursalZona1",
+      "peso": "1kg",
+      "tipoEntrega": "DomicilioZona1",
+      "tipoProducto": "Clasico",
+      "medioPago": "Tarjeta",
+      "descripcion": "Envío con Sucursal, Clásico y Tarjeta"
+    },
+    {
+      "email": "cf_tester02@yopmail.com",
+      "pass": "123123",
+      "tipoOrigen": "PickUP",
+      "peso": "1kg",
+      "tipoEntrega": "DomicilioZona1",
+      "tipoProducto": "Expreso",
+      "medioPago": "Saldo",
+      "descripcion": "Envío con PickUP, Expreso y Saldo"
+    },
+    {
+      "email": "empctacte_test@yopmail.com",
+      "pass": "123123",
+      "tipoOrigen": "PickUP",
+      "peso": "1kg",
+      "tipoEntrega": "DomicilioZona1",
+      "tipoProducto": "PaqArHoy",
+      "medioPago": "Cuenta Corriente",
+      "descripcion": "Envío con PickUP, PaqArHoy y Cuenta Corriente"
+    },
+    {
+      "email": "cf_tester02@yopmail.com",
+      "pass": "123123",
+      "tipoOrigen": "PickUP",
+      "peso": "1kg",
+      "tipoEntrega": "DomicilioZona1",
+      "tipoProducto": "PaqArHoy",
+      "medioPago": "Mercado Pago",
+      "descripcion": "Envío con PickUP, PaqArHoy y Mercado Pago"
+    }
+  ],
+  "valoresPosibles": {
+    "tipoOrigen": [
+      "SucursalZona1",
+      "PickUP"
+    ],
+    "peso": [
+      "1kg",
+      "2kg",
+      "5kg"
+    ],
+    "tipoEntrega": [
+      "DomicilioZona1"
+    ],
+    "tipoProducto": [
+      "Clasico",
+      "Expreso",
+      "PaqArHoy"
+    ],
+    "medioPago": [
+      "Tarjeta",
+      "Saldo",
+      "Cuenta Corriente",
+      "Mercado Pago"
+    ]
+  }
+}
+

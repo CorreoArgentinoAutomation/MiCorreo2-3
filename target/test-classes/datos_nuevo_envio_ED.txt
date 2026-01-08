@@ -1,0 +1,50 @@
+# Plantilla de datos para nuevoEnvioED_normal.feature
+# Formato: email|pass|tipoOrigen|peso|tipoEntrega|tipoProducto|medioPago
+# Los comentarios (líneas que empiezan con #) se ignoran
+# Las líneas vacías se ignoran
+
+# Ejemplo 1: Envío con Sucursal, Clásico y Tarjeta
+mono_tester@yopmail.com|123123|SucursalZona1|1kg|DomicilioZona1|Clasico|Tarjeta
+
+# Ejemplo 2: Envío con PickUP, Expreso y Saldo
+cf_tester02@yopmail.com|123123|PickUP|1kg|DomicilioZona1|Expreso|Saldo
+
+# Ejemplo 3: Envío con PickUP, PaqArHoy y Cuenta Corriente
+empctacte_test@yopmail.com|123123|PickUP|1kg|DomicilioZona1|PaqArHoy|Cuenta Corriente
+
+# Ejemplo 4: Envío con PickUP, PaqArHoy y Mercado Pago
+cf_tester02@yopmail.com|123123|PickUP|1kg|DomicilioZona1|PaqArHoy|Mercado Pago
+
+# ============================================
+# VALORES POSIBLES PARA CADA CAMPO:
+# ============================================
+# 
+# tipoOrigen:
+#   - SucursalZona1
+#   - PickUP
+#   - (agregar más según corresponda)
+#
+# peso:
+#   - 1kg
+#   - 2kg
+#   - 5kg
+#   - (agregar más según corresponda)
+#
+# tipoEntrega:
+#   - DomicilioZona1
+#   - (agregar más según corresponda)
+#
+# tipoProducto:
+#   - Clasico
+#   - Expreso
+#   - PaqArHoy
+#   - (agregar más según corresponda)
+#
+# medioPago:
+#   - Tarjeta
+#   - Saldo
+#   - Cuenta Corriente
+#   - Mercado Pago
+#   - (agregar más según corresponda)
+#
+
