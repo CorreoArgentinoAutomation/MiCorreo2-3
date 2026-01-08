@@ -34,7 +34,10 @@ public class PageHomeLoginED extends BasePage {
     public By campoNombre = By.xpath("//input[@name='name' or @id='nombre' or contains(@placeholder, 'Nombre')]");
     public By campoApellido = By.xpath("//input[@name='lastname' or @id='apellido' or contains(@placeholder, 'Apellido')]");
     // Combos de Tipo de documento y Rubro
-    public By comboDNI = By.xpath("//div[@role='combobox']//span[text()='Seleccionar']");
+    // Combo Tipo de documento - MUI Autocomplete con fieldset legend "Tipo"
+    public By comboDNI = By.xpath("//fieldset[.//legend[contains(text(), 'Tipo')]]//input[@role='combobox'] | //input[@role='combobox' and @placeholder='Seleccionar' and contains(@class, 'MuiAutocomplete-input')]");
+    // Botón para abrir el dropdown del Autocomplete (popup indicator)
+    public By botonPopupIndicatorTipo = By.xpath("//fieldset[.//legend[contains(text(), 'Tipo')]]//button[@class='MuiButtonBase-root MuiIconButton-root MuiAutocomplete-popupIndicator'] | //fieldset[.//legend[contains(text(), 'Tipo')]]//button[contains(@class, 'MuiAutocomplete-popupIndicator')]");
     public By opcionDNI = By.xpath("//li[@data-value='DNI']");
     public By comboRubro = By.xpath("//input[@role='combobox']");
     public By opcionRubroPrimera = By.xpath("//input[@value='Alimentos y Bebidas']");
@@ -66,6 +69,15 @@ public class PageHomeLoginED extends BasePage {
     // Variables para almacenar credenciales para reintento
     private String emailGuardado;
     private String passwordGuardado;
+    
+    // Variables para almacenar datos del usuario registrado con CUIT
+    private String nombreUsuarioRegistrado;
+    private String apellidoUsuarioRegistrado;
+    
+    // Locators para registro con CUIT
+    public By opcionCUIT = By.xpath("//li[@data-value='CUIT'] | //li[contains(text(), 'CUIT')]");
+    // Campo CUIT - aparece cuando se selecciona CUIT como tipo de documento
+    public By campoCUIT = By.xpath("//input[@name='cuit' or @id='cuit' or contains(@placeholder, 'CUIT') or contains(@placeholder, 'empresas')] | //fieldset[.//legend[contains(text(), 'CUIT')]]//input");
 
     public PageHomeLoginED(WebDriver driver) {
         super(driver);
@@ -448,8 +460,19 @@ public class PageHomeLoginED extends BasePage {
             writeText(campoApellido, generadorApellidosReales());
             System.out.println("✓ Se ingresó el apellido");
             
-            // Documento
-            click(comboDNI);
+            // Documento - Abrir combo Tipo
+            try {
+                // Intentar hacer clic en el botón del popup indicator primero
+                if (elementExists(botonPopupIndicatorTipo)) {
+                    click(botonPopupIndicatorTipo);
+                } else {
+                    // Si no existe, hacer clic en el input directamente
+                    click(comboDNI);
+                }
+            } catch (Exception e) {
+                // Si falla, intentar hacer clic en el input
+                click(comboDNI);
+            }
             waitForSeconds(1);
             click(opcionDNI);
             String numeroDocumento = numerosAleatorios(8);
@@ -750,6 +773,204 @@ public class PageHomeLoginED extends BasePage {
         } catch (Exception e) {
             throw new AssertionError("✗ Error al hacer clic en el botón Siguiente: " + e.getMessage());
         }
+    }
+
+    /**
+     * Llena el formulario de registro con CUIT en lugar de DNI
+     * Sigue exactamente el mismo flujo que llenarFormularioRegistro, solo cambiando DNI por CUIT
+     * @param email El email del usuario (generado temporalmente)
+     * @param cuit El CUIT válido del usuario
+     */
+    public void llenarFormularioRegistroConCUIT(String email, String cuit) {
+        try {
+            waitForSeconds(1);
+            
+            // Nombre - Guardar para el archivo
+            String nombre = generadorNombresReales();
+            this.nombreUsuarioRegistrado = nombre;
+            writeText(campoNombre, nombre);
+            System.out.println("✓ Se ingresó el nombre");
+            
+            // Apellido - Guardar para el archivo
+            String apellido = generadorApellidosReales();
+            this.apellidoUsuarioRegistrado = apellido;
+            writeText(campoApellido, apellido);
+            System.out.println("✓ Se ingresó el apellido");
+            
+            // Tipo de documento: CUIT (en lugar de DNI) - Abrir combo Tipo
+            try {
+                // Intentar hacer clic en el botón del popup indicator primero
+                if (elementExists(botonPopupIndicatorTipo)) {
+                    click(botonPopupIndicatorTipo);
+                } else {
+                    // Si no existe, hacer clic en el input directamente
+                    click(comboDNI);
+                }
+            } catch (Exception e) {
+                // Si falla, intentar hacer clic en el input
+                click(comboDNI);
+            }
+            waitForSeconds(1);
+            click(opcionCUIT);
+            
+            // CUIT (en lugar de documento DNI)
+            // Intentar usar el mismo campo que documento, si no funciona usar campoCUIT
+            waitForSeconds(1);
+            try {
+                // Primero intentar con el campo documento (puede que sea el mismo campo)
+                writeText(campoDocumento, cuit);
+                System.out.println("✓ Se ingresó el CUIT: " + cuit);
+            } catch (Exception e) {
+                // Si falla, intentar con el campo CUIT específico
+                try {
+                    writeText(campoCUIT, cuit);
+                    System.out.println("✓ Se ingresó el CUIT: " + cuit);
+                } catch (Exception e2) {
+                    throw new AssertionError("✗ No se pudo ingresar el CUIT en ningún campo: " + e2.getMessage());
+                }
+            }
+            
+            // Rubro (selecciona la primera opción disponible)
+            try {
+                click(comboRubro);
+                waitForSeconds(1);
+                //click(opcionRubroPrimera);
+                String numero = numerosAleatorios(1);
+                sendFlechaAbajo(Integer.parseInt(numero+1));
+                sendEnter();
+                System.out.println("La opcion seleccionada es: "  + numero);
+                System.out.println("✓ Se seleccionó un rubro");
+            } catch (Exception e) {
+                System.out.println("⚠ No se pudo seleccionar el rubro: " + e.getMessage());
+            }
+            
+            // Celular
+            waitForSeconds(1);
+            writeText(campoCelular, generadorNumeroTelefono());
+            System.out.println("✓ Se ingresó el celular");
+            
+            // Email
+            writeText(campoEmailRegistro, email);
+            System.out.println("✓ Se ingresó el email: " + email);
+            
+            // Contraseña
+            String contrasena = "123123"; // Contraseña por defecto para registro
+            writeText(campoPasswordRegistro, contrasena);
+            System.out.println("✓ Se ingresó la contraseña");
+            
+            // Confirmar contraseña
+            writeText(campoPasswordConfirmRegistro, contrasena);
+            System.out.println("✓ Se confirmó la contraseña");
+            
+            // Aceptar términos
+            try {
+                click(checkTerminos);
+                System.out.println("✓ Se aceptaron los términos y condiciones");
+            } catch (Exception e) {
+                System.out.println("⚠ No se pudo hacer clic en términos (puede que no exista)");
+            }
+            
+            waitForSeconds(1);
+            
+            // Enviar formulario Paso 1
+            click(btnSiguiente);
+            System.out.println("✓ Se hizo clic en 'Siguiente' - Paso 1 completado");
+            waitForSeconds(3); // Esperar a que cargue el Paso 2
+            
+            // ========== PASO 2: Completar dirección ==========
+            System.out.println("Iniciando Paso 2: Completar dirección");
+            
+            // Provincia
+            try {
+                waitForSeconds(2);
+                click(comboProvincia);
+                waitForSeconds(1);
+                sendBorrar(13);
+                // Seleccionar la primera opción disponible o Capital Federal
+                try {
+                    //click(opcionProvincia);
+                    writeText(comboProvincia,"capital");
+                    waitForSeconds(1);
+                    sendFlechaAbajo(1);
+                    sendEnter();
+                } catch (Exception e) {
+                    // Si no encuentra la opción específica, usar flechas
+                    sendFlechaAbajo(1);
+                    sendEnter();
+                }
+                System.out.println("✓ Se seleccionó la provincia");
+            } catch (Exception e) {
+                System.out.println("⚠ No se pudo seleccionar la provincia: " + e.getMessage());
+            }
+            
+            // Localidad
+            try {
+                waitForSeconds(1);
+                click(comboLocalidad);
+                sendBorrar(13);
+                // Seleccionar la primera opción disponible
+                try {
+                    //click(opcionLocalidad);
+                    writeText(comboLocalidad,"ciudad");
+                    waitForSeconds(1);
+                    sendFlechaAbajo(1);
+                    sendEnter();
+                } catch (Exception e) {
+                    // Si no encuentra la opción específica, usar flechas
+                    sendFlechaAbajo(1);
+                    sendEnter();
+                }
+                System.out.println("✓ Se seleccionó la localidad");
+            } catch (Exception e) {
+                System.out.println("⚠ No se pudo seleccionar la localidad: " + e.getMessage());
+            }
+            
+            // Dirección
+            try {
+                waitForSeconds(1);
+                writeText(campoDireccion, "Av. Test " + numerosAleatorios(4));
+                System.out.println("✓ Se ingresó la dirección");
+            } catch (Exception e) {
+                System.out.println("⚠ No se pudo ingresar la dirección: " + e.getMessage());
+            }
+            
+            // Código postal
+            try {
+                waitForSeconds(1);
+                writeText(campoCodigoPostal, "1020"); // Código postal por defecto para Capital Federal
+                System.out.println("✓ Se ingresó el código postal");
+            } catch (Exception e) {
+                System.out.println("⚠ No se pudo ingresar el código postal: " + e.getMessage());
+            }
+            
+            waitForSeconds(1);
+            
+            // Hacer clic en el botón "Registrarme" final
+            try {
+                click(btnRegistrarseFinal);
+                System.out.println("✓ Se hizo clic en 'Registrarme' - Paso 2 completado");
+                waitForSeconds(3); // Esperar respuesta del servidor y finalización del registro
+            } catch (Exception e) {
+                throw new AssertionError("✗ No se pudo hacer clic en el botón Registrarme final: " + e.getMessage());
+            }
+            
+        } catch (Exception e) {
+            throw new AssertionError("✗ Error al llenar el formulario de registro con CUIT: " + e.getMessage());
+        }
+    }
+
+    /**
+     * Obtiene el nombre del usuario registrado
+     */
+    public String getNombreUsuario() {
+        return nombreUsuarioRegistrado;
+    }
+
+    /**
+     * Obtiene el apellido del usuario registrado
+     */
+    public String getApellidoUsuario() {
+        return apellidoUsuarioRegistrado;
     }
 
     /**

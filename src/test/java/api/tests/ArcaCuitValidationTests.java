@@ -16,7 +16,7 @@ import static org.hamcrest.Matchers.*;
 
 /**
  * Tests para validar un listado de CUITs usando la API de ARCA
- * Similar a BindX - valida múltiples CUITs desde un archivo
+ * Valida múltiples CUITs desde un archivo
  */
 public class ArcaCuitValidationTests extends ApiTestBase {
 
@@ -37,6 +37,9 @@ public class ArcaCuitValidationTests extends ApiTestBase {
 
     /**
      * Lee la lista de CUITs desde un archivo
+     * Soporta dos formatos:
+     * 1. Simple: Solo el número de CUIT (uno por línea)
+     * 2. Completo: CUIT|Tipo|Descripcion (formato anterior)
      */
     private List<CuitInfo> leerListaCuits(String archivo) {
         List<CuitInfo> cuits = new ArrayList<>();
@@ -51,13 +54,28 @@ public class ArcaCuitValidationTests extends ApiTestBase {
                     continue;
                 }
                 
-                // Formato: CUIT|Tipo|Descripcion
-                String[] partes = linea.split("\\|");
-                if (partes.length >= 3) {
-                    cuits.add(new CuitInfo(partes[0].trim(), partes[1].trim(), partes[2].trim()));
-                } else if (partes.length == 1) {
-                    // Si solo hay CUIT, asumir que es válido
-                    cuits.add(new CuitInfo(partes[0].trim(), "V", "CUIT sin tipo especificado"));
+                // Verificar si tiene el formato con pipes (formato completo)
+                if (linea.contains("|")) {
+                    // Formato: CUIT|Tipo|Descripcion
+                    String[] partes = linea.split("\\|");
+                    if (partes.length >= 3) {
+                        cuits.add(new CuitInfo(partes[0].trim(), partes[1].trim(), partes[2].trim()));
+                    } else if (partes.length == 2) {
+                        cuits.add(new CuitInfo(partes[0].trim(), partes[1].trim(), "CUIT"));
+                    } else if (partes.length == 1) {
+                        cuits.add(new CuitInfo(partes[0].trim(), "V", "CUIT"));
+                    }
+                } else {
+                    // Formato simple: Solo el número de CUIT
+                    // Validar que sea un número de 11 dígitos
+                    String cuit = linea.trim();
+                    if (cuit.matches("\\d{11}")) {
+                        cuits.add(new CuitInfo(cuit, "V", "CUIT para validar"));
+                    } else if (cuit.matches("\\d+")) {
+                        // Si tiene dígitos pero no 11, agregarlo de todas formas (puede ser inválido)
+                        cuits.add(new CuitInfo(cuit, "V", "CUIT para validar"));
+                    }
+                    // Si no tiene dígitos, ignorar la línea
                 }
             }
         } catch (IOException e) {
@@ -167,9 +185,9 @@ public class ArcaCuitValidationTests extends ApiTestBase {
     @DisplayName("Validar CUITs válidos conocidos")
     public void testValidarCuitsValidos() {
         String[] cuitsValidos = {
-            "20301234567",
-            "30708902507",
-            "20123456789"
+            "30533285119",
+            "30604075269",
+            "30535379269"
         };
         
         System.out.println("\nValidando CUITs válidos conocidos:");

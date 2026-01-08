@@ -5,9 +5,23 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.restassured.response.Response;
 import org.openqa.selenium.WebDriver;
 import page.EcosistemaDigital.PageHomeLoginED;
 import page.EcosistemaDigital.PageYopMailED;
+
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Properties;
+
+import static io.restassured.RestAssured.given;
 
 public class EcosistemaDigitalSteps {
     private WebDriver driver = DriverManager.getDriver();
@@ -17,6 +31,9 @@ public class EcosistemaDigitalSteps {
 
     public String email;
     public String numeroSeguimiento;
+    public String cuitValido;
+    public String nombreUsuario;
+    public String apellidoUsuario;
 
     /*
     @Given("^el usuario se situa en los campos email y password$")
@@ -191,5 +208,154 @@ public class EcosistemaDigitalSteps {
     @Then("el sistema debe mostrar el mensaje de validación {string}")
     public void elSistemaDebeMostrarElMensajeDeValidacion(String mensajeEsperado) {
         pageHomeLoginED.validarMensajeValidacion(mensajeEsperado);
+    }
+
+    // Step definitions para registro con CUIT
+    @And("el usuario valida y obtiene un CUIT válido")
+    public void elUsuarioValidaYObtieneUnCUITValido() {
+        try {
+            // Cargar configuración de API
+            Properties config = new Properties();
+            try (FileInputStream fis = new FileInputStream("src/main/resources/config.properties")) {
+                config.load(fis);
+            }
+            String apiBaseUrl = config.getProperty("apiBaseUrl", "https://bff.comunidadcorreo.site");
+            
+            // Leer lista de CUITs desde el archivo
+            List<String> cuits = leerCuitsDesdeArchivo("src/test/resources/cuits_lista.txt");
+            
+            // Intentar validar CUITs hasta encontrar uno válido
+            String cuitEncontrado = null;
+            for (String cuit : cuits) {
+                cuit = cuit.trim();
+                if (cuit.isEmpty() || cuit.startsWith("#")) {
+                    continue;
+                }
+                
+                System.out.println("Validando CUIT: " + cuit);
+                
+                try {
+                    Response response = given()
+                            .baseUri(apiBaseUrl)
+                            .queryParam("cuit", cuit)
+                            .when()
+                            .get("/v2/integration/validate-cuit")
+                            .then()
+                            .extract()
+                            .response();
+                    
+                    int statusCode = response.getStatusCode();
+                    if (statusCode == 200) {
+                        cuitEncontrado = cuit;
+                        System.out.println("✓ CUIT válido encontrado: " + cuit);
+                        break;
+                    } else {
+                        System.out.println("✗ CUIT inválido: " + cuit + " (Status: " + statusCode + ")");
+                    }
+                } catch (Exception e) {
+                    System.out.println("✗ Error al validar CUIT " + cuit + ": " + e.getMessage());
+                    continue;
+                }
+            }
+            
+            if (cuitEncontrado == null) {
+                throw new AssertionError("✗ No se encontró ningún CUIT válido en la lista");
+            }
+            
+            this.cuitValido = cuitEncontrado;
+            System.out.println("✓ CUIT válido seleccionado para el registro: " + cuitValido);
+            
+        } catch (Exception e) {
+            throw new AssertionError("✗ Error al validar y obtener CUIT válido: " + e.getMessage());
+        }
+    }
+
+    @And("el usuario llena el formulario de registro con CUIT")
+    public void elUsuarioLlenaElFormularioDeRegistroConCUIT() {
+        if (cuitValido == null || cuitValido.isEmpty()) {
+            throw new AssertionError("✗ No hay CUIT válido disponible. Debe ejecutarse primero el paso de validación de CUIT.");
+        }
+        pageHomeLoginED.llenarFormularioRegistroConCUIT(email, cuitValido);
+        // Guardar nombre y apellido para el archivo
+        this.nombreUsuario = pageHomeLoginED.getNombreUsuario();
+        this.apellidoUsuario = pageHomeLoginED.getApellidoUsuario();
+    }
+
+    @And("el sistema guarda los datos del usuario creado con CUIT en un archivo")
+    public void elSistemaGuardaLosDatosDelUsuarioCreadoConCUITEnUnArchivo() {
+        try {
+            String archivoPath = "src/main/resources/usuarios_registrados_cuit.txt";
+            Path path = Paths.get(archivoPath);
+            
+            // Crear el archivo si no existe
+            if (!Files.exists(path)) {
+                Files.createFile(path);
+                // Escribir encabezado
+                String encabezado = "========================================\n";
+                encabezado += "USUARIOS REGISTRADOS CON CUIT\n";
+                encabezado += "========================================\n";
+                encabezado += "Fecha|Email|CUIT|Nombre|Apellido|Contraseña\n";
+                encabezado += "========================================\n";
+                Files.write(path, encabezado.getBytes(), StandardOpenOption.WRITE);
+            }
+            
+            // Preparar datos del usuario
+            LocalDateTime ahora = LocalDateTime.now();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            String fecha = ahora.format(formatter);
+            String contraseña = "123123"; // Contraseña por defecto usada en el registro
+            
+            // Formato: Fecha|Email|CUIT|Nombre|Apellido|Contraseña
+            String linea = String.format("%s|%s|%s|%s|%s|%s\n",
+                    fecha,
+                    email != null ? email : "N/A",
+                    cuitValido != null ? cuitValido : "N/A",
+                    nombreUsuario != null ? nombreUsuario : "N/A",
+                    apellidoUsuario != null ? apellidoUsuario : "N/A",
+                    contraseña);
+            
+            // Agregar al archivo
+            Files.write(path, linea.getBytes(), StandardOpenOption.APPEND);
+            
+            System.out.println("✓ Datos del usuario guardados en: " + archivoPath);
+            System.out.println("  Email: " + email);
+            System.out.println("  CUIT: " + cuitValido);
+            System.out.println("  Nombre: " + nombreUsuario);
+            System.out.println("  Apellido: " + apellidoUsuario);
+            
+        } catch (Exception e) {
+            System.err.println("⚠ Error al guardar datos del usuario: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Lee la lista de CUITs desde un archivo
+     */
+    private List<String> leerCuitsDesdeArchivo(String rutaArchivo) {
+        List<String> cuits = new ArrayList<>();
+        try (BufferedReader br = new BufferedReader(new FileReader(rutaArchivo))) {
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                linea = linea.trim();
+                // Ignorar comentarios y líneas vacías
+                if (linea.isEmpty() || linea.startsWith("#")) {
+                    continue;
+                }
+                // Si tiene formato con pipes, extraer solo el CUIT
+                if (linea.contains("|")) {
+                    String[] partes = linea.split("\\|");
+                    if (partes.length > 0) {
+                        cuits.add(partes[0].trim());
+                    }
+                } else {
+                    // Formato simple: solo el CUIT
+                    cuits.add(linea);
+                }
+            }
+        } catch (IOException e) {
+            throw new RuntimeException("Error al leer el archivo de CUITs: " + e.getMessage(), e);
+        }
+        return cuits;
     }
 }
