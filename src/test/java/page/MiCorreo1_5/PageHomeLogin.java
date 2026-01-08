@@ -58,6 +58,7 @@ public class PageHomeLogin extends BasePage {
     private By checkMercadoPago = By.xpath("(//label[@id='mercadopago'])[1]");
     private By checkTarjeta = By.xpath("(//input[@id='radioTarjeta'])[1]");
     private By btnRecargarSaldoModalValor = By.xpath("//input[@id='valorcargaModal']");
+    private By saldo = By.xpath("//div[contains(@class,'modal-dialog') and contains(@class,'modal-dialog-centered')]//div[contains(@class,'saldoActual')]");
 
     private By btnSiguienteModal = By.xpath("//form[@id='cargaSaldoModal']//button[@class='btn btn-correo-primary']");
 
@@ -257,9 +258,19 @@ public class PageHomeLogin extends BasePage {
         click(btnRecargarSaldo);
     }
 
+    public void valorDeSaldo(){
+        getText(saldo);
+        System.out.println("Valor de saldo: " + getText(saldo));
+        //return getText(saldo);
+
+    }
+
     public void seleccionarMedioPago(String medioPago,String valorRecarga){
 
         System.out.println("Seleccionó el medio de pago: " + medioPago);
+
+        //String valorDeSaldo = valorDeSaldo();
+        limpiarFormatoDeSaldo(saldo);
 
         switch (medioPago) {
             case "Mercado Pago":
@@ -297,6 +308,15 @@ public class PageHomeLogin extends BasePage {
             return false;
         }
     }
+
+
+    public void validarMontosDeCarga(){
+
+
+    }
+
+
+
     /*public void miCuentaUI() {
         click(miCuentaLocator);
         click(btnAgregarUsuario);
