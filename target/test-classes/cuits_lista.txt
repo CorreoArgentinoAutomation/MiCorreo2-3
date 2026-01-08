@@ -1,78 +1,70 @@
 # Lista de CUITs para validar con API ARCA
-# Formato: CUIT|Tipo|Descripcion
-# Tipo: V=Valido, I=Invalido, E=Empresa, P=Persona
+# Formato simple: Solo el número de CUIT (uno por línea)
+# También se puede usar el formato completo: CUIT|Tipo|Descripcion
+# Los comentarios (líneas que empiezan con #) se ignoran
 
-# CUITs válidos - Personas Físicas
-20123456789|V|Persona física válida
-20301234567|V|Persona física válida
-20345678901|V|Persona física válida
+# CUITs de ejemplo para pruebas
+20123456789
+20301234567
+20345678901
+30708902507
+30567890123
+30678901234
 
-# CUITs válidos - Empresas
-30708902507|E|Empresa válida
-30567890123|E|Empresa válida
-30678901234|E|Empresa válida
+# CUITs inválidos para pruebas
+12345678901
+00000000000
+11111111111
 
-# CUITs inválidos
-12345678901|I|CUIT inválido - dígito verificador incorrecto
-00000000000|I|CUIT inválido - todos ceros
-11111111111|I|CUIT inválido - formato incorrecto
-12345678|I|CUIT inválido - muy corto
-123456789012|I|CUIT inválido - muy largo
-
-# CUITs para pruebas adicionales
-27123456789|V|Persona física
-27234567890|V|Persona física
-27345678901|V|Persona física
-
-# Lista de CUITs proporcionada para validación
-30703388635|V|CUIT para validar
-30707991115|V|CUIT para validar
-30526133885|V|CUIT para validar
-30517059095|V|CUIT para validar
-30503832565|V|CUIT para validar
-30574893395|V|CUIT para validar
-20054100605|V|CUIT para validar
-30589527115|V|CUIT para validar
-30707791086|V|CUIT para validar
-30691215446|V|CUIT para validar
-30548083156|V|CUIT para validar
-30623456796|V|CUIT para validar
-30501445416|V|CUIT para validar
-30538058056|V|CUIT para validar
-30598129246|V|CUIT para validar
-30636344776|V|CUIT para validar
-30525558246|V|CUIT para validar
-30503858327|V|CUIT para validar
-30532847547|V|CUIT para validar
-30692138747|V|CUIT para validar
-30538880627|V|CUIT para validar
-30547838307|V|CUIT para validar
-30697312028|V|CUIT para validar
-30503364898|V|CUIT para validar
-30691745488|V|CUIT para validar
-30506730038|V|CUIT para validar
-30592845748|V|CUIT para validar
-30660373108|V|CUIT para validar
-30557597359|V|CUIT para validar
-30573011879|V|CUIT para validar
-30678155469|V|CUIT para validar
-30679928879|V|CUIT para validar
-30647227119|V|CUIT para validar
-33658615969|V|CUIT para validar
-30515488479|V|CUIT para validar
-30689901189|V|CUIT para validar
-33503850929|V|CUIT para validar
-30655725829|V|CUIT para validar
-33708711999|V|CUIT para validar
-30526874249|V|CUIT para validar
-30525966859|V|CUIT para validar
-33572266449|V|CUIT para validar
-30565574759|V|CUIT para validar
-30589621499|V|CUIT para validar
-30607371799|V|CUIT para validar
-30503403079|V|CUIT para validar
-30533285119|V|CUIT para validar
-30604075269|V|CUIT para validar
-30535379269|V|CUIT para validar
-30535621159|V|CUIT para validar
+# Lista de CUITs para validación
+30703388635
+30707991115
+30526133885
+30517059095
+30503832565
+30574893395
+20054100605
+30589527115
+30707791086
+30691215446
+30548083156
+30623456796
+30501445416
+30538058056
+30598129246
+30636344776
+30525558246
+30503858327
+30532847547
+30692138747
+30538880627
+30547838307
+30697312028
+30503364898
+30691745488
+30506730038
+30592845748
+30660373108
+30557597359
+30573011879
+30678155469
+30679928879
+30647227119
+33658615969
+30515488479
+30689901189
+33503850929
+30655725829
+33708711999
+30526874249
+30525966859
+33572266449
+30565574759
+30589621499
+30607371799
+30503403079
+30533285119
+30604075269
+30535379269
+30535621159
 

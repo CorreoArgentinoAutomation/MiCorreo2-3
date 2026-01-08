@@ -1,6 +1,6 @@
 # Tests de Validación de CUITs con API ARCA
 
-Este módulo contiene tests para validar un listado de CUITs usando la API de ARCA, similar a BindX.
+Este módulo contiene tests para validar un listado de CUITs usando la API de ARCA.
 
 ## Archivos
 
