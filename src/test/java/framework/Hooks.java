@@ -13,6 +13,39 @@ public class Hooks {
     private static Scenario currentScenario;
     static BasePage basePage;
     static PageHomeLogin pageHomelogin;
+    
+    // Flag estático para asegurar que el generador solo se ejecute una vez
+    private static boolean generadorEjecutado = false;
+
+    /**
+     * Hook específico para el feature nuevoEnvioEDNormal
+     * Genera automáticamente los Examples desde el CSV antes de ejecutar los tests
+     * Solo se ejecuta una vez, la primera vez que se encuentra el tag
+     */
+    @Before("@nuevoEnvioEDNormal")
+    public void generarExamplesDesdeCSV(Scenario scenario) {
+        // Ejecutar el generador solo una vez
+        if (!generadorEjecutado) {
+            try {
+                String rutaCSV = "src/test/resources/datos_nuevo_envio_ED.csv";
+                String rutaFeature = "src/main/resources/features/EcosistemaDigital/nuevoEnvioED_normal.feature";
+                
+                System.out.println("========================================");
+                System.out.println("Generando Examples desde CSV automáticamente...");
+                System.out.println("========================================");
+                
+                CsvToFeatureGenerator.actualizarExamplesDesdeCSV(rutaCSV, rutaFeature);
+                
+                generadorEjecutado = true;
+                System.out.println("✓ Examples generados exitosamente\n");
+            } catch (Exception e) {
+                System.err.println("⚠ Error al generar Examples desde CSV: " + e.getMessage());
+                System.err.println("⚠ Continuando con los tests usando los Examples existentes...");
+                // No lanzar excepción para no bloquear la ejecución
+                // Si hay un error, se usarán los Examples que ya existen en el feature file
+            }
+        }
+    }
 
     @Before
     public void setUp(Scenario scenario) {
