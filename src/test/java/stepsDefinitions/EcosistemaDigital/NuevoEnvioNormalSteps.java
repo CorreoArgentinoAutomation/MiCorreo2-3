@@ -20,16 +20,82 @@ import java.util.Map;
  * Se ejecuta una vez por cada fila del CSV
  */
 public class NuevoEnvioNormalSteps {
-    private WebDriver driver = DriverManager.getDriver();
     private String baseUrl = DriverManager.config.getProperty("urlED");
-    private PageHomeLoginED pageHomeLoginED = new PageHomeLoginED(driver);
     
-    // Páginas de MiCorreo1_5 (reutilizadas para el flujo de envío)
-    private PageMessageHome pageMessageHome = new PageMessageHome(driver);
-    private PageNuevoEnvio pageNuevoEnvio = new PageNuevoEnvio(driver);
-    private PageCheckOut pageCheckOut = new PageCheckOut(driver);
-    private PagePayment pagePayment = new PagePayment(driver);
-    private PageHomeLogin pageHomeLogin = new PageHomeLogin(driver); // Para logout
+    // Páginas - inicialización lazy (solo cuando se necesiten)
+    private PageHomeLoginED pageHomeLoginED;
+    private PageMessageHome pageMessageHome;
+    private PageNuevoEnvio pageNuevoEnvio;
+    private PageCheckOut pageCheckOut;
+    private PagePayment pagePayment;
+    private PageHomeLogin pageHomeLogin; // Para logout
+    
+    /**
+     * Obtiene el driver (lazy initialization)
+     */
+    private WebDriver getDriver() {
+        return DriverManager.getDriver();
+    }
+    
+    /**
+     * Obtiene la página PageHomeLoginED (lazy initialization)
+     */
+    private PageHomeLoginED getPageHomeLoginED() {
+        if (pageHomeLoginED == null) {
+            pageHomeLoginED = new PageHomeLoginED(getDriver());
+        }
+        return pageHomeLoginED;
+    }
+    
+    /**
+     * Obtiene la página PageMessageHome (lazy initialization)
+     */
+    private PageMessageHome getPageMessageHome() {
+        if (pageMessageHome == null) {
+            pageMessageHome = new PageMessageHome(getDriver());
+        }
+        return pageMessageHome;
+    }
+    
+    /**
+     * Obtiene la página PageNuevoEnvio (lazy initialization)
+     */
+    private PageNuevoEnvio getPageNuevoEnvio() {
+        if (pageNuevoEnvio == null) {
+            pageNuevoEnvio = new PageNuevoEnvio(getDriver());
+        }
+        return pageNuevoEnvio;
+    }
+    
+    /**
+     * Obtiene la página PageCheckOut (lazy initialization)
+     */
+    private PageCheckOut getPageCheckOut() {
+        if (pageCheckOut == null) {
+            pageCheckOut = new PageCheckOut(getDriver());
+        }
+        return pageCheckOut;
+    }
+    
+    /**
+     * Obtiene la página PagePayment (lazy initialization)
+     */
+    private PagePayment getPagePayment() {
+        if (pagePayment == null) {
+            pagePayment = new PagePayment(getDriver());
+        }
+        return pagePayment;
+    }
+    
+    /**
+     * Obtiene la página PageHomeLogin (lazy initialization)
+     */
+    private PageHomeLogin getPageHomeLogin() {
+        if (pageHomeLogin == null) {
+            pageHomeLogin = new PageHomeLogin(getDriver());
+        }
+        return pageHomeLogin;
+    }
     
     // Datos cargados desde CSV
     private Map<String, String> datosEnvio;
@@ -80,7 +146,7 @@ public class NuevoEnvioNormalSteps {
         System.out.println("Datos: " + datosEnvio);
         System.out.println("========================================");
         
-        driver.get(baseUrl);
+        getDriver().get(baseUrl);
     }
     
     @And("el usuario ingresa el correo desde CSV")
@@ -89,7 +155,7 @@ public class NuevoEnvioNormalSteps {
         if (email == null || email.isEmpty()) {
             throw new AssertionError("✗ El campo 'email' no está presente en el CSV o está vacío");
         }
-        pageHomeLoginED.ingresoEmail(email);
+        getPageHomeLoginED().ingresoEmail(email);
         System.out.println("✓ Email ingresado desde CSV: " + email);
     }
     
@@ -99,18 +165,18 @@ public class NuevoEnvioNormalSteps {
         if (pass == null || pass.isEmpty()) {
             throw new AssertionError("✗ El campo 'pass' no está presente en el CSV o está vacío");
         }
-        pageHomeLoginED.ingresoPassword(pass);
+        getPageHomeLoginED().ingresoPassword(pass);
         System.out.println("✓ Contraseña ingresada desde CSV");
     }
     
     @When("el usuario hace clic en el botón Ingresar desde CSV")
     public void elUsuarioHaceClicEnElBotonIngresarDesdeCSV() {
-        pageHomeLoginED.btnIngresar();
+        getPageHomeLoginED().btnIngresar();
     }
     
     @When("ingresa en nuevo envío individual desde CSV")
     public void ingresaEnNuevoEnvioIndividualDesdeCSV() {
-        pageMessageHome.ingresarANuevoEnvio();
+        getPageMessageHome().ingresarANuevoEnvio();
     }
     
     @And("editar el origen del envío individual desde CSV")
@@ -119,7 +185,7 @@ public class NuevoEnvioNormalSteps {
         if (tipoOrigen == null || tipoOrigen.isEmpty()) {
             throw new AssertionError("✗ El campo 'tipoOrigen' no está presente en el CSV o está vacío");
         }
-        pageNuevoEnvio.origenDelEnvioIndividualConZonas(tipoOrigen);
+        getPageNuevoEnvio().origenDelEnvioIndividualConZonas(tipoOrigen);
         System.out.println("✓ Tipo de origen ingresado desde CSV: " + tipoOrigen);
     }
     
@@ -129,7 +195,7 @@ public class NuevoEnvioNormalSteps {
         if (peso == null || peso.isEmpty()) {
             throw new AssertionError("✗ El campo 'peso' no está presente en el CSV o está vacío");
         }
-        pageNuevoEnvio.caracteristicasDelPaqueteCM(peso);
+        getPageNuevoEnvio().caracteristicasDelPaqueteCM(peso);
         System.out.println("✓ Peso ingresado desde CSV: " + peso);
     }
     
@@ -139,7 +205,7 @@ public class NuevoEnvioNormalSteps {
         if (tipoEntrega == null || tipoEntrega.isEmpty()) {
             throw new AssertionError("✗ El campo 'tipoEntrega' no está presente en el CSV o está vacío");
         }
-        pageNuevoEnvio.tipoEntregaZonas(tipoEntrega);
+        getPageNuevoEnvio().tipoEntregaZonas(tipoEntrega);
         System.out.println("✓ Tipo de entrega seleccionado desde CSV: " + tipoEntrega);
     }
     
@@ -149,13 +215,13 @@ public class NuevoEnvioNormalSteps {
         if (tipoProducto == null || tipoProducto.isEmpty()) {
             throw new AssertionError("✗ El campo 'tipoProducto' no está presente en el CSV o está vacío");
         }
-        pageNuevoEnvio.tipoProducto(tipoProducto);
+        getPageNuevoEnvio().tipoProducto(tipoProducto);
         System.out.println("✓ Tipo de producto seleccionado desde CSV: " + tipoProducto);
     }
     
     @And("se muestra la grilla de checkout desde CSV")
     public void seMuestraLaGrillaDeCheckoutDesdeCSV() {
-        pageCheckOut.validarFormularioCheckout();
+        getPageCheckOut().validarFormularioCheckout();
     }
     
     @Then("realiza el pago con el medio de pago desde CSV")
@@ -164,14 +230,14 @@ public class NuevoEnvioNormalSteps {
         if (medioPago == null || medioPago.isEmpty()) {
             throw new AssertionError("✗ El campo 'medioPago' no está presente en el CSV o está vacío");
         }
-        pageCheckOut.medioPago(medioPago);
+        getPageCheckOut().medioPago(medioPago);
         System.out.println("✓ Medio de pago seleccionado desde CSV: " + medioPago);
     }
     
     @And("se confirma que el pago se ha realizado con exito desde CSV")
     public void seConfirmaQueElPagoSeHaRealizadoConExitoDesdeCSV() {
-        pagePayment.verificarPago();
-        pageHomeLogin.logout();
+        getPagePayment().verificarPago();
+        getPageHomeLogin().logout();
     }
 }
 
