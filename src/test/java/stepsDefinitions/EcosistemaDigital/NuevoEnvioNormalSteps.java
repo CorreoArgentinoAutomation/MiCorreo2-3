@@ -2,6 +2,7 @@ package stepsDefinitions.EcosistemaDigital;
 
 import framework.CsvDataLoader;
 import framework.DriverManager;
+import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -10,11 +11,13 @@ import org.openqa.selenium.WebDriver;
 import page.EcosistemaDigital.PageHomeLoginED;
 import page.MiCorreo1_5.*;
 
+import java.util.List;
 import java.util.Map;
 
 /**
  * Step definitions específicos para nuevoEnvioED_normal.feature
  * Estos steps leen los datos desde un archivo CSV y son independientes de los otros features
+ * Se ejecuta una vez por cada fila del CSV
  */
 public class NuevoEnvioNormalSteps {
     private WebDriver driver = DriverManager.getDriver();
@@ -32,14 +35,50 @@ public class NuevoEnvioNormalSteps {
     private Map<String, String> datosEnvio;
     private static final String RUTA_CSV = "src/test/resources/datos_nuevo_envio_ED.csv";
     
+    // Lista estática con todas las filas del CSV
+    private static List<Map<String, String>> todasLasFilasCSV;
+    private static boolean csvCargado = false;
+    
     /**
-     * Carga los datos desde el CSV al inicio del escenario
+     * Hook que se ejecuta antes de cada escenario del feature nuevoEnvioEDNormal
+     * Carga todas las filas del CSV una sola vez
      */
-    @Given("que el usuario carga los datos desde CSV y está en la página de login")
-    public void queElUsuarioCargaLosDatosDesdeCSVYEstaEnLaPaginaDeLogin() {
-        // Cargar datos desde CSV
-        datosEnvio = CsvDataLoader.obtenerPrimeraFila(RUTA_CSV);
-        System.out.println("✓ Datos cargados desde CSV: " + datosEnvio);
+    @Before("@nuevoEnvioEDNormal")
+    public void inicializarCSV() {
+        // Cargar todas las filas del CSV solo la primera vez
+        if (!csvCargado) {
+            todasLasFilasCSV = CsvDataLoader.cargarDatosDesdeCSV(RUTA_CSV);
+            csvCargado = true;
+            System.out.println("✓ Total de filas cargadas desde CSV: " + todasLasFilasCSV.size());
+        }
+        
+        // Verificar que hay filas disponibles
+        if (todasLasFilasCSV == null || todasLasFilasCSV.isEmpty()) {
+            throw new RuntimeException("✗ No se encontraron datos en el CSV: " + RUTA_CSV);
+        }
+    }
+    
+    /**
+     * Carga los datos de una fila específica del CSV basándose en el índice proporcionado
+     */
+    @Given("que el usuario carga los datos de la fila {int} desde CSV y está en la página de login")
+    public void queElUsuarioCargaLosDatosDeLaFilaDesdeCSVYEstaEnLaPaginaDeLogin(int indiceFila) {
+        // Verificar que el CSV fue cargado
+        if (todasLasFilasCSV == null || todasLasFilasCSV.isEmpty()) {
+            throw new AssertionError("✗ No se pudieron cargar los datos desde el CSV");
+        }
+        
+        // Verificar que el índice es válido
+        if (indiceFila < 0 || indiceFila >= todasLasFilasCSV.size()) {
+            throw new AssertionError("✗ Índice de fila inválido: " + indiceFila + ". El CSV tiene " + todasLasFilasCSV.size() + " filas (índices 0-" + (todasLasFilasCSV.size() - 1) + ")");
+        }
+        
+        // Cargar la fila correspondiente
+        datosEnvio = todasLasFilasCSV.get(indiceFila);
+        System.out.println("========================================");
+        System.out.println("Ejecutando escenario con fila " + (indiceFila + 1) + " de " + todasLasFilasCSV.size());
+        System.out.println("Datos: " + datosEnvio);
+        System.out.println("========================================");
         
         driver.get(baseUrl);
     }
