@@ -15,7 +15,7 @@ Feature: Pagar oficio judicial
 
     Examples:
       | tipoUsuario | tipoCamara | medioPago |
-      | usuario ED  | Camara     | Tarjeta   |
+      #| usuario ED  | Camara     | Tarjeta   |
       #| Consumidor final | Camara           | Saldo        |
       #| Monotributista   | Camara           | Saldo        |
       #| Empresa          | Camara           | Saldo        |
@@ -41,7 +41,7 @@ Feature: Pagar oficio judicial
       #| Empresa          | Camara           | Mercado Pago |
       #| Consumidor final | Justicia Federal | Mercado Pago |
       #| Monotributista   | Justicia Federal | Mercado Pago |
-      #| Empresa          | Justicia Federal | Mercado Pago |
+      | Empresa          | Justicia Federal | Mercado Pago |
       #| Consumidor final | Corte Suprema | Mercado Pago |
       #| Monotributista | Corte Suprema | Mercado Pago |
       #| Empresa     | Corte Suprema | Mercado Pago |

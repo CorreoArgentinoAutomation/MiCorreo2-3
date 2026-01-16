@@ -12,7 +12,7 @@ import java.io.IOException;
 
 public class MisEnviosOutlineSteps {
     private WebDriver driver = DriverManager.getDriver();
-    private String baseUrl = DriverManager.config.getProperty("urlTest");
+    private String baseUrl = DriverManager.config.getProperty("url");
     private PageHomeLogin pageHomeLogin = new PageHomeLogin(driver);
     private PageMessageHome pageMessageHome = new PageMessageHome(driver);
     private PageNuevoEnvio pageNuevoEnvio = new PageNuevoEnvio(driver);
