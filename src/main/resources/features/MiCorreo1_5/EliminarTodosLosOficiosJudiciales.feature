@@ -15,10 +15,10 @@ Feature: Eliminar oficios judicialess
 
     Examples:
       | tipoUsuario |
-      | usuario ED  |
+      #| usuario ED  |
       #| Consumidor final |
       #| Monotributista   |
-      #| Empresa          |
+      | Empresa     |
       #| Usuario Invitado |
 		
 

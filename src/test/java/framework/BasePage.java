@@ -183,6 +183,7 @@ public class BasePage {
         String soloNumeros = saldoRaw.replaceAll("[^\\d,\\.]", "");
         // Ejemplo: "$8.705.319,00" -> "8.705.319,00"
 
+        /* esta parte del limpiado de formato se quita por que no es necesario, en los ultimos cambios se agregaron los decimales
         // Eliminar separadores de miles (puntos)
         soloNumeros = soloNumeros.replace(".", "");
 
@@ -190,6 +191,8 @@ public class BasePage {
         if (soloNumeros.contains(",")) {
             soloNumeros = soloNumeros.split(",")[0]; // Tomamos solo la parte entera
         }
+
+         */
 
         // Validación final
         if (!soloNumeros.matches("\\d+")) {

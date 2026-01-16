@@ -19,4 +19,4 @@ Feature: Recargar saldo
       #| mono_tester@yopmail.com | 123123 | Tarjeta      | 10000        |
       #| cf_tester02@yopmail.com | 123123 | Tarjeta      | 10000        |
       #| empctacte_test@yopmail.com | 123123 | Tarjeta      | 10000        |
-      | cf_tester02@yopmail.com | 123123 | Mercado Pago | 10000        |
+      | cf_tester02@yopmail.com | 123123 | Mercado Pago | 10000,01     |
