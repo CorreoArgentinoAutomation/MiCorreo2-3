@@ -5,5 +5,7 @@ INFORME_AUTOMATIZACION_ED_RELEASE1.md
 # Archivos Markdown
 *.md
 
-
+# Carpeta Document (informes y documentación)
+src/main/resources/Document/
+**/Document/
 

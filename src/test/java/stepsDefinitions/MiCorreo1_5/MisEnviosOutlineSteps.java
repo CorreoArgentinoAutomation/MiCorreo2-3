@@ -246,6 +246,11 @@ public class MisEnviosOutlineSteps {
         pageServicios.formularioOficioJudicial(tipoCamara);
     }
 
+    @And("el usuario rellena el formulario de oficios")
+    public void elUsuarioRellenaElFormularioDeOficios() {
+        pageServicios.formularioOficioJudicial();
+    }
+
 
     @When("el usuario hace clic en el boton Recargar saldo")
     public void elUsuarioHaceClicEnElBotonRecargarSaldo() {

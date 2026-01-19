@@ -14,7 +14,7 @@ public class PageServicios extends BasePage {
 
     private By btnOficiosJudiciales = By.xpath("//img[@alt='Servicios - Oficios judiciales']");
     private By campoCamara = By.xpath("//select[@id='camara']");
-    private By opcionCamara = By.xpath("//option[.='Justicia Federal de Bahía Blanca']");
+    private By opcionCamara = By.xpath("//option[.='Justicia Federal de Bahï¿½a Blanca']");
     private By campoNroExpediente = By.xpath("//input[@id='nroexpediente']");
     private By campoAnio = By.xpath("//input[@id='anio']");
     private By campoCantidad = By.xpath("//input[@id='cantidad']");
@@ -53,7 +53,7 @@ public class PageServicios extends BasePage {
 
         String idSelect = "camara";
         switch (tipoCamara) {
-            case "Camara": // Cámara
+            case "Camara": // Cï¿½mara
                 selectIdAleatorio(idSelect, 12,1);
                 break;
             case "Justicia Federal": // Justicia Federal
@@ -81,6 +81,11 @@ public class PageServicios extends BasePage {
         scrollPageUpDown(0,1);
     }
 
+    // MÃ©todo sobrecargado sin parÃ¡metros que usa "Camara" como valor por defecto
+    public void formularioOficioJudicial(){
+        formularioOficioJudicial("Camara");
+    }
+
     public void msjConfirmacionOficio(){
         compararTextoConMensajeEsperado(confirmacionOficio, "Oficio agregado correctamente.Oficio agregado correctamente.");
         System.out.println("El mensaje de confirmacion es: " + getText(confirmacionOficio));
@@ -98,7 +103,7 @@ public class PageServicios extends BasePage {
     }
 
     public void msjConfirmacionPagoRealizado(){
-        compararTextoConMensajeEsperado(msjPagoRealizado, "¡Genial! Tu pago fue procesado correctamente.");
+        compararTextoConMensajeEsperado(msjPagoRealizado, "ï¿½Genial! Tu pago fue procesado correctamente.");
         System.out.println("El mensaje de confirmacion es: " + getText(msjPagoRealizado));
 
         capturarPantalla();
