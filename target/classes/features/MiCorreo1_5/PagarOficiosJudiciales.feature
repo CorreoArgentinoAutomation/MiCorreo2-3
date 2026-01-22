@@ -1,6 +1,7 @@
 @PagoOficioJudicial
 @RegresionRequerimientoEvolutivo
 @RegresionConUsuarioED
+@Regresion1.5
 @PTA-43
 Feature: Pagar oficio judicial
 
@@ -14,7 +15,7 @@ Feature: Pagar oficio judicial
     Then el usuario visualiza el mensaje de pago correctamente
 
     Examples:
-      | tipoUsuario | tipoCamara | medioPago |
+      | tipoUsuario      | tipoCamara       | medioPago    |
       #| usuario ED  | Camara     | Tarjeta   |
       #| Consumidor final | Camara           | Saldo        |
       #| Monotributista   | Camara           | Saldo        |
@@ -22,7 +23,7 @@ Feature: Pagar oficio judicial
       #| Consumidor final | Justicia Federal | Saldo        |
       #| Monotributista   | Justicia Federal | Saldo        |
       #| Empresa          | Justicia Federal | Saldo        |
-      #| Consumidor final | Corte Suprema    | Saldo        |
+      | Consumidor final | Corte Suprema    | Saldo        |
       #| Monotributista   | Corte Suprema    | Saldo        |
       #| Empresa          | Corte Suprema    | Saldo        |
 
@@ -33,7 +34,7 @@ Feature: Pagar oficio judicial
       #| Monotributista   | Justicia Federal | Tarjeta      |
       #| Empresa          | Justicia Federal | Tarjeta      |
       #| Consumidor final | Corte Suprema    | Tarjeta      |
-      #| Monotributista   | Corte Suprema    | Tarjeta      |
+      | Monotributista   | Corte Suprema    | Tarjeta      |
       #| Empresa          | Corte Suprema    | Tarjeta      |
 
       #| Consumidor final | Camara           | Mercado Pago |

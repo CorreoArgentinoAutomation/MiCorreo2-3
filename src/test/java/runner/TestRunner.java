@@ -33,7 +33,7 @@ import org.junit.runner.RunWith;
         // - @Woocommerce: Tests de WooCommerce
         // - @Presta: Tests de PrestaShop
         // - @MiCorreo2: Tests de MiCorreo2
-        tags = "@recargarSaldo"
+        tags = "@Regresion1.5"
 )
 public class TestRunner {
 }

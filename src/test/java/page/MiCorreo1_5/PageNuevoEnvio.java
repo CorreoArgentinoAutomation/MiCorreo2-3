@@ -36,6 +36,9 @@ public class PageNuevoEnvio extends BasePage {
     private By celularLocator = By.xpath("//input[@id='celular']");
     private By celularCodArea = By.xpath("//input[@id='codAreaPaqDom']");
     private By celularNumeroTelefono = By.xpath("//input[@id='celularPaqDom']");
+    //codigo de area y numero de telefono para sucursal
+    private By celularCodAreaSuc = By.xpath("//input[@id='codAreaPaqSuc']");
+    private By celularNumeroTelefonoSuc = By.xpath("//input[@id='celularPaqSuc']");
     private By observacionesLocator = By.xpath("//textarea[@id='observaciones']");
     private By envioExpresoLocator = By.xpath("//input[@class='form-check-input EXPRESO']");
     private By envioClasicoLocator = By.xpath("//input[@class='form-check-input CLASICO']");
@@ -428,7 +431,7 @@ public class PageNuevoEnvio extends BasePage {
             break;
             case "DomicilioZona6": {
                 valorProvincia = "C";
-                codigoPostal = "1650";//San Martin
+                codigoPostal = "1000";//San Martin
                 nombreProvincia = "BUENOS AIRES";
                 entregaDomicilioZonas(valorProvincia, codigoPostal, nombreProvincia);
             }
@@ -509,8 +512,9 @@ public class PageNuevoEnvio extends BasePage {
 
         //se realizo un cambio de campo para que no se requiera el celular ahora son 2 campos codigo de area y numero de telefono
         //writeText(celularSuc, "3825564354");
-        writeText(celularCodArea, "351");
-        writeText(celularNumeroTelefono, "1456789");
+        waitForSeconds(1);
+        writeText(celularCodAreaSuc, "351");
+        writeText(celularNumeroTelefonoSuc, "1456789");
 
         waitForSeconds(3);
     }

@@ -1,4 +1,4 @@
-@recargarSaldo
+@recargarSaldoED
 @RegresionConUsuarioED
 @PTA-46
 Feature: Recargar saldo
