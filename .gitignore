@@ -9,3 +9,5 @@ INFORME_AUTOMATIZACION_ED_RELEASE1.md
 src/main/resources/Document/
 **/Document/
 
+# Directorio para reportes de tests con muchas ejecuciones pesa mas de 300MB y github solo deja subir archivos de 100MB
+target/cucumber-reports
