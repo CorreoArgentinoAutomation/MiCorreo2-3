@@ -17,7 +17,7 @@ Feature: Recargar saldo
       #| usuario ED  | Tarjeta   | 10000        |
       | Consumidor final | Tarjeta      | 10000,01     |
       | Monotributista   | Tarjeta      | 10000,01     |
-      | Empresa          | Tarjeta      | 10000000,01  |
+      | Empresa          | Tarjeta      | 10000,01     |
       | Consumidor final | Mercado Pago | 10000,01     |
       | Monotributista   | Mercado Pago | 10000,01     |
       | Empresa          | Mercado Pago | 10000,01     |

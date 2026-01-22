@@ -1,4 +1,4 @@
-@PagoOficioJudicial
+@EliminarTodosLosOficiosJudiciales
 @Regresion1.5
 @PTA-44
 
