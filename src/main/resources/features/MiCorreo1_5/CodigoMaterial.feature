@@ -1,7 +1,7 @@
 @EnvioIndivual
 @Regresion1.5
 #@RegresionRequerimientoEvolutivo
-#@PTA-42
+@PTA-42
 #@MCIB-133 Numero de referencia de envío en el proyecto de jira
 Feature: TE - Nuevo envio individual
 
@@ -24,34 +24,34 @@ Feature: TE - Nuevo envio individual
 
     Examples:
       | tipoUsuario      | tipoOrigen    | peso  | tipoEntrega    | tipoProducto | medioPago        |
-      | Consumidor final | SucursalZona1 | 1kg   | DomicilioZona1 | Clasico      | Tarjeta          |
-      | Consumidor final | SucursalZona1 | 5kg   | SucursalZona1  | Expreso      | Mercado Pago     |
+      | Consumidor final | SucursalZona1 | 0,5kg | DomicilioZona1 | Clasico      | Tarjeta          |
+      | Consumidor final | SucursalZona1 | 1kg   | SucursalZona1  | Expreso      | Mercado Pago     |
       | Consumidor final | PickUP        | 2kg   | DomicilioZona7 | PaqArHoy     | Saldo            |
-      | Consumidor final | SucursalZona2 | 10kg  | SucursalZona2  | Clasico      | Tarjeta          |
-      | Consumidor final | SucursalZona3 | 3kg   | DomicilioZona3 | Expreso      | Mercado Pago     |
-      | Consumidor final | PickUP        | 15kg  | DomicilioZona7 | PaqArHoy     | Saldo            |
-      | Consumidor final | SucursalZona4 | 5kg   | DomicilioZona4 | Clasico      | Tarjeta          |
+      | Consumidor final | SucursalZona2 | 3kg   | SucursalZona2  | Clasico      | Tarjeta          |
+      | Consumidor final | SucursalZona3 | 5kg   | DomicilioZona3 | Expreso      | Mercado Pago     |
+      | Consumidor final | PickUP        | 10kg  | DomicilioZona7 | PaqArHoy     | Saldo            |
+      | Consumidor final | SucursalZona4 | 15kg  | DomicilioZona4 | Clasico      | Tarjeta          |
       | Consumidor final | SucursalZona4 | 20kg  | SucursalZona4  | Expreso      | Saldo            |
-      | Consumidor final | PickUP        | 1kg   | DomicilioZona5 | PaqArHoy     | Tarjeta          |
-      | Consumidor final | PickUP        | 2kg   | DomicilioZona6 | Clasico      | Mercado Pago     |
-      | Consumidor final | PickUP        | 3kg   | DomicilioZona7 | Expreso      | Saldo            |
-      | Monotributista   | SucursalZona1 | 1kg   | DomicilioZona1 | Expreso      | Tarjeta          |
-      | Monotributista   | SucursalZona1 | 10kg  | SucursalZona1  | Clasico      | Mercado Pago     |
-      | Monotributista   | SucursalZona2 | 2kg   | DomicilioZona2 | PaqArHoy     | Saldo            |
-      | Monotributista   | SucursalZona2 | 15kg  | SucursalZona2  | Expreso      | Tarjeta          |
-      | Monotributista   | SucursalZona3 | 5kg   | DomicilioZona3 | Clasico      | Mercado Pago     |
-      | Monotributista   | SucursalZona3 | 25kg  | SucursalZona3  | PaqArHoy     | Saldo            |
-      | Monotributista   | SucursalZona4 | 3kg   | DomicilioZona4 | Expreso      | Tarjeta          |
-      | Monotributista   | SucursalZona4 | 30kg  | SucursalZona4  | Clasico      | Saldo            |
-      | Monotributista   | PickUP        | 2kg   | DomicilioZona6 | PaqArHoy     | Tarjeta          |
-      | Empresa          | SucursalZona1 | 1kg   | DomicilioZona1 | Clasico      | Cuenta Corriente |
-      | Empresa          | SucursalZona1 | 10kg  | SucursalZona1  | Expreso      | Tarjeta          |
-      | Empresa          | PickUP        | 20kg  | DomicilioZona6 | PaqArHoy     | Mercado Pago     |
-      | Empresa          | SucursalZona2 | 2kg   | DomicilioZona2 | Clasico      | Cuenta Corriente |
-      | Empresa          | SucursalZona2 | 15kg  | SucursalZona2  | Expreso      | Saldo            |
-      | Empresa          | PickUP        | 5kg   | DomicilioZona5 | PaqArHoy     | Cuenta Corriente |
-      | Empresa          | SucursalZona3 | 25kg  | SucursalZona3  | Clasico      | Tarjeta          |
-      | Empresa          | SucursalZona4 | 3kg   | DomicilioZona4 | Expreso      | Cuenta Corriente |
+      | Consumidor final | PickUP        | 25kg  | DomicilioZona5 | PaqArHoy     | Tarjeta          |
+      | Consumidor final | PickUP        | 30kg  | DomicilioZona6 | Clasico      | Mercado Pago     |
+      | Consumidor final | PickUP        | 35kg  | DomicilioZona7 | Expreso      | Saldo            |
+      | Monotributista   | SucursalZona1 | 40kg  | DomicilioZona1 | Expreso      | Tarjeta          |
+      | Monotributista   | SucursalZona1 | 50kg  | SucursalZona1  | Clasico      | Mercado Pago     |
+      | Monotributista   | SucursalZona2 | 60kg  | DomicilioZona2 | Expreso      | Saldo            |
+      | Monotributista   | SucursalZona2 | 70kg  | SucursalZona2  | Expreso      | Tarjeta          |
+      | Monotributista   | SucursalZona3 | 80kg  | DomicilioZona3 | Clasico      | Mercado Pago     |
+      | Monotributista   | SucursalZona3 | 90kg  | SucursalZona3  | Clasico      | Saldo            |
+      | Monotributista   | SucursalZona4 | 100kg | DomicilioZona4 | Expreso      | Tarjeta          |
+      | Monotributista   | SucursalZona4 | 110kg | SucursalZona4  | Clasico      | Saldo            |
+      | Monotributista   | SucursalZona4 | 120kg | DomicilioZona6 | Clasico      | Tarjeta          |
+      | Empresa          | SucursalZona1 | 130kg | DomicilioZona1 | Clasico      | Cuenta Corriente |
+      | Empresa          | SucursalZona1 | 140kg | SucursalZona1  | Expreso      | Tarjeta          |
+      | Empresa          | PickUP        | 150kg | DomicilioZona6 | PaqArHoy     | Mercado Pago     |
+      | Empresa          | SucursalZona2 | 170kg | DomicilioZona2 | Clasico      | Cuenta Corriente |
+      | Empresa          | SucursalZona2 | 190kg | SucursalZona2  | Expreso      | Saldo            |
+      | Empresa          | PickUP        | 210kg | DomicilioZona5 | PaqArHoy     | Cuenta Corriente |
+      | Empresa          | SucursalZona3 | 230kg | SucursalZona3  | Clasico      | Tarjeta          |
+      | Empresa          | SucursalZona4 | 250kg | DomicilioZona4 | Expreso      | Cuenta Corriente |
       | Empresa          | PickUP        | 30kg  | DomicilioZona5 | PaqArHoy     | Mercado Pago     |
       | Empresa          | PickUP        | 1kg   | DomicilioZona5 | Clasico      | Cuenta Corriente |
       | Consumidor final | PickUP        | 0,5kg | DomicilioZona1 | PaqArHoy     | Saldo            |
