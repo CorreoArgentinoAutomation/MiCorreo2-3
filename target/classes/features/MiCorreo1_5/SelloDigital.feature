@@ -1,4 +1,6 @@
 @SellosDigitales
+@Regresion1.5
+@PTA-45
 Feature: Gestion de pedidos y generacion de sellos digitales
 
 	Background:
@@ -23,10 +25,10 @@ Feature: Gestion de pedidos y generacion de sellos digitales
 		Examples:
 			| Producto  	     | Cantidad |
 			| Carta Simple 20g   | 1        |
-			#| Carta Simple 150g  | 1        |
-			#| Carta Certificada  | 1        |
-			#| Carta Expreso      | 1        |
-			#| Carta Documento    | 1        |
+			| Carta Simple 150g  | 1        |
+			| Carta Certificada  | 1        |
+			| Carta Expreso      | 1        |
+			| Carta Documento    | 1        |
 
 
 		#Carta Simple 20g ejemplo T&T MS000013154AR

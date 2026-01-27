@@ -62,6 +62,10 @@ public class PageCheckOut extends BasePage {
         clickWithRetry(By.xpath("(//button[@id='btnPagar' and normalize-space()='Pagar'])[1]"));
         waitForSeconds(5);
     }
+
+    //Para pagar con Cuenta Corriente se tienen que respetar los siguientes reglas:
+    //El envio a pagar no puede superar el limite de la cuenta corriente
+    //Al pagar con cuenta corriente, primero descuenta del saldo disponible y completa con la cuenta corriente
     public void medioPago(String medioPago){
         if (medioPago.equals("Tarjeta")){
             presionarPagar();

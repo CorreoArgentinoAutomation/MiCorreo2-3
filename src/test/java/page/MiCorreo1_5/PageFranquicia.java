@@ -16,7 +16,7 @@ public class PageFranquicia extends BasePage {
     private By btnSumarCantidadCartaSimple150gm = By.xpath("//div[@id='Cartasimple']/div[2]//div[@class='input-group-append']/button[@class='btn ']");
     private By btnSumarCartaCertificada = By.xpath("//div[@id='Cartacertificada']//div[@class='input-group-append']/button[@class='btn ']");
     private By btnSumarCartaExpreso = By.xpath("//div[@id='Cartaexpreso']//div[@class='input-group-append']/button[@class='btn ']");
-    private By btnSumarCartaDocumento = By.xpath("//div[@id='Cartadocumento']//div[@class='input-group-append']/button[@class='btn ']");
+    private By btnSumarCartaDocumento = By.xpath("(//button[normalize-space(text()) = '+'])[5]");//("//div[@id='Cartadocumento']//div[@class='input-group-append']/button[@class='btn ']");
     private By btnGuardar = By.xpath("//button[contains(.,'Guardar')]");
     private By btnIrPendientes = By.xpath("//a[contains(.,'Ir a pendientes')]");
     private By checkSeleccionTodos = By.xpath("//input[@id='check_padre']");
@@ -26,7 +26,7 @@ public class PageFranquicia extends BasePage {
     private By btnImprimirSellosDigitales = By.xpath("//a[contains(text(), 'aqu')]");
     private By campoNumeroSeguimiento = By.xpath("//input[@id='seguimiento']");
     private By btnConsultar = By.xpath("//button[@id='buscar']");
-    private By msjPagoExitoso = By.xpath("//div[@class='col-12']/div[@class='row']");//h6[contains(text(), '¡Genial! Tu pago fue procesado correctamente')]");
+    private By msjPagoExitoso = By.xpath("//div[@class='col-12']/div[@class='row']");//h6[contains(text(), 'ï¿½Genial! Tu pago fue procesado correctamente')]");
     private By numeroTAndTConsulta = By.xpath(" //table[contains(@id, 'contenedo_tabla')]//td/div[contains(text(), 'M')]");
 
 
@@ -66,7 +66,7 @@ public class PageFranquicia extends BasePage {
         } else if (Producto.equals("Carta Documento")) {
             cartaDocumento(cantidadInt);
         } else {
-            throw new IllegalArgumentException("Tipo de producto no válido: " + Producto);
+            throw new IllegalArgumentException("Tipo de producto no vï¿½lido: " + Producto);
         }
 
         scrollPageUpDown(0, 3);
@@ -172,7 +172,7 @@ public class PageFranquicia extends BasePage {
         } else if (producto.equals("Carta Documento")) {
             productoBuscado = "Carta Documento";
         } else {
-            throw new IllegalArgumentException("Tipo de producto no válido: " + producto);
+            throw new IllegalArgumentException("Tipo de producto no vï¿½lido: " + producto);
         }
 
         waitForSeconds(5);
