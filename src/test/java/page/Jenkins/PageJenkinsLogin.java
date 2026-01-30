@@ -81,4 +81,32 @@ public class PageJenkinsLogin extends BasePage {
             esperarTiempoVariableMinutosYRecargar(minutosMin, minutosMax);
         }
     }
+
+    /**
+     * Recarga la página 1 vez cada minuto (intervalo variable ~60 s ±10%) durante el tiempo total indicado.
+     * Ejemplo: 120 minutos = 2 horas → 120 recargas (una por minuto).
+     *
+     * @param minutosTotales duración total en minutos (ej. 120 para 2 horas)
+     */
+    public void recargarUnaVezCadaMinutoDuranteMinutos(double minutosTotales) {
+        int totalRecargas = (int) Math.round(minutosTotales);
+        if (totalRecargas < 1) {
+            totalRecargas = 1;
+        }
+        double segundosPorMinutoMin = 54;  // ~1 min ±10%
+        double segundosPorMinutoMax = 66;
+        for (int i = 1; i <= totalRecargas; i++) {
+            double segundos = ThreadLocalRandom.current().nextDouble(segundosPorMinutoMin, segundosPorMinutoMax);
+            long ms = (long) (segundos * 1000);
+            System.out.println("[Jenkins] Recarga " + i + "/" + totalRecargas + " — esperando " + String.format("%.1f", segundos) + " s...");
+            try {
+                Thread.sleep(ms);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+                throw new RuntimeException("Espera interrumpida", e);
+            }
+            recargarPagina();
+        }
+        System.out.println("[Jenkins] Finalizado: " + totalRecargas + " recargas en ~" + minutosTotales + " minutos.");
+    }
 }

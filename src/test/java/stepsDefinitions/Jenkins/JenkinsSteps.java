@@ -24,14 +24,14 @@ public class JenkinsSteps {
         BasePage.waitForSeconds(3);
     }
 
-    @And("recargo la página cada aproximadamente 2 horas durante {int} ciclo")
-    public void recargoLaPaginaCadaAproximadamente2HorasDuranteCiclo(int ciclos) {
-        // 2 horas = 120 minutos, con variación ~±10%
-        pageJenkins.recargarCadaAproximadamenteMinutosDuranteCiclos(120, ciclos);
+    @And("recargo la página 1 vez cada minuto durante 2 horas")
+    public void recargoLaPaginaUnaVezCadaMinutoDurante2Horas() {
+        // 2 horas = 120 minutos → 120 recargas (1 por minuto)
+        pageJenkins.recargarUnaVezCadaMinutoDuranteMinutos(120);
     }
 
-    @And("recargo la página cada aproximadamente {double} minutos durante {int} ciclos")
-    public void recargoLaPaginaCadaAproximadamenteMinutosDuranteCiclos(double minutos, int ciclos) {
-        pageJenkins.recargarCadaAproximadamenteMinutosDuranteCiclos(minutos, ciclos);
+    @And("recargo la página 1 vez cada minuto durante {double} minutos")
+    public void recargoLaPaginaUnaVezCadaMinutoDuranteMinutos(double minutos) {
+        pageJenkins.recargarUnaVezCadaMinutoDuranteMinutos(minutos);
     }
 }
