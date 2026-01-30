@@ -16,7 +16,8 @@ import org.junit.runner.RunWith;
         features = {"src/main/resources/features"},
         // Glue paths: incluye todos los paquetes de step definitions, framework y hooks
         glue = {
-                "stepsDefinitions",           // Incluye stepsDefinitions.EcosistemaDigital, MiCorreo1_5, MiCorreo2, etc.
+                "stepsDefinitions",           // Incluye stepsDefinitions.EcosistemaDigital, MiCorreo1_5, MiCorreo2, Jenkins, etc.
+                "stepsDefinitions.Jenkins",   // Steps de Jenkins (mantener sesión en localhost:8080)
                 "PlataformaIntegracion",      // Steps de integración (WooCommerce, Presta, Shopify, Magento)
                 "framework",                  // Hooks y utilidades del framework
                 "MiCorreo2",                  // Steps específicos de MiCorreo2
