@@ -24,7 +24,7 @@ Feature: TE - Nuevo envio individual
     Examples:
       | tipoUsuario | tipoOrigen    | peso  | tipoEntrega    | tipoProducto | medioPago        |
       | Empresa     | SucursalZona4 | 250kg | DomicilioZona4 | Expreso      | Saldo            |
-      | Empresa     | SucursalZona4 | 250kg | DomicilioZona4 | Clasico      | Cuenta Corriente |
+      | Empresa     | SucursalZona4 | 250kg | DomicilioZona4 | Expreso      | Cuenta Corriente |
       |             |               |       |                |              |                  |
       |             |               |       |                |              |                  |
       |             |               |       |                |              |                  |
