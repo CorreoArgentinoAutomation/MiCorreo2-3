@@ -34,7 +34,7 @@ import org.junit.runner.RunWith;
         // - @Woocommerce: Tests de WooCommerce
         // - @Presta: Tests de PrestaShop
         // - @MiCorreo2: Tests de MiCorreo2
-        tags = "@Regresion1.5"
+        tags = "@EnvioIndivual"
 )
 public class TestRunner {
 }

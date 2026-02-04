@@ -15,9 +15,9 @@ Feature: Recargar saldo
     Examples:
       | tipoUsuario      | medioPago    | valorRecarga |
       #| usuario ED  | Tarjeta   | 10000        |
-      | Consumidor final | Tarjeta      | 100000,01  |
-      | Monotributista   | Tarjeta      | 100000,01  |
-      | Empresa          | Tarjeta      | 10000000,01  |
-      | Consumidor final | Mercado Pago | 100000,01  |
-      | Monotributista   | Mercado Pago | 100000,01  |
-      | Empresa          | Mercado Pago | 100000,01    |
+      | Consumidor final | Tarjeta      | 1000000,01   |
+      | Monotributista   | Tarjeta      | 1000000,01   |
+      | Empresa          | Tarjeta      | 1000000,01   |
+      | Consumidor final | Mercado Pago | 1000000,01   |
+      | Monotributista   | Mercado Pago | 1000000,01   |
+      | Empresa          | Mercado Pago | 1000000,01   |
