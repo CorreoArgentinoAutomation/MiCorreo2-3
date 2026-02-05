@@ -72,6 +72,7 @@ public class PageServicios extends BasePage {
 
         writeText(campoAnio, "2024");
 
+        waitForSeconds(1);
         String numeroCantidad = String.valueOf(numerosAleatorios(2));
         writeText(campoCantidad, numeroCantidad);
 
@@ -96,7 +97,7 @@ public class PageServicios extends BasePage {
         click(primerCheckboxFila);
         waitForSeconds(1);
 
-        //scrollPageUpDown(0, 1);
+        scrollPageUpDown(0, 1);
         click(btnCotizar);
 
         pageCheckOut.medioPago(medioPago);
