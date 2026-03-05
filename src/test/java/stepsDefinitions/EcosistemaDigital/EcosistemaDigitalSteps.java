@@ -34,6 +34,8 @@ public class EcosistemaDigitalSteps {
     public String cuitValido;
     public String nombreUsuario;
     public String apellidoUsuario;
+    /** Contraseña generada cuando se usa "aleatorio" en contraseña/confirmar, para reutilizar en confirmar */
+    private String contrasenaParaConfirmar;
 
     /*
     @Given("^el usuario se situa en los campos email y password$")
@@ -84,8 +86,13 @@ public class EcosistemaDigitalSteps {
         pageHomeLoginED.msjEsperado(mensajeEsperado);
     }
 
-    @When("que el usuario ingresa al sitio de ecosistema digital")
+    @Given("que el usuario ingresa al sitio de ecosistema digital")
     public void queElUsuarioIngresaAlSitioDeEcosistemaDigital() {
+        driver.get(baseUrl);
+    }
+
+    @When("que el usuario ingresa al sitio de ecosistema digital")
+    public void queElUsuarioIngresaAlSitioDeEcosistemaDigitalWhen() {
         driver.get(baseUrl);
     }
 
@@ -273,7 +280,7 @@ public class EcosistemaDigitalSteps {
     @And("el usuario llena el formulario de registro con CUIT")
     public void elUsuarioLlenaElFormularioDeRegistroConCUIT() {
         if (cuitValido == null || cuitValido.isEmpty()) {
-            throw new AssertionError("✗ No hay CUIT válido disponible. Debe ejecutarse primero el paso de validación de CUIT.");
+            throw new AssertionError("No hay CUIT válido disponible. Debe ejecutarse primero el paso de validación de CUIT.");
         }
         pageHomeLoginED.llenarFormularioRegistroConCUIT(email, cuitValido);
         // Guardar nombre y apellido para el archivo
@@ -357,5 +364,99 @@ public class EcosistemaDigitalSteps {
             throw new RuntimeException("Error al leer el archivo de CUITs: " + e.getMessage(), e);
         }
         return cuits;
+    }
+
+    @And("el usuario hace clic en el check de terminos y condiciones")
+    public void elUsuarioHaceClicEnElCheckDeTerminosYCondiciones() {
+        pageHomeLoginED.clicCheckTerminosYCondiciones();
+    }
+
+    @And("el usuario escribe en el campo nombre con {string}")
+    public void elUsuarioEscribeEnElCampoNombreCon(String nombre) {
+        pageHomeLoginED.campoNombre(nombre);
+    }
+
+    @And("el usuario escribe en el campo apellido con {string}")
+    public void elUsuarioEscribeEnElCampoApellidoCon(String apellido) {
+        pageHomeLoginED.campoApellido(apellido);
+    }
+
+
+    @And("el usuario hace clic en el combo de tipo con {string}")
+    public void elUsuarioHaceClicEnElComboDeTipoCon(String tipo) {
+        pageHomeLoginED.comboTipo(tipo);
+    }
+
+    // Steps refactor registro: campos documento, cuit, celular, correo, contraseña, confirmar contraseña
+    @And("el usuario escribe en el campo documento con {string}")
+    public void elUsuarioEscribeEnElCampoDocumentoCon(String documento) {
+        String valor = "aleatorio".equalsIgnoreCase(documento != null ? documento.trim() : "")
+                ? pageHomeLoginED.numerosAleatorios(8) : documento;
+        pageHomeLoginED.escribirCampoDocumento(valor);
+    }
+
+    @And("el usuario escribe en el campo cuit con {string}")
+    public void elUsuarioEscribeEnElCampoCuitCon(String cuit) {
+        String valor = cuit;
+        if ("lista".equalsIgnoreCase(cuit != null ? cuit.trim() : "")) {
+            if (cuitValido != null && !cuitValido.isEmpty()) {
+                valor = cuitValido;
+            } else {
+                valor = leerCuitsDesdeArchivo("src/test/resources/cuits_lista.txt").stream()
+                        .filter(s -> !s.isEmpty() && !s.startsWith("#"))
+                        .map(s -> s.contains("|") ? s.split("\\|")[0].trim() : s.trim())
+                        .findFirst().orElse("");
+            }
+        }
+        if (valor != null && !valor.isEmpty()) {
+            pageHomeLoginED.escribirCampoCuit(valor);
+        }
+    }
+
+    @And("el usuario escribe en el campo celular con {string}")
+    public void elUsuarioEscribeEnElCampoCelularCon(String celular) {
+        String valor = "aleatorio".equalsIgnoreCase(celular != null ? celular.trim() : "")
+                ? pageHomeLoginED.generadorNumeroTelefono() : celular;
+        pageHomeLoginED.escribirCampoCelular(valor);
+    }
+
+    @And("el usuario escribe en el campo correo electronico con {string}")
+    public void elUsuarioEscribeEnElCampoCorreoElectronicoCon(String correo) {
+        String valor = "aleatorio".equalsIgnoreCase(correo != null ? correo.trim() : "")
+                ? pageHomeLoginED.generadorCorreos() : correo;
+        pageHomeLoginED.escribirCampoCorreoElectronico(valor);
+    }
+
+    @And("el usuario escribe en el campo contraseña con {string}")
+    public void elUsuarioEscribeEnElCampoContrasenaCon(String contraseña) {
+        String valor;
+        if ("aleatorio".equalsIgnoreCase(contraseña != null ? contraseña.trim() : "")) {
+            valor = generarContrasenaAleatoriaParaRegistro();
+            this.contrasenaParaConfirmar = valor;
+        } else {
+            valor = contraseña;
+        }
+        pageHomeLoginED.escribirCampoContrasena(valor);
+    }
+
+    @And("el usuario escribe en el campo confirmar contraseña con {string}")
+    public void elUsuarioEscribeEnElCampoConfirmarContrasenaCon(String confirmarContraseña) {
+        String valor = "aleatorio".equalsIgnoreCase(confirmarContraseña != null ? confirmarContraseña.trim() : "")
+                && contrasenaParaConfirmar != null
+                ? contrasenaParaConfirmar : confirmarContraseña;
+        pageHomeLoginED.escribirCampoConfirmarContrasena(valor);
+    }
+
+    private String generarContrasenaAleatoriaParaRegistro() {
+        String letras = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        java.util.Random r = new java.util.Random();
+        StringBuilder sb = new StringBuilder(12);
+        sb.append((char) ('A' + r.nextInt(26)));
+        sb.append((char) ('a' + r.nextInt(26)));
+        sb.append((char) ('0' + r.nextInt(10)));
+        for (int i = 3; i < 12; i++) {
+            sb.append(letras.charAt(r.nextInt(letras.length())));
+        }
+        return sb.toString();
     }
 }

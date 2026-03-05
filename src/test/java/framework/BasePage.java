@@ -135,7 +135,64 @@ public class BasePage {
         return findElement(locator).getText().trim();
     }
 
-    public boolean compararTextoConMensajeEsperado(By locator, String textoEsperado) {
+    public String localizadorPorTexto(String text){
+
+        if (text == null) return "''";
+        if (!text.contains("'")) {
+            return "'" + text + "'";
+        }
+        if (!text.contains("\"")) {
+            return "\"" + text + "\"";
+        }
+
+        // Fallback: concat() cuando contiene ambas comillas
+        StringBuilder sb = new StringBuilder("concat(");
+        boolean first = true;
+        StringBuilder chunk = new StringBuilder();
+        for (char c : text.toCharArray()) {
+            if (c == '\'') {
+                if (chunk.length() > 0) {
+                    if (!first) sb.append(", ");
+                    sb.append("'").append(chunk).append("'");
+                    first = false;
+                    chunk.setLength(0);
+                }
+                if (!first) sb.append(", ");
+                sb.append("\"'\"");
+                first = false;
+            } else if (c == '\"') {
+                if (chunk.length() > 0) {
+                    if (!first) sb.append(", ");
+                    sb.append("'").append(chunk).append("'");
+                    first = false;
+                    chunk.setLength(0);
+                }
+                if (!first) sb.append(", ");
+                sb.append("'\"'");
+                first = false;
+            } else {
+                chunk.append(c);
+            }
+        }
+        if (chunk.length() > 0) {
+            if (!first) sb.append(", ");
+            sb.append("'").append(chunk).append("'");
+        }
+        sb.append(")");
+        return sb.toString();
+    }
+
+
+/**
+ * Devuelve: (//*[(text() = "texto") or contains(text(), "texto")])[index]
+ */
+public String localizadorPorTextoEIndex(String textoBuscado, int index) {
+    String lit = localizadorPorTexto(textoBuscado);
+    return "(//*[(text() = " + lit + ") or contains(text(), " + lit + ")])[" + index + "]";
+}
+
+
+public boolean compararTextoConMensajeEsperado(By locator, String textoEsperado) {
         // Obtener el texto del sitio utilizando el localizador proporcionado
         String textoDelSitio = getText(locator);
         // Comparar el texto del sitio con el texto esperado

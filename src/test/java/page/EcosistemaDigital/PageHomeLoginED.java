@@ -15,27 +15,27 @@ public class PageHomeLoginED extends BasePage {
     public By btnLogin = By.xpath("//button[.='Ingresar' or contains(.,'Ingresar')]");
     // Locator para el mensaje de sesión activa - puede variar según la implementación, ajustar si es necesario
     public By mensajeSesionActivaLocator = By.xpath("//*[contains(text(), 'Tiene una sesión activa') or contains(text(), 'sesión activa')]");
-    
+
     // Locators para recuperación de contraseña
     public By linkOlvidasteContrasena = By.xpath("//p[contains(text(), 'Olvidaste') or contains(text(), 'olvidaste') or contains(text(), 'contraseña') or contains(text(), 'Contraseña')]");
     public By campoEmailRecuperacion = By.xpath("(//input[@placeholder='Correo electrónico' or @type='text'])[2]");
     public By btnEnviarRecuperacion = By.xpath("//button[contains(text(), 'Enviar') or contains(text(), 'Recuperar') or contains(text(), 'Solicitar')]");
     public By mensajeConfirmacionRecuperacion = By.xpath("//*[contains(text(), 'enviado') or contains(text(), 'Enviado') or contains(text(), 'correo') or contains(text(), 'email')]");
-    
+
     // Locators para la página de recuperación de contraseña (después de hacer clic en el enlace del email)
     // Buscar por label o placeholder que contenga "Contraseña" (sin "Confirmar")
     public By campoNuevaContrasena = By.xpath("(//input[@type='password'])[1] | //input[@type='password' and (contains(@placeholder, 'Contraseña') or contains(@name, 'password') or contains(@id, 'password')) and not(contains(@placeholder, 'Confirmar'))]");
     // Buscar el segundo campo de contraseña o el que contenga "Confirmar"
     public By campoConfirmarContrasena = By.xpath("(//input[@type='password'])[2] | //input[@type='password' and (contains(@placeholder, 'Confirmar') or contains(@name, 'confirm') or contains(@id, 'confirm'))]");
     public By btnReiniciarContrasena = By.xpath("//button[contains(text(), 'Reiniciar') or contains(text(), 'reiniciar') or contains(text(), 'Restablecer') or contains(text(), 'restablecer')]");
-    
+
     // Locators para registro de usuario
     public By btnRegistrarme = By.xpath("//a[contains(text(), 'Registrarme') or contains(text(), 'Registrarse') or contains(text(), 'registrarme')] | //button[contains(text(), 'Registrarme')]");
     public By campoNombre = By.xpath("//input[@name='name' or @id='nombre' or contains(@placeholder, 'Nombre')]");
     public By campoApellido = By.xpath("//input[@name='lastname' or @id='apellido' or contains(@placeholder, 'Apellido')]");
     // Combos de Tipo de documento y Rubro
     // Combo Tipo de documento - MUI Autocomplete con fieldset legend "Tipo"
-    public By comboDNI = By.xpath("//fieldset[.//legend[contains(text(), 'Tipo')]]//input[@role='combobox'] | //input[@role='combobox' and @placeholder='Seleccionar' and contains(@class, 'MuiAutocomplete-input')]");
+    public By comboDNI = By.xpath("//fieldset[.//legend[contains(text(), 'Tipo')]]//input[@role='combobox'] | //input[@role='combobox' and @placeholder='Seleccione' and contains(@class, 'MuiAutocomplete-input')]");
     // Botón para abrir el dropdown del Autocomplete (popup indicator)
     public By botonPopupIndicatorTipo = By.xpath("//fieldset[.//legend[contains(text(), 'Tipo')]]//button[@class='MuiButtonBase-root MuiIconButton-root MuiAutocomplete-popupIndicator'] | //fieldset[.//legend[contains(text(), 'Tipo')]]//button[contains(@class, 'MuiAutocomplete-popupIndicator')]");
     public By opcionDNI = By.xpath("//li[@data-value='DNI']");
@@ -48,7 +48,7 @@ public class PageHomeLoginED extends BasePage {
     public By campoPasswordConfirmRegistro = By.xpath("(//input[@type='password' and (contains(@name, 'password') or contains(@id, 'password') or contains(@placeholder, 'Contraseña'))])[3]");
     public By checkTerminos = By.xpath("//input[@type='checkbox' and @data-indeterminate='false']");
     public By btnSiguiente = By.xpath("//button[@type='submit' and normalize-space(text())='Siguiente']");
-    
+
     // Locators para Paso 2 del registro (Dirección)
     public By comboProvincia = By.xpath("(//input[@role='combobox' or @value='Seleccione'])[1]");
     public By opcionProvincia = By.xpath("//li[contains(@data-value, 'Capital') or contains(text(), 'Capital')] | //li[@data-value][1]");
@@ -57,23 +57,23 @@ public class PageHomeLoginED extends BasePage {
     public By campoDireccion = By.xpath("//input[@name='address' or @id='address' or contains(@placeholder, 'Dirección')]");
     public By campoCodigoPostal = By.xpath("//input[@name='postalCode' or @id='postalCode' or contains(@placeholder, 'Código postal') or contains(@placeholder, 'postal')]");
     public By btnRegistrarseFinal = By.xpath("(//button[contains(text(), 'Registrarme') and not(contains(text(), 'Siguiente'))] | //button[@type='submit' and contains(text(), 'Registrarme')])[2]");
-    
+
     public By mensajeBienvenida = By.xpath("//*[contains(text(), 'Bienvenido') or contains(text(), 'bienvenido') or contains(text(), 'Bienvenida') or contains(text(), 'Cuenta creada') or contains(text(), 'Registro exitoso')]");
-    
+
     // Locator para mensajes de validación (caja roja con errores)
     public By mensajesValidacion = By.xpath("//*[contains(@class, 'error') or contains(@class, 'validation') or contains(@style, 'red') or contains(@style, 'error')]//*[contains(text(), 'Debe') or contains(text(), 'debe')] | //div[contains(@class, 'MuiAlert')]//*[contains(text(), 'Debe') or contains(text(), 'debe')]");
-    
+
     // Variable para almacenar la contraseña generada
     private String contrasenaGenerada;
-    
+
     // Variables para almacenar credenciales para reintento
     private String emailGuardado;
     private String passwordGuardado;
-    
+
     // Variables para almacenar datos del usuario registrado con CUIT
     private String nombreUsuarioRegistrado;
     private String apellidoUsuarioRegistrado;
-    
+
     // Locators para registro con CUIT
     public By opcionCUIT = By.xpath("//li[@data-value='CUIT'] | //li[contains(text(), 'CUIT')]");
     // Campo CUIT - aparece cuando se selecciona CUIT como tipo de documento
@@ -139,23 +139,23 @@ public class PageHomeLoginED extends BasePage {
         while (!loginExitoso && reintentos <= maxReintentos) {
             // Hacer clic en el botón Ingresar
             click(btnLogin);
-            
+
             // Esperar un momento para que aparezca el mensaje si existe
             waitForSeconds(2);
-            
+
             // Verificar si aparece el mensaje de sesión activa
             if (verificarMensajeSesionActiva()) {
                 reintentos++;
-                System.out.println("⚠ Mensaje de sesión activa detectado. Reintentando login (intento " + reintentos + "/" + maxReintentos + ")...");
-                
+                System.out.println("Mensaje de sesión activa detectado. Reintentando login (intento " + reintentos + "/" + maxReintentos + ")...");
+
                 // Si ya se alcanzó el máximo de reintentos, continuar de todas formas
                 // porque según el mensaje, el sistema cerrará la sesión anterior automáticamente
                 if (reintentos > maxReintentos) {
-                    System.out.println("⚠ Se alcanzó el máximo de reintentos. Continuando con el login...");
+                    System.out.println("Se alcanzó el máximo de reintentos. Continuando con el login...");
                     loginExitoso = true;
                     break;
                 }
-                
+
                 // Limpiar campos y reintentar
                 limpiarCampos();
                 if (emailGuardado != null && passwordGuardado != null) {
@@ -164,47 +164,48 @@ public class PageHomeLoginED extends BasePage {
                     // Esperar un momento antes de continuar el ciclo
                     waitForSeconds(1);
                 } else {
-                    System.out.println("⚠ No se pueden reintentar las credenciales porque no fueron guardadas");
+                    System.out.println("No se pueden reintentar las credenciales porque no fueron guardadas");
                     break;
                 }
             } else {
                 // No hay mensaje de sesión activa, el login procede normalmente
                 loginExitoso = true;
-                System.out.println("✓ Login procesado correctamente");
+                System.out.println("Login procesado correctamente");
             }
         }
     }
 
     /**
      * Verifica si el mensaje de sesión activa está presente en la página
+     *
      * @return true si el mensaje existe, false en caso contrario
      */
     private boolean verificarMensajeSesionActiva() {
         try {
             // Buscar el mensaje de sesión activa usando findElements para evitar excepciones
             java.util.List<WebElement> elementos = getDriver().findElements(mensajeSesionActivaLocator);
-            
+
             for (WebElement elemento : elementos) {
                 if (elemento.isDisplayed()) {
                     String textoMensaje = elemento.getText();
                     // Verificar si contiene texto relacionado con sesión activa
-                    if (textoMensaje.contains("sesión activa") || 
-                        textoMensaje.contains("Tiene una sesión activa") ||
-                        textoMensaje.contains("sesión anterior")) {
-                        System.out.println("⚠ Mensaje de sesión activa detectado: " + textoMensaje);
+                    if (textoMensaje.contains("sesión activa") ||
+                            textoMensaje.contains("Tiene una sesión activa") ||
+                            textoMensaje.contains("sesión anterior")) {
+                        System.out.println("Mensaje de sesión activa detectado: " + textoMensaje);
                         return true;
                     }
                 }
             }
-            
+
             // También buscar por texto en toda la página como respaldo
             String pageText = getDriver().findElement(By.tagName("body")).getText();
-            if (pageText.contains("Tiene una sesión activa") || 
-                pageText.contains("sesión activa") && pageText.contains("cerrar su sesión")) {
-                System.out.println("⚠ Mensaje de sesión activa detectado en el texto de la página");
+            if (pageText.contains("Tiene una sesión activa") ||
+                    pageText.contains("sesión activa") && pageText.contains("cerrar su sesión")) {
+                System.out.println("Mensaje de sesión activa detectado en el texto de la página");
                 return true;
             }
-            
+
         } catch (org.openqa.selenium.NoSuchElementException e) {
             // El mensaje no existe, lo cual es normal si no hay sesión activa
             return false;
@@ -232,8 +233,14 @@ public class PageHomeLoginED extends BasePage {
     }
 
     public void msjEsperado(String mensaje) {
-        System.out.println("El sistema muestra el mensaje:");
+        System.out.println("El sistema muestra el menu de " + mensaje);
 
+        String localizador = localizadorPorTextoEIndex(mensaje, 2);
+        //System.out.println(localizador);
+        By textoBuscado = By.xpath(localizador);
+        System.out.println(getText(textoBuscado));
+        compararTextoConMensajeEsperado(textoBuscado, mensaje);
+        /*
         switch (mensaje) {
             case "Correo o contraseña incorrectos":
                 System.out.println("Correo o contraseña incorrectos");
@@ -252,24 +259,24 @@ public class PageHomeLoginED extends BasePage {
                 break;
         }
 
-
+         */
     }
 
     public void validarCampoCorreoExiste() {
         boolean campoExiste = validarCampoExistenteYEditable(emailLocator);
         if (campoExiste) {
-            System.out.println("✓ El campo de correo existe y está visible y editable");
+            System.out.println("El campo de correo existe y está visible y editable");
         } else {
-            throw new AssertionError("✗ El campo de correo no existe o no está visible/editable");
+            throw new AssertionError("El campo de correo no existe o no está visible/editable");
         }
     }
 
     public void validarCampoContrasenaExiste() {
         boolean campoExiste = validarCampoExistenteYEditable(passwordLocator);
         if (campoExiste) {
-            System.out.println("✓ El campo de contraseña existe y está visible y editable");
+            System.out.println("El campo de contraseña existe y está visible y editable");
         } else {
-            throw new AssertionError("✗ El campo de contraseña no existe o no está visible/editable");
+            throw new AssertionError("El campo de contraseña no existe o no está visible/editable");
         }
     }
 
@@ -278,12 +285,12 @@ public class PageHomeLoginED extends BasePage {
         if (botonExiste) {
             WebElement boton = findElement(btnLogin);
             if (boton.isDisplayed() && boton.isEnabled()) {
-                System.out.println("✓ El botón Ingresar existe y está visible y habilitado");
+                System.out.println("El botón Ingresar existe y está visible y habilitado");
             } else {
-                throw new AssertionError("✗ El botón Ingresar existe pero no está visible o habilitado");
+                throw new AssertionError("El botón Ingresar existe pero no está visible o habilitado");
             }
         } else {
-            throw new AssertionError("✗ El botón Ingresar no existe en la página");
+            throw new AssertionError("El botón Ingresar no existe en la página");
         }
     }
 
@@ -292,10 +299,10 @@ public class PageHomeLoginED extends BasePage {
         try {
             waitForSeconds(1);
             click(linkOlvidasteContrasena);
-            System.out.println("✓ Se hizo clic en el enlace '¿Olvidaste tu contraseña?'");
+            System.out.println("Se hizo clic en el enlace '¿Olvidaste tu contraseña?'");
             waitForSeconds(2); // Esperar a que cargue la página de recuperación
         } catch (Exception e) {
-            throw new AssertionError("✗ No se pudo hacer clic en el enlace de recuperación de contraseña: " + e.getMessage());
+            throw new AssertionError("No se pudo hacer clic en el enlace de recuperación de contraseña: " + e.getMessage());
         }
     }
 
@@ -303,9 +310,9 @@ public class PageHomeLoginED extends BasePage {
         try {
             waitForSeconds(1);
             writeText(campoEmailRecuperacion, email);
-            System.out.println("✓ Se ingresó el email para recuperación: " + email);
+            System.out.println("Se ingresó el email para recuperación: " + email);
         } catch (Exception e) {
-            throw new AssertionError("✗ No se pudo ingresar el email para recuperación: " + e.getMessage());
+            throw new AssertionError("No se pudo ingresar el email para recuperación: " + e.getMessage());
         }
     }
 
@@ -313,10 +320,10 @@ public class PageHomeLoginED extends BasePage {
         try {
             waitForSeconds(1);
             click(btnEnviarRecuperacion);
-            System.out.println("✓ Se solicitó la recuperación de contraseña");
+            System.out.println("Se solicitó la recuperación de contraseña");
             waitForSeconds(2); // Esperar respuesta del servidor
         } catch (Exception e) {
-            throw new AssertionError("✗ No se pudo solicitar la recuperación de contraseña: " + e.getMessage());
+            throw new AssertionError("No se pudo solicitar la recuperación de contraseña: " + e.getMessage());
         }
     }
 
@@ -327,23 +334,24 @@ public class PageHomeLoginED extends BasePage {
             if (mensajeExiste) {
                 WebElement mensaje = findElement(mensajeConfirmacionRecuperacion);
                 String textoMensaje = mensaje.getText();
-                System.out.println("✓ Mensaje de confirmación encontrado: " + textoMensaje);
+                System.out.println("Mensaje de confirmación encontrado: " + textoMensaje);
             } else {
                 // También buscar en el texto de la página
                 String pageText = getDriver().findElement(By.tagName("body")).getText();
                 if (pageText.contains("enviado") || pageText.contains("correo") || pageText.contains("email")) {
-                    System.out.println("✓ Mensaje de confirmación encontrado en la página");
+                    System.out.println("Mensaje de confirmación encontrado en la página");
                 } else {
-                    throw new AssertionError("✗ No se encontró mensaje de confirmación de recuperación de contraseña");
+                    throw new AssertionError("No se encontró mensaje de confirmación de recuperación de contraseña");
                 }
             }
         } catch (Exception e) {
-            throw new AssertionError("✗ Error al validar mensaje de confirmación: " + e.getMessage());
+            throw new AssertionError("Error al validar mensaje de confirmación: " + e.getMessage());
         }
     }
 
     /**
      * Genera una contraseña aleatoria y la muestra por consola
+     *
      * @return La contraseña generada
      */
     public String generarContrasenaAleatoria() {
@@ -352,20 +360,20 @@ public class PageHomeLoginED extends BasePage {
         String letrasMinusculas = "abcdefghijklmnopqrstuvwxyz";
         String numeros = "0123456789";
         String caracteres = letrasMayusculas + letrasMinusculas + numeros;
-        
+
         java.util.Random random = new java.util.Random();
         StringBuilder contrasena = new StringBuilder(12); // Longitud de 12 caracteres
-        
+
         // Asegurar al menos una mayúscula, una minúscula y un número
         contrasena.append(letrasMayusculas.charAt(random.nextInt(letrasMayusculas.length())));
         contrasena.append(letrasMinusculas.charAt(random.nextInt(letrasMinusculas.length())));
         contrasena.append(numeros.charAt(random.nextInt(numeros.length())));
-        
+
         // Completar el resto con caracteres aleatorios
         for (int i = 3; i < 12; i++) {
             contrasena.append(caracteres.charAt(random.nextInt(caracteres.length())));
         }
-        
+
         // Mezclar los caracteres para que no siempre empiecen igual
         char[] array = contrasena.toString().toCharArray();
         for (int i = array.length - 1; i > 0; i--) {
@@ -374,14 +382,14 @@ public class PageHomeLoginED extends BasePage {
             array[i] = array[j];
             array[j] = temp;
         }
-        
+
         String contrasenaFinal = new String(array);
         this.contrasenaGenerada = contrasenaFinal;
-        
+
         System.out.println("==========================================");
         System.out.println("CONTRASEÑA GENERADA: " + contrasenaFinal);
         System.out.println("==========================================");
-        
+
         return contrasenaFinal;
     }
 
@@ -393,9 +401,9 @@ public class PageHomeLoginED extends BasePage {
             waitForSeconds(2);
             String contrasena = generarContrasenaAleatoria();
             writeText(campoNuevaContrasena, contrasena);
-            System.out.println("✓ Se ingresó la nueva contraseña");
+            System.out.println("Se ingresó la nueva contraseña");
         } catch (Exception e) {
-            throw new AssertionError("✗ No se pudo ingresar la nueva contraseña: " + e.getMessage());
+            throw new AssertionError("No se pudo ingresar la nueva contraseña: " + e.getMessage());
         }
     }
 
@@ -406,12 +414,12 @@ public class PageHomeLoginED extends BasePage {
         try {
             waitForSeconds(1);
             if (contrasenaGenerada == null || contrasenaGenerada.isEmpty()) {
-                throw new AssertionError("✗ No hay contraseña generada para confirmar");
+                throw new AssertionError("No hay contraseña generada para confirmar");
             }
             writeText(campoConfirmarContrasena, contrasenaGenerada);
-            System.out.println("✓ Se confirmó la nueva contraseña");
+            System.out.println("Se confirmó la nueva contraseña");
         } catch (Exception e) {
-            throw new AssertionError("✗ No se pudo confirmar la nueva contraseña: " + e.getMessage());
+            throw new AssertionError("No se pudo confirmar la nueva contraseña: " + e.getMessage());
         }
     }
 
@@ -422,14 +430,15 @@ public class PageHomeLoginED extends BasePage {
         try {
             waitForSeconds(1);
             click(btnReiniciarContrasena);
-            System.out.println("✓ Se hizo clic en el botón para reiniciar la contraseña");
+            System.out.println("Se hizo clic en el botón para reiniciar la contraseña");
             waitForSeconds(2); // Esperar respuesta del servidor
         } catch (Exception e) {
-            throw new AssertionError("✗ No se pudo hacer clic en el botón de reiniciar contraseña: " + e.getMessage());
+            throw new AssertionError("No se pudo hacer clic en el botón de reiniciar contraseña: " + e.getMessage());
         }
     }
 
     // Métodos para registro de usuario
+
     /**
      * Hace clic en el botón "Registrarme"
      */
@@ -437,29 +446,30 @@ public class PageHomeLoginED extends BasePage {
         try {
             waitForSeconds(1);
             click(btnRegistrarme);
-            System.out.println("✓ Se hizo clic en el botón 'Registrarme'");
+            System.out.println("Se hizo clic en el botón 'Registrarme'");
             waitForSeconds(2); // Esperar a que se abra el formulario
         } catch (Exception e) {
-            throw new AssertionError("✗ No se pudo hacer clic en el botón Registrarme: " + e.getMessage());
+            throw new AssertionError("No se pudo hacer clic en el botón Registrarme: " + e.getMessage());
         }
     }
 
     /**
      * Llena el formulario de registro con los datos proporcionados
+     *
      * @param email El email del usuario (generado temporalmente)
      */
     public void llenarFormularioRegistro(String email) {
         try {
             waitForSeconds(1);
-            
+
             // Nombre
             writeText(campoNombre, generadorNombresReales());
-            System.out.println("✓ Se ingresó el nombre");
-            
+            System.out.println("Se ingresó el nombre");
+
             // Apellido
             writeText(campoApellido, generadorApellidosReales());
-            System.out.println("✓ Se ingresó el apellido");
-            
+            System.out.println("Se ingresó el apellido");
+
             // Documento - Abrir combo Tipo
             try {
                 // Intentar hacer clic en el botón del popup indicator primero
@@ -478,58 +488,58 @@ public class PageHomeLoginED extends BasePage {
             String numeroDocumento = numerosAleatorios(8);
             waitForSeconds(1);
             writeText(campoDocumento, numeroDocumento);
-            System.out.println("✓ Se ingresó el documento: " + numeroDocumento);
-            
+            System.out.println("Se ingresó el documento: " + numeroDocumento);
+
             // Rubro (selecciona la primera opción disponible)
             try {
                 click(comboRubro);
                 waitForSeconds(1);
                 //click(opcionRubroPrimera);
                 String numero = numerosAleatorios(1);
-                sendFlechaAbajo(Integer.parseInt(numero+1));
+                sendFlechaAbajo(Integer.parseInt(numero + 1));
                 sendEnter();
-                System.out.println("La opcion seleccionada es: "  + numero);
-                System.out.println("✓ Se seleccionó un rubro");
+                System.out.println("La opcion seleccionada es: " + numero);
+                System.out.println("Se seleccionó un rubro");
             } catch (Exception e) {
-                System.out.println("⚠ No se pudo seleccionar el rubro: " + e.getMessage());
+                System.out.println("No se pudo seleccionar el rubro: " + e.getMessage());
             }
-            
+
             // Celular
             waitForSeconds(1);
             writeText(campoCelular, generadorNumeroTelefono());
-            System.out.println("✓ Se ingresó el celular");
-            
+            System.out.println("Se ingresó el celular");
+
             // Email
             writeText(campoEmailRegistro, email);
-            System.out.println("✓ Se ingresó el email: " + email);
-            
+            System.out.println("Se ingresó el email: " + email);
+
             // Contraseña
             String contrasena = "123123"; // Contraseña por defecto para registro
             writeText(campoPasswordRegistro, contrasena);
-            System.out.println("✓ Se ingresó la contraseña");
-            
+            System.out.println("Se ingresó la contraseña");
+
             // Confirmar contraseña
             writeText(campoPasswordConfirmRegistro, contrasena);
-            System.out.println("✓ Se confirmó la contraseña");
-            
+            System.out.println("Se confirmó la contraseña");
+
             // Aceptar términos
             try {
                 click(checkTerminos);
-                System.out.println("✓ Se aceptaron los términos y condiciones");
+                System.out.println("Se aceptaron los términos y condiciones");
             } catch (Exception e) {
-                System.out.println("⚠ No se pudo hacer clic en términos (puede que no exista)");
+                System.out.println("No se pudo hacer clic en términos (puede que no exista)");
             }
-            
+
             waitForSeconds(1);
-            
+
             // Enviar formulario Paso 1
             click(btnSiguiente);
-            System.out.println("✓ Se hizo clic en 'Siguiente' - Paso 1 completado");
+            System.out.println("Se hizo clic en 'Siguiente' - Paso 1 completado");
             waitForSeconds(3); // Esperar a que cargue el Paso 2
-            
+
             // ========== PASO 2: Completar dirección ==========
             System.out.println("Iniciando Paso 2: Completar dirección");
-            
+
             // Provincia
             try {
                 waitForSeconds(2);
@@ -539,7 +549,7 @@ public class PageHomeLoginED extends BasePage {
                 // Seleccionar la primera opción disponible o Capital Federal
                 try {
                     //click(opcionProvincia);
-                    writeText(comboProvincia,"capital");
+                    writeText(comboProvincia, "capital");
                     waitForSeconds(1);
                     sendFlechaAbajo(1);
                     sendEnter();
@@ -548,11 +558,11 @@ public class PageHomeLoginED extends BasePage {
                     sendFlechaAbajo(1);
                     sendEnter();
                 }
-                System.out.println("✓ Se seleccionó la provincia");
+                System.out.println("Se seleccionó la provincia");
             } catch (Exception e) {
-                System.out.println("⚠ No se pudo seleccionar la provincia: " + e.getMessage());
+                System.out.println("No se pudo seleccionar la provincia: " + e.getMessage());
             }
-            
+
             // Localidad
             try {
                 waitForSeconds(1);
@@ -561,7 +571,7 @@ public class PageHomeLoginED extends BasePage {
                 // Seleccionar la primera opción disponible
                 try {
                     //click(opcionLocalidad);
-                    writeText(comboLocalidad,"ciudad");
+                    writeText(comboLocalidad, "ciudad");
                     waitForSeconds(1);
                     sendFlechaAbajo(1);
                     sendEnter();
@@ -570,42 +580,42 @@ public class PageHomeLoginED extends BasePage {
                     sendFlechaAbajo(1);
                     sendEnter();
                 }
-                System.out.println("✓ Se seleccionó la localidad");
+                System.out.println("Se seleccionó la localidad");
             } catch (Exception e) {
-                System.out.println("⚠ No se pudo seleccionar la localidad: " + e.getMessage());
+                System.out.println("No se pudo seleccionar la localidad: " + e.getMessage());
             }
-            
+
             // Dirección
             try {
                 waitForSeconds(1);
                 writeText(campoDireccion, "Av. Test " + numerosAleatorios(4));
-                System.out.println("✓ Se ingresó la dirección");
+                System.out.println("Se ingresó la dirección");
             } catch (Exception e) {
-                System.out.println("⚠ No se pudo ingresar la dirección: " + e.getMessage());
+                System.out.println("No se pudo ingresar la dirección: " + e.getMessage());
             }
-            
+
             // Código postal
             try {
                 waitForSeconds(1);
                 writeText(campoCodigoPostal, "1020"); // Código postal por defecto para Capital Federal
-                System.out.println("✓ Se ingresó el código postal");
+                System.out.println("Se ingresó el código postal");
             } catch (Exception e) {
-                System.out.println("⚠ No se pudo ingresar el código postal: " + e.getMessage());
+                System.out.println("No se pudo ingresar el código postal: " + e.getMessage());
             }
-            
+
             waitForSeconds(1);
-            
+
             // Hacer clic en el botón "Registrarme" final
             try {
                 click(btnRegistrarseFinal);
-                System.out.println("✓ Se hizo clic en 'Registrarme' - Paso 2 completado");
+                System.out.println("Se hizo clic en 'Registrarme' - Paso 2 completado");
                 waitForSeconds(3); // Esperar respuesta del servidor y finalización del registro
             } catch (Exception e) {
-                throw new AssertionError("✗ No se pudo hacer clic en el botón Registrarme final: " + e.getMessage());
+                throw new AssertionError("No se pudo hacer clic en el botón Registrarme final: " + e.getMessage());
             }
-            
+
         } catch (Exception e) {
-            throw new AssertionError("✗ Error al llenar el formulario de registro: " + e.getMessage());
+            throw new AssertionError("Error al llenar el formulario de registro: " + e.getMessage());
         }
     }
 
@@ -619,21 +629,21 @@ public class PageHomeLoginED extends BasePage {
             if (mensajeExiste) {
                 WebElement mensaje = findElement(mensajeBienvenida);
                 String textoMensaje = mensaje.getText();
-                System.out.println("✓ Mensaje de bienvenida encontrado: " + textoMensaje);
+                System.out.println("Mensaje de bienvenida encontrado: " + textoMensaje);
             } else {
                 // También buscar en el texto de la página
                 String pageText = getDriver().findElement(By.tagName("body")).getText();
-                if (pageText.contains("Bienvenido") || 
-                    pageText.contains("bienvenido") || 
-                    pageText.contains("Cuenta creada") ||
-                    pageText.contains("Registro exitoso")) {
-                    System.out.println("✓ Mensaje de bienvenida encontrado en la página");
+                if (pageText.contains("Bienvenido") ||
+                        pageText.contains("bienvenido") ||
+                        pageText.contains("Cuenta creada") ||
+                        pageText.contains("Registro exitoso")) {
+                    System.out.println("Mensaje de bienvenida encontrado en la página");
                 } else {
-                    throw new AssertionError("✗ No se encontró mensaje de bienvenida después del registro");
+                    throw new AssertionError("No se encontró mensaje de bienvenida después del registro");
                 }
             }
         } catch (Exception e) {
-            throw new AssertionError("✗ Error al validar mensaje de bienvenida: " + e.getMessage());
+            throw new AssertionError("Error al validar mensaje de bienvenida: " + e.getMessage());
         }
     }
 
@@ -645,7 +655,7 @@ public class PageHomeLoginED extends BasePage {
         try {
             waitForSeconds(1);
             By locatorCampo = null;
-            
+
             switch (campo.toLowerCase()) {
                 case "nombre":
                     locatorCampo = campoNombre;
@@ -689,7 +699,7 @@ public class PageHomeLoginED extends BasePage {
                 default:
                     throw new IllegalArgumentException("Campo no reconocido: " + campo);
             }
-            
+
             if (locatorCampo != null) {
                 // Primero hacer clic en el campo para enfocarlo
                 WebElement elemento = findElement(locatorCampo);
@@ -699,7 +709,7 @@ public class PageHomeLoginED extends BasePage {
                 } catch (InterruptedException e) {
                     Thread.currentThread().interrupt();
                 }
-                
+
                 if (valor == null || valor.isEmpty()) {
                     // Limpiar el campo si el valor está vacío
                     elemento.clear();
@@ -708,14 +718,14 @@ public class PageHomeLoginED extends BasePage {
                     elemento.clear();
                     elemento.sendKeys(valor);
                 }
-                
+
                 // Hacer clic fuera del campo para disparar la validación (blur event)
                 hacerClicFueraDelCampo();
-                
-                System.out.println("✓ Se ingresó en " + campo + ": " + (valor == null || valor.isEmpty() ? "(vacío)" : valor));
+
+                System.out.println("Se ingresó en " + campo + ": " + (valor == null || valor.isEmpty() ? "(vacío)" : valor));
             }
         } catch (Exception e) {
-            throw new AssertionError("✗ Error al ingresar valor en campo " + campo + ": " + e.getMessage());
+            throw new AssertionError("Error al ingresar valor en campo " + campo + ": " + e.getMessage());
         }
     }
 
@@ -727,7 +737,7 @@ public class PageHomeLoginED extends BasePage {
             // Hacer clic en el título del modal o en un área vacía
             // Intentar hacer clic en el título "Creá tu Cuenta" o en el body
             By tituloModal = By.xpath("//h1[contains(text(), 'Creá tu Cuenta') or contains(text(), 'Crea tu Cuenta')] | //h2[contains(text(), 'Creá tu Cuenta')]");
-            
+
             try {
                 if (elementExists(tituloModal)) {
                     click(tituloModal);
@@ -750,14 +760,14 @@ public class PageHomeLoginED extends BasePage {
                     body.sendKeys(org.openqa.selenium.Keys.TAB);
                 }
             }
-            
+
             try {
                 Thread.sleep(500); // Pequeña pausa para que se procese el evento blur
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
             }
         } catch (Exception e) {
-            System.out.println("⚠ No se pudo hacer clic fuera del campo, pero se continuará: " + e.getMessage());
+            System.out.println("No se pudo hacer clic fuera del campo, pero se continuará: " + e.getMessage());
         }
     }
 
@@ -768,35 +778,36 @@ public class PageHomeLoginED extends BasePage {
         try {
             waitForSeconds(1);
             click(btnSiguiente);
-            System.out.println("✓ Se hizo clic en el botón Siguiente");
+            System.out.println("Se hizo clic en el botón Siguiente");
             waitForSeconds(2); // Esperar a que aparezcan los mensajes de validación
         } catch (Exception e) {
-            throw new AssertionError("✗ Error al hacer clic en el botón Siguiente: " + e.getMessage());
+            throw new AssertionError("Error al hacer clic en el botón Siguiente: " + e.getMessage());
         }
     }
 
     /**
      * Llena el formulario de registro con CUIT en lugar de DNI
      * Sigue exactamente el mismo flujo que llenarFormularioRegistro, solo cambiando DNI por CUIT
+     *
      * @param email El email del usuario (generado temporalmente)
-     * @param cuit El CUIT válido del usuario
+     * @param cuit  El CUIT válido del usuario
      */
     public void llenarFormularioRegistroConCUIT(String email, String cuit) {
         try {
             waitForSeconds(1);
-            
+
             // Nombre - Guardar para el archivo
             String nombre = generadorNombresReales();
             this.nombreUsuarioRegistrado = nombre;
             writeText(campoNombre, nombre);
-            System.out.println("✓ Se ingresó el nombre");
-            
+            System.out.println("Se ingresó el nombre");
+
             // Apellido - Guardar para el archivo
             String apellido = generadorApellidosReales();
             this.apellidoUsuarioRegistrado = apellido;
             writeText(campoApellido, apellido);
-            System.out.println("✓ Se ingresó el apellido");
-            
+            System.out.println("Se ingresó el apellido");
+
             // Tipo de documento: CUIT (en lugar de DNI) - Abrir combo Tipo
             try {
                 // Intentar hacer clic en el botón del popup indicator primero
@@ -812,74 +823,74 @@ public class PageHomeLoginED extends BasePage {
             }
             waitForSeconds(1);
             click(opcionCUIT);
-            
+
             // CUIT (en lugar de documento DNI)
             // Intentar usar el mismo campo que documento, si no funciona usar campoCUIT
             waitForSeconds(1);
             try {
                 // Primero intentar con el campo documento (puede que sea el mismo campo)
                 writeText(campoDocumento, cuit);
-                System.out.println("✓ Se ingresó el CUIT: " + cuit);
+                System.out.println("Se ingresó el CUIT: " + cuit);
             } catch (Exception e) {
                 // Si falla, intentar con el campo CUIT específico
                 try {
                     writeText(campoCUIT, cuit);
-                    System.out.println("✓ Se ingresó el CUIT: " + cuit);
+                    System.out.println("Se ingresó el CUIT: " + cuit);
                 } catch (Exception e2) {
-                    throw new AssertionError("✗ No se pudo ingresar el CUIT en ningún campo: " + e2.getMessage());
+                    throw new AssertionError("No se pudo ingresar el CUIT en ningún campo: " + e2.getMessage());
                 }
             }
-            
+
             // Rubro (selecciona la primera opción disponible)
             try {
                 click(comboRubro);
                 waitForSeconds(1);
                 //click(opcionRubroPrimera);
                 String numero = numerosAleatorios(1);
-                sendFlechaAbajo(Integer.parseInt(numero+1));
+                sendFlechaAbajo(Integer.parseInt(numero + 1));
                 sendEnter();
-                System.out.println("La opcion seleccionada es: "  + numero);
-                System.out.println("✓ Se seleccionó un rubro");
+                System.out.println("La opcion seleccionada es: " + numero);
+                System.out.println("Se seleccionó un rubro");
             } catch (Exception e) {
-                System.out.println("⚠ No se pudo seleccionar el rubro: " + e.getMessage());
+                System.out.println("No se pudo seleccionar el rubro: " + e.getMessage());
             }
-            
+
             // Celular
             waitForSeconds(1);
             writeText(campoCelular, generadorNumeroTelefono());
-            System.out.println("✓ Se ingresó el celular");
-            
+            System.out.println("Se ingresó el celular");
+
             // Email
             writeText(campoEmailRegistro, email);
-            System.out.println("✓ Se ingresó el email: " + email);
-            
+            System.out.println("Se ingresó el email: " + email);
+
             // Contraseña
             String contrasena = "123123"; // Contraseña por defecto para registro
             writeText(campoPasswordRegistro, contrasena);
-            System.out.println("✓ Se ingresó la contraseña");
-            
+            System.out.println("Se ingresó la contraseña");
+
             // Confirmar contraseña
             writeText(campoPasswordConfirmRegistro, contrasena);
-            System.out.println("✓ Se confirmó la contraseña");
-            
+            System.out.println("Se confirmó la contraseña");
+
             // Aceptar términos
             try {
                 click(checkTerminos);
-                System.out.println("✓ Se aceptaron los términos y condiciones");
+                System.out.println("Se aceptaron los términos y condiciones");
             } catch (Exception e) {
-                System.out.println("⚠ No se pudo hacer clic en términos (puede que no exista)");
+                System.out.println("No se pudo hacer clic en términos (puede que no exista)");
             }
-            
+
             waitForSeconds(1);
-            
+
             // Enviar formulario Paso 1
             click(btnSiguiente);
-            System.out.println("✓ Se hizo clic en 'Siguiente' - Paso 1 completado");
+            System.out.println("Se hizo clic en 'Siguiente' - Paso 1 completado");
             waitForSeconds(3); // Esperar a que cargue el Paso 2
-            
+
             // ========== PASO 2: Completar dirección ==========
             System.out.println("Iniciando Paso 2: Completar dirección");
-            
+
             // Provincia
             try {
                 waitForSeconds(2);
@@ -889,7 +900,7 @@ public class PageHomeLoginED extends BasePage {
                 // Seleccionar la primera opción disponible o Capital Federal
                 try {
                     //click(opcionProvincia);
-                    writeText(comboProvincia,"capital");
+                    writeText(comboProvincia, "capital");
                     waitForSeconds(1);
                     sendFlechaAbajo(1);
                     sendEnter();
@@ -898,11 +909,11 @@ public class PageHomeLoginED extends BasePage {
                     sendFlechaAbajo(1);
                     sendEnter();
                 }
-                System.out.println("✓ Se seleccionó la provincia");
+                System.out.println("Se seleccionó la provincia");
             } catch (Exception e) {
-                System.out.println("⚠ No se pudo seleccionar la provincia: " + e.getMessage());
+                System.out.println("No se pudo seleccionar la provincia: " + e.getMessage());
             }
-            
+
             // Localidad
             try {
                 waitForSeconds(1);
@@ -911,7 +922,7 @@ public class PageHomeLoginED extends BasePage {
                 // Seleccionar la primera opción disponible
                 try {
                     //click(opcionLocalidad);
-                    writeText(comboLocalidad,"ciudad");
+                    writeText(comboLocalidad, "ciudad");
                     waitForSeconds(1);
                     sendFlechaAbajo(1);
                     sendEnter();
@@ -920,42 +931,42 @@ public class PageHomeLoginED extends BasePage {
                     sendFlechaAbajo(1);
                     sendEnter();
                 }
-                System.out.println("✓ Se seleccionó la localidad");
+                System.out.println("Se seleccionó la localidad");
             } catch (Exception e) {
-                System.out.println("⚠ No se pudo seleccionar la localidad: " + e.getMessage());
+                System.out.println("No se pudo seleccionar la localidad: " + e.getMessage());
             }
-            
+
             // Dirección
             try {
                 waitForSeconds(1);
                 writeText(campoDireccion, "Av. Test " + numerosAleatorios(4));
-                System.out.println("✓ Se ingresó la dirección");
+                System.out.println("Se ingresó la dirección");
             } catch (Exception e) {
-                System.out.println("⚠ No se pudo ingresar la dirección: " + e.getMessage());
+                System.out.println("No se pudo ingresar la dirección: " + e.getMessage());
             }
-            
+
             // Código postal
             try {
                 waitForSeconds(1);
                 writeText(campoCodigoPostal, "1020"); // Código postal por defecto para Capital Federal
-                System.out.println("✓ Se ingresó el código postal");
+                System.out.println("Se ingresó el código postal");
             } catch (Exception e) {
-                System.out.println("⚠ No se pudo ingresar el código postal: " + e.getMessage());
+                System.out.println("No se pudo ingresar el código postal: " + e.getMessage());
             }
-            
+
             waitForSeconds(1);
-            
+
             // Hacer clic en el botón "Registrarme" final
             try {
                 click(btnRegistrarseFinal);
-                System.out.println("✓ Se hizo clic en 'Registrarme' - Paso 2 completado");
+                System.out.println("Se hizo clic en 'Registrarme' - Paso 2 completado");
                 waitForSeconds(3); // Esperar respuesta del servidor y finalización del registro
             } catch (Exception e) {
-                throw new AssertionError("✗ No se pudo hacer clic en el botón Registrarme final: " + e.getMessage());
+                throw new AssertionError("No se pudo hacer clic en el botón Registrarme final: " + e.getMessage());
             }
-            
+
         } catch (Exception e) {
-            throw new AssertionError("✗ Error al llenar el formulario de registro con CUIT: " + e.getMessage());
+            throw new AssertionError("Error al llenar el formulario de registro con CUIT: " + e.getMessage());
         }
     }
 
@@ -974,56 +985,185 @@ public class PageHomeLoginED extends BasePage {
     }
 
     /**
-     * Valida que se muestra un mensaje de validación específico
+     * Valida que se muestra un mensaje de validación específico.
+     * Si mensajeEsperado es "cualquiera", solo verifica que exista al menos un mensaje de validación visible.
      */
     public void validarMensajeValidacion(String mensajeEsperado) {
         try {
             waitForSeconds(2);
-            
+
+            if ("cualquiera".equalsIgnoreCase(mensajeEsperado != null ? mensajeEsperado.trim() : "")) {
+                // Solo verificar que haya algún mensaje de validación
+                java.util.List<WebElement> elementosError = getDriver().findElements(mensajesValidacion);
+                for (WebElement elemento : elementosError) {
+                    if (elemento.isDisplayed() && elemento.getText() != null && !elemento.getText().trim().isEmpty()) {
+                        System.out.println("Mensaje de validación encontrado (cualquiera): " + elemento.getText());
+                        return;
+                    }
+                }
+                String pageText = getDriver().findElement(By.tagName("body")).getText();
+                if (pageText.matches("(?s).*(Debe|debe|inválido|inválida|caracteres).*")) {
+                    System.out.println("Mensaje de validación encontrado en la página (cualquiera)");
+                    return;
+                }
+                throw new AssertionError("No se encontró ningún mensaje de validación en la página");
+            }
+
             // Buscar el mensaje en diferentes ubicaciones posibles
             String mensajeLower = mensajeEsperado.toLowerCase();
-            
+
             // Buscar en elementos de error/validación
             try {
                 java.util.List<WebElement> elementosError = getDriver().findElements(mensajesValidacion);
                 for (WebElement elemento : elementosError) {
                     String texto = elemento.getText().toLowerCase();
                     if (texto.contains(mensajeLower) || mensajeLower.contains(texto)) {
-                        System.out.println("✓ Mensaje de validación encontrado: " + elemento.getText());
+                        System.out.println("Mensaje de validación encontrado: " + elemento.getText());
                         return;
                     }
                 }
             } catch (Exception e) {
                 // Continuar con otros métodos de búsqueda
             }
-            
+
             // Buscar en todo el body de la página
             String pageText = getDriver().findElement(By.tagName("body")).getText().toLowerCase();
             if (pageText.contains(mensajeLower)) {
-                System.out.println("✓ Mensaje de validación encontrado en la página: " + mensajeEsperado);
+                System.out.println("Mensaje de validación encontrado en la página: " + mensajeEsperado);
                 return;
             }
-            
+
             // Buscar por texto exacto o parcial en cualquier elemento
             String xpathMensaje = "//*[contains(text(), '" + mensajeEsperado + "')]";
             try {
                 WebElement mensaje = getDriver().findElement(By.xpath(xpathMensaje));
                 if (mensaje.isDisplayed()) {
-                    System.out.println("✓ Mensaje de validación encontrado: " + mensaje.getText());
+                    System.out.println("Mensaje de validación encontrado: " + mensaje.getText());
                     return;
                 }
             } catch (Exception e) {
                 // Continuar
             }
-            
+
             // Si no se encuentra, lanzar error
-            throw new AssertionError("✗ No se encontró el mensaje de validación esperado: " + mensajeEsperado);
-            
+            throw new AssertionError("No se encontró el mensaje de validación esperado: " + mensajeEsperado);
+
         } catch (AssertionError e) {
             throw e;
         } catch (Exception e) {
-            throw new AssertionError("✗ Error al validar mensaje de validación: " + e.getMessage());
+            throw new AssertionError("Error al validar mensaje de validación: " + e.getMessage());
         }
+    }
+
+    //Registro refactor
+    //Campo nombre
+
+    public void campoNombre(String nombre) {
+        if ("aleatorio".equalsIgnoreCase(nombre != null ? nombre.trim() : "")) {
+            nombre = generadorNombresReales();
+        }
+        writeText(campoNombre, nombre);
+        System.out.println("Se ingresó el nombre: " + nombre);
+    }
+
+    //Campo apellido
+
+    public void campoApellido(String apellido) {
+        if ("aleatorio".equalsIgnoreCase(apellido != null ? apellido.trim() : "")) {
+            apellido = generadorApellidosReales();
+        }
+        writeText(campoApellido, apellido);
+        System.out.println("Se ingresó el apellido: " + apellido);
+    }
+
+    //combo Tipo DNI / CUIT (refactor registro)
+
+    public void comboTipo(String tipo) {
+        if (tipo == null || tipo.trim().isEmpty()) {
+            click(comboDNI);
+            waitForSeconds(1);
+            hacerClicFueraDelCampo();
+            return;
+        }
+        try {
+            click(comboDNI);
+            waitForSeconds(1);
+            if (elementExists(botonPopupIndicatorTipo)) {
+                click(botonPopupIndicatorTipo);
+            }
+            waitForSeconds(1);
+            if ("CUIT".equalsIgnoreCase(tipo.trim())) {
+                click(opcionCUIT);
+                System.out.println("Se seleccionó tipo CUIT");
+            } else {
+                click(opcionDNI);
+                System.out.println("Se seleccionó tipo DNI");
+            }
+        } catch (Exception e) {
+            click(comboDNI);
+            waitForSeconds(1);
+            if ("CUIT".equalsIgnoreCase(tipo.trim())) {
+                click(opcionCUIT);
+            } else {
+                click(opcionDNI);
+            }
+        }
+    }
+
+    /**
+     * Hace clic en el checkbox de términos y condiciones del formulario de registro
+     */
+    public void clicCheckTerminosYCondiciones() {
+        try {
+            waitForSeconds(1);
+            click(checkTerminos);
+            System.out.println("Se aceptaron los términos y condiciones");
+        } catch (Exception e) {
+            throw new AssertionError("No se pudo hacer clic en términos y condiciones: " + e.getMessage());
+        }
+    }
+
+    /** Escribe en el campo documento (solo valor final; "aleatorio" se resuelve en steps) */
+    public void escribirCampoDocumento(String valor) {
+        writeText(campoDocumento, valor);
+        System.out.println("Se ingresó documento: " + valor);
+    }
+
+    /** Escribe en el campo CUIT (solo valor final). Solo escribe si el campo CUIT está visible (tipo CUIT). */
+    public void escribirCampoCuit(String valor) {
+        if (valor == null || valor.isEmpty()) return;
+        try {
+            if (elementExists(campoCUIT) && findElement(campoCUIT).isDisplayed()) {
+                writeText(campoCUIT, valor);
+                System.out.println("Se ingresó CUIT: " + valor);
+            }
+        } catch (Exception e) {
+            // Si no existe campo CUIT (ej. tipo DNI), no sobrescribir documento
+        }
+    }
+
+    /** Escribe en el campo celular */
+    public void escribirCampoCelular(String valor) {
+        writeText(campoCelular, valor);
+        System.out.println("Se ingresó celular: " + valor);
+    }
+
+    /** Escribe en el campo correo electrónico del registro */
+    public void escribirCampoCorreoElectronico(String valor) {
+        writeText(campoEmailRegistro, valor);
+        System.out.println("Se ingresó correo electrónico: " + valor);
+    }
+
+    /** Escribe en el campo contraseña del registro */
+    public void escribirCampoContrasena(String valor) {
+        writeText(campoPasswordRegistro, valor);
+        System.out.println("Se ingresó contraseña");
+    }
+
+    /** Escribe en el campo confirmar contraseña del registro */
+    public void escribirCampoConfirmarContrasena(String valor) {
+        writeText(campoPasswordConfirmRegistro, valor);
+        System.out.println("Se ingresó confirmar contraseña");
     }
 
 }
